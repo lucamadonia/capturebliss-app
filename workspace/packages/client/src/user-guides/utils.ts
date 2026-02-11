@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { sentryCaptureException } from '@fable/common/dist/sentry';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
 import {
   Guide,
   GuideInfo,
@@ -27,16 +27,16 @@ type LocalStoreUserGuide = Record<string, LocalStoreUserGuideProps>;
 
 const reinitializeLocalStorage = (): LocalStoreUserGuide => {
   insertAllUserGuides();
-  const FABLE_USER_GUIDE = localStorage.getItem(USER_GUIDE_LOCAL_STORE_KEY);
-  return JSON.parse(FABLE_USER_GUIDE!);
+  const CAPTUREBLISS_USER_GUIDE = localStorage.getItem(USER_GUIDE_LOCAL_STORE_KEY);
+  return JSON.parse(CAPTUREBLISS_USER_GUIDE!);
 };
 
-const getFableUserGuide = (): LocalStoreUserGuide => {
-  const FABLE_USER_GUIDE = localStorage.getItem(USER_GUIDE_LOCAL_STORE_KEY);
-  return FABLE_USER_GUIDE ? JSON.parse(FABLE_USER_GUIDE) as LocalStoreUserGuide : reinitializeLocalStorage();
+const getCaptureblissUserGuide = (): LocalStoreUserGuide => {
+  const CAPTUREBLISS_USER_GUIDE = localStorage.getItem(USER_GUIDE_LOCAL_STORE_KEY);
+  return CAPTUREBLISS_USER_GUIDE ? JSON.parse(CAPTUREBLISS_USER_GUIDE) as LocalStoreUserGuide : reinitializeLocalStorage();
 };
 
-const saveFableUserGuide = (userGuide: LocalStoreUserGuide): void => {
+const saveCaptureblissUserGuide = (userGuide: LocalStoreUserGuide): void => {
   localStorage.setItem(USER_GUIDE_LOCAL_STORE_KEY, JSON.stringify(userGuide));
 };
 
@@ -66,37 +66,37 @@ const updateGuideProps = (
 export const removeDeprecatedTours = (
   guides: { guideInfo: GuideInfo; component: (props: GuideProps) => JSX.Element }[]
 ): void => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
-  const UPDATED_FABLE_USER_GUIDE: LocalStoreUserGuide = {};
-  guides.forEach(guide => UPDATED_FABLE_USER_GUIDE[guide.guideInfo.id] = FABLE_USER_GUIDE[guide.guideInfo.id]);
-  saveFableUserGuide(UPDATED_FABLE_USER_GUIDE);
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
+  const UPDATED_CAPTUREBLISS_USER_GUIDE: LocalStoreUserGuide = {};
+  guides.forEach(guide => UPDATED_CAPTUREBLISS_USER_GUIDE[guide.guideInfo.id] = CAPTUREBLISS_USER_GUIDE[guide.guideInfo.id]);
+  saveCaptureblissUserGuide(UPDATED_CAPTUREBLISS_USER_GUIDE);
 };
 
-export const upsertFableUserGuide = (
+export const upsertCaptureblissUserGuide = (
   guide: LocalStoreUserGuideProps
 ): void => {
-  let FABLE_USER_GUIDE = getFableUserGuide();
+  let CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
 
-  if (!FABLE_USER_GUIDE[guide.id]) {
-    FABLE_USER_GUIDE[guide.id] = guide;
+  if (!CAPTUREBLISS_USER_GUIDE[guide.id]) {
+    CAPTUREBLISS_USER_GUIDE[guide.id] = guide;
   } else {
-    FABLE_USER_GUIDE = updateGuideProps(guide, FABLE_USER_GUIDE);
+    CAPTUREBLISS_USER_GUIDE = updateGuideProps(guide, CAPTUREBLISS_USER_GUIDE);
   }
 
-  saveFableUserGuide(FABLE_USER_GUIDE);
+  saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
 };
 
-export const insertFableUserGuide = (
+export const insertCaptureblissUserGuide = (
   guides: { guideInfo: GuideInfo; component: (props: GuideProps) => JSX.Element }[]
 ): void => {
-  const FABLE_USER_GUIDE: LocalStoreUserGuide = {};
-  guides.forEach(guide => FABLE_USER_GUIDE[guide.guideInfo.id] = guide.guideInfo);
-  saveFableUserGuide(FABLE_USER_GUIDE);
+  const CAPTUREBLISS_USER_GUIDE: LocalStoreUserGuide = {};
+  guides.forEach(guide => CAPTUREBLISS_USER_GUIDE[guide.guideInfo.id] = guide.guideInfo);
+  saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
 };
 
 export const shouldShowGuide = (guideId: string): boolean => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
-  const guide = FABLE_USER_GUIDE[guideId];
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
+  const guide = CAPTUREBLISS_USER_GUIDE[guideId];
   if (!guide) return false;
 
   const isCurrGuideDone = !guide.isSkipped && !guide.isCompleted;
@@ -105,7 +105,7 @@ export const shouldShowGuide = (guideId: string): boolean => {
     return isCurrGuideDone;
   }
 
-  const prevGuide = Object.values(FABLE_USER_GUIDE).find(g => (
+  const prevGuide = Object.values(CAPTUREBLISS_USER_GUIDE).find(g => (
     g.groupId === guide.groupId && g.partId === guide.partId - 1
   ));
 
@@ -117,13 +117,13 @@ export const shouldShowGuide = (guideId: string): boolean => {
 };
 
 export const updateStepsTaken = (guideId: string, stepsTaken: number): void => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
-  const guide = FABLE_USER_GUIDE[guideId];
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
+  const guide = CAPTUREBLISS_USER_GUIDE[guideId];
   if (!guide) return;
 
   if (guide.stepsTaken < stepsTaken) {
     guide.stepsTaken = stepsTaken;
-    saveFableUserGuide(FABLE_USER_GUIDE);
+    saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
   }
 };
 
@@ -154,21 +154,21 @@ export const closeUserGuide = (): void => {
 };
 
 export const skipUserGuide = (guide: Guide): void => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
 
-  for (const g of Object.values(FABLE_USER_GUIDE)) {
+  for (const g of Object.values(CAPTUREBLISS_USER_GUIDE)) {
     if (g.groupId === guide.name) {
       g.isSkipped = true;
     }
   }
 
-  saveFableUserGuide(FABLE_USER_GUIDE);
+  saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
 };
 
 export const resetSkippedOrCompletedStatus = (groupId: string): void => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
 
-  for (const guide of Object.values(FABLE_USER_GUIDE)) {
+  for (const guide of Object.values(CAPTUREBLISS_USER_GUIDE)) {
     if (guide.groupId === groupId) {
       guide.isCompleted = false;
       guide.isSkipped = false;
@@ -176,28 +176,28 @@ export const resetSkippedOrCompletedStatus = (groupId: string): void => {
     }
   }
 
-  saveFableUserGuide(FABLE_USER_GUIDE);
+  saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
 };
 
 export const completeUserGuide = (guideId: string): void => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
 
-  const guide = FABLE_USER_GUIDE[guideId];
+  const guide = CAPTUREBLISS_USER_GUIDE[guideId];
 
   if (!guide) return;
 
   guide.isCompleted = true;
 
-  saveFableUserGuide(FABLE_USER_GUIDE);
+  saveCaptureblissUserGuide(CAPTUREBLISS_USER_GUIDE);
 };
 
 export const getUserGuideCompletionProgressInModules = (): {
   completedModules: number;
   totalmodules: number;
 } => {
-  const FABLE_USER_GUIDE = groupUserGuidesByGroupId(getFableUserGuide());
+  const CAPTUREBLISS_USER_GUIDE = groupUserGuidesByGroupId(getCaptureblissUserGuide());
 
-  return Object.values(FABLE_USER_GUIDE).reduce((acc, curr) => {
+  return Object.values(CAPTUREBLISS_USER_GUIDE).reduce((acc, curr) => {
     if (curr.isCompleted || curr.isSkipped) {
       acc.completedModules += 1;
     }
@@ -207,9 +207,9 @@ export const getUserGuideCompletionProgressInModules = (): {
 };
 
 export const getUserGuidesInArray = (): LocalStoreUserGuideProps[] => {
-  const FABLE_USER_GUIDE = getFableUserGuide();
+  const CAPTUREBLISS_USER_GUIDE = getCaptureblissUserGuide();
   const USER_GUIDES: LocalStoreUserGuideProps[] = [];
-  for (const [_, guide] of Object.entries(FABLE_USER_GUIDE)) {
+  for (const [_, guide] of Object.entries(CAPTUREBLISS_USER_GUIDE)) {
     USER_GUIDES[guide.serialId - 1] = guide;
   }
 

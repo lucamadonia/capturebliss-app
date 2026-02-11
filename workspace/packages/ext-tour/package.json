@@ -1,9 +1,9 @@
 {
-  "name": "@fable/ext-tour",
+  "name": "@capturebliss/ext-tour",
   "version": "2.1.9",
   "main": "build",
-  "description": "Product demo extension for Fable",
-  "repository": "git+ssh://git@github.com:sharefable/app.git",
+  "description": "Product demo extension for Capturebliss",
+  "repository": "git+ssh://git@github.com:capturebliss/app.git",
   "license": "Apache-2.0",
   "scripts": {
     "clean": "rm -rf build",
@@ -20,7 +20,7 @@
     "dupdetect": "jscpd src/"
   },
   "dependencies": {
-    "@fable/common": "^1.0.0",
+    "@capturebliss/common": "^1.0.0",
     "@headlessui/react": "^0.0.0-dev.0ce63d8",
     "@sentry/browser": "^7.49.0",
     "nanoid": "^4.0.2"

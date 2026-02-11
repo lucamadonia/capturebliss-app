@@ -1,5 +1,5 @@
-import { RespOrg, RespUser } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { RespOrg, RespUser } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import React from 'react';
 import { connect } from 'react-redux';
 import CompanyCarousel from '../../component/company-carousel';

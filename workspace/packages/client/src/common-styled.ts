@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Modal, Checkbox, Input, ColorPicker as AntColorPicker, Button, Select, Radio, Collapse, Popover, Segmented } from 'antd';
-import { AnnotationButtonSize } from '@fable/common/dist/types';
+import { AnnotationButtonSize } from '@capturebliss/common/dist/types';
 import { getColorContrast } from './utils';
 
 export const ColCon = styled.div`
@@ -109,7 +109,7 @@ export const BodyCon = styled.div`
     align-items: center;
   }
 
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   scrollbar-width: thin;
 
   .disabled {
@@ -136,7 +136,7 @@ export const MainCon = styled.div`
   flex-direction: column;
   background: #f5f5f5;
 
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   scrollbar-width: thin;
   
   .ant-tabs-tab-btn {
@@ -172,13 +172,13 @@ export const EditPanelCon = styled.div`
   flex-direction: column;
   background: #fff;
   border-left: 1px solid #ddd;
-  scrollbar-color: var(fable-scrollbar-color);
+  scrollbar-color: var(capturebliss-scrollbar-color);
   scrollbar-width: thin;
   overflow-y: auto;
 
   &::-webkit-scrollbar-track {
     padding: 2px 0;
-    background-color: var(--fable-scrollbar-track);
+    background-color: var(--capturebliss-scrollbar-track);
     border-radius: 10px;
     border: 1px solid #F3F4F6;
   }
@@ -191,7 +191,7 @@ export const EditPanelCon = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
   }
 `;
 
@@ -419,7 +419,7 @@ export const DashedBtn = styled(Button)`
   } 
 `;
 
-export const FableSelect = styled(Select)`
+export const CaptureblissSelect = styled(Select)`
   border-radius: 8px;
   background: #fff;
   border: 1px dashed #bdbdbd;
@@ -447,14 +447,14 @@ export const BottomPanel = styled.div`
   flex-grow: 1;
   margin: 1rem 0;
   scrollbar-width: thin;
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
 
   &::-webkit-scrollbar {
     width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
     border-radius: 4px;
   }
 
@@ -542,7 +542,7 @@ export const LeadFormEntryCon = styled.div<LeadFormProps>`
       p {
         margin: 0.5rem 0;
 
-        &:has(span#fable-lead-form) {
+        &:has(span#capturebliss-lead-form) {
           margin: 0 1rem;
           transform: scale(0.9) translate(0px, -2rem);
         }
@@ -616,7 +616,7 @@ export const LeadFormEntryCon = styled.div<LeadFormProps>`
     font-size: 1.35rem;
     border: 0px;
     padding: 8px 16px;
-    color: var(--fable-ann-font-color);
+    color: var(--capturebliss-ann-font-color);
     background-color: transparent;
     font-weight: bold;
     outline: 0px;

@@ -1,15 +1,15 @@
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { DeleteOutlined, LinkOutlined, ReloadOutlined, SaveOutlined, UploadOutlined } from '@ant-design/icons';
 import { Tabs, Tooltip } from 'antd';
-import { ITourLoaderData } from '@fable/common/dist/types';
-import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@fable/common/dist/utils';
+import { ITourLoaderData } from '@capturebliss/common/dist/types';
+import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@capturebliss/common/dist/utils';
 import * as Tags from './styled';
 import Loader from './loader';
 import FileInput from '../file-input';
 import Input from '../input';
 import { uploadImgFileObjectToAws } from '../../upload-media-to-aws';
 import { P_RespSubscription, P_RespTour } from '../../entity-processor';
-import FableLogo from '../../assets/fable_logo_light_bg.png';
+import CaptureblissLogo from '../../assets/capturebliss_logo_light_bg.png';
 import CloseIcon from '../../assets/tour/close.svg';
 import { FeatureForPlan } from '../../plans';
 import { isFeatureAvailable, isGlobalProperty } from '../../utils';
@@ -28,7 +28,7 @@ interface Props {
   subs: P_RespSubscription | null;
 }
 
-const DEFAULT_LOGO_URL = 'https://s3.amazonaws.com/app.sharefable.com/favicon.png';
+const DEFAULT_LOGO_URL = 'https://s3.amazonaws.com/app.capturebliss.com/favicon.png';
 function LoaderEditor(props: Props): JSX.Element {
   const [loaderData, setLoaderData] = useState<ITourLoaderData>(props.data);
   const [isLogoUrlEmpty, setIsLogoUrlEmpty] = useState(false);
@@ -73,7 +73,7 @@ function LoaderEditor(props: Props): JSX.Element {
     <Tags.FullScreenCon applyTransform>
       <Tags.EditorWrapper>
         <Tags.Header>
-          <Tags.FableLogo alt="" src={FableLogo} />
+          <Tags.CaptureblissLogo alt="" src={CaptureblissLogo} />
           <div style={{ display: 'flex', gap: '0.5rem' }}>
             <div style={{
               display: 'flex',

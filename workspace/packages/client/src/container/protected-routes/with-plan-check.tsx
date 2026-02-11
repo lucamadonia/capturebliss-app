@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-import { Plan } from '@fable/common/dist/api-contract';
+import { Plan } from '@capturebliss/common/dist/api-contract';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { TState } from '../../reducer';
 import { getSubscriptionOrCheckoutNew } from '../../action/creator';

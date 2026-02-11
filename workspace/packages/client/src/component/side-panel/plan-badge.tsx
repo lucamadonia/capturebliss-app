@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThunderboltOutlined } from '@ant-design/icons';
-import { Interval, Plan, Status } from '@fable/common/dist/api-contract';
+import { Interval, Plan, Status } from '@capturebliss/common/dist/api-contract';
 import * as Tags from './styled';
 import { P_RespSubscription } from '../../entity-processor';
 

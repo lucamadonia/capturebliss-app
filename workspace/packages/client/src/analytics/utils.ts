@@ -2,16 +2,16 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   EventLog,
   FlattendEventLog,
-  FableAnalyticsLocalStoreKeys,
+  CaptureblissAnalyticsLocalStoreKeys,
 } from './types';
 
 export const getUUID = (): string => uuidv4().replace(/\W+/g, '');
 
 export const getAnonymousUserId = (): string => {
-  const aid = localStorage.getItem(FableAnalyticsLocalStoreKeys.AnonymousUserId);
+  const aid = localStorage.getItem(CaptureblissAnalyticsLocalStoreKeys.AnonymousUserId);
   if (!aid) {
     const newAid = getUUID();
-    localStorage.setItem(FableAnalyticsLocalStoreKeys.AnonymousUserId, newAid);
+    localStorage.setItem(CaptureblissAnalyticsLocalStoreKeys.AnonymousUserId, newAid);
     return newAid;
   }
   return aid;
@@ -20,12 +20,12 @@ export const getAnonymousUserId = (): string => {
 // Generate a new session id after 10mins of inactivity
 // WARN Use this sessionId only for analytics as session gets invalidated after expiry
 export const getSessionId = (): string => {
-  const sid = sessionStorage.getItem(FableAnalyticsLocalStoreKeys.SessionId);
-  const expiry = sessionStorage.getItem(FableAnalyticsLocalStoreKeys.SessionIdExpireAt);
+  const sid = sessionStorage.getItem(CaptureblissAnalyticsLocalStoreKeys.SessionId);
+  const expiry = sessionStorage.getItem(CaptureblissAnalyticsLocalStoreKeys.SessionIdExpireAt);
   // set session id expiry 10mins in future
   const expireAfterSeconds = 10 * 60;
   sessionStorage.setItem(
-    FableAnalyticsLocalStoreKeys.SessionIdExpireAt,
+    CaptureblissAnalyticsLocalStoreKeys.SessionIdExpireAt,
     String(Math.floor((+new Date() / 1000) + expireAfterSeconds))
   );
 
@@ -37,7 +37,7 @@ export const getSessionId = (): string => {
 
   if (!sid || sessionIdExpired) {
     const newSid = getUUID();
-    sessionStorage.setItem(FableAnalyticsLocalStoreKeys.SessionId, newSid);
+    sessionStorage.setItem(CaptureblissAnalyticsLocalStoreKeys.SessionId, newSid);
     return newSid;
   }
 
@@ -49,7 +49,7 @@ export const getUtcUnixTimestamp = (date: Date): number => (+date / 1000) | 0;
 export const getTimezoneOffset = (date: Date): string => `${date.getTimezoneOffset()}`;
 
 export const removeSessionId = (): void => {
-  sessionStorage.removeItem(FableAnalyticsLocalStoreKeys.SessionId);
+  sessionStorage.removeItem(CaptureblissAnalyticsLocalStoreKeys.SessionId);
 };
 
 export const flattenLogEvent = (logs: EventLog): FlattendEventLog => {

@@ -32,7 +32,7 @@ function Placeholder() : ReactElement {
 }
 
 const editorConfig = {
-  namespace: 'fable-annotation-rich-text-editor',
+  namespace: 'capturebliss-annotation-rich-text-editor',
   theme: Theme,
   onError(error: Error) {
     throw error;

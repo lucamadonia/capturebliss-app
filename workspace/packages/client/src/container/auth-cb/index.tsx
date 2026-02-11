@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { openDb, DB_NAME, OBJECT_KEY, OBJECT_KEY_VALUE, OBJECT_STORE, DBData } from '@fable/common/dist/db-utils';
+import { openDb, DB_NAME, OBJECT_KEY, OBJECT_KEY_VALUE, OBJECT_STORE, DBData } from '@capturebliss/common/dist/db-utils';
 import { TState } from '../../reducer';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { getDataFromDb } from '../create-tour/db-utils';

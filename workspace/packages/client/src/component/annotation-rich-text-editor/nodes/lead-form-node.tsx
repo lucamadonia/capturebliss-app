@@ -12,8 +12,8 @@ import {
 } from 'lexical';
 import * as React from 'react';
 import { Suspense } from 'react';
-import { getRandomId } from '@fable/common/dist/utils';
-import { FABLE_LEAD_FORM_FIELD_NAME, FABLE_LEAD_FORM_ID, FABLE_LEAD_FORM_VALIDATION_FN } from '../../../constants';
+import { getRandomId } from '@capturebliss/common/dist/utils';
+import { CAPTUREBLISS_LEAD_FORM_FIELD_NAME, CAPTUREBLISS_LEAD_FORM_ID, CAPTUREBLISS_LEAD_FORM_VALIDATION_FN } from '../../../constants';
 import {
   LeadFormField,
   LeadFormFieldAutocompleteType,
@@ -206,7 +206,7 @@ export class LeadFormNode extends DecoratorNode<JSX.Element> {
     );
 
     container.classList.add('LeadForm__container');
-    container.setAttribute('id', FABLE_LEAD_FORM_ID);
+    container.setAttribute('id', CAPTUREBLISS_LEAD_FORM_ID);
 
     innerCon.classList.add('LeadForm__inner');
 
@@ -217,13 +217,13 @@ export class LeadFormNode extends DecoratorNode<JSX.Element> {
       const optionInput = document.createElement('input');
 
       optionCon.classList.add('LeadForm__optionContainer');
-      optionCon.setAttribute('fable-input-field-uid', option.uid);
-      optionCon.setAttribute(FABLE_LEAD_FORM_VALIDATION_FN, option.type);
+      optionCon.setAttribute('capturebliss-input-field-uid', option.uid);
+      optionCon.setAttribute(CAPTUREBLISS_LEAD_FORM_VALIDATION_FN, option.type);
       innerCon.appendChild(optionCon);
 
       optionInputValidationWrapper.innerText = 'Error msg';
       optionInputValidationWrapper.classList.add('LeadForm__inputValidation');
-      optionInputValidationWrapper.setAttribute('fable-validation-uid', option.uid);
+      optionInputValidationWrapper.setAttribute('capturebliss-validation-uid', option.uid);
 
       optionInputWrapper.classList.add('LeadForm__optionInputWrapper');
       optionCon.appendChild(optionInputWrapper);
@@ -232,8 +232,8 @@ export class LeadFormNode extends DecoratorNode<JSX.Element> {
       const fieldName = parseFieldName(option.text);
 
       optionInput.classList.add(OPTION_INPUT_CLASSNAME);
-      optionInput.setAttribute('fable-input-uid', option.uid);
-      optionInput.setAttribute(FABLE_LEAD_FORM_FIELD_NAME, fieldName);
+      optionInput.setAttribute('capturebliss-input-uid', option.uid);
+      optionInput.setAttribute(CAPTUREBLISS_LEAD_FORM_FIELD_NAME, fieldName);
       optionInput.type = 'text';
       optionInput.placeholder = removeFieldNameDefinition(option.text);
 

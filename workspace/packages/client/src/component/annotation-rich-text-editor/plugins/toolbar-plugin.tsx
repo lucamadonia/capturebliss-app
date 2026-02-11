@@ -40,7 +40,7 @@ import {
   LineHeightOutlined,
 } from '@ant-design/icons';
 import { Dropdown, Popover, Select, Tooltip } from 'antd';
-import { AnnotationFontSize } from '@fable/common/dist/types';
+import { AnnotationFontSize } from '@capturebliss/common/dist/types';
 import { BorderedModal } from '../../../common-styled';
 import Input from '../../input';
 import Button from '../../button';

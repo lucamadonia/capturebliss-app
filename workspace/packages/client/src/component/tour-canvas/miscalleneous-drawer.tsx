@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SettingOutlined } from '@ant-design/icons';
-import { FrameSettings } from '@fable/common/dist/api-contract';
+import { FrameSettings } from '@capturebliss/common/dist/api-contract';
 import * as Tags from './styled';
 import * as GTags from '../../common-styled';
 import CaretOutlined from '../icons/caret-outlined';
@@ -40,7 +40,7 @@ export default function FrameSettingsDrawer(props: Props): JSX.Element {
         >
           <div>Frame Style</div>
         </div>
-        <GTags.FableSelect
+        <GTags.CaptureblissSelect
           className="typ-ip"
           title="Frame Style"
           value={FrameSettingsArray!.find(f => f.value === frameSettings)}

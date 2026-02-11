@@ -91,7 +91,7 @@ export const EXT_INFO_MODAL_INNERHTML = `
     <div class="content-con">
       <div class="head-con">
         <div>
-            <div>Click Fable's extension icon again</div>
+            <div>Click Capturebliss's extension icon again</div>
             <div>to stop/delete the recording</div>
         </div>
           <div class='jmp-icn'>↑↑</div>

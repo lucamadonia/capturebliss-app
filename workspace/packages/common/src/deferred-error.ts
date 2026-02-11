@@ -1,5 +1,5 @@
 export default function raiseDeferredError(err: Error): void {
-  const globalData = (typeof window !== 'undefined' && (window as any).__fable_global_app_data__) || {};
+  const globalData = (typeof window !== 'undefined' && (window as any).__capturebliss_global_app_data__) || {};
   const anonymousDemoId = globalData.anonymousDemoId;
 
   let updatedMessage = err.message;

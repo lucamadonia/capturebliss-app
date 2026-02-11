@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { TState } from '../../reducer';
 import { init, iam } from '../../action/creator';
 import { InternalEvents, STORAGE_PREFIX_KEY_QUERY_PARAMS } from '../../types';

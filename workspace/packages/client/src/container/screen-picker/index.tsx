@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import { ScreenType } from '@fable/common/dist/api-contract';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
 import { ArrowUpOutlined, FileImageOutlined, FileTextOutlined, MoreOutlined, UploadOutlined } from '@ant-design/icons';
-import { getDisplayableTime } from '@fable/common/dist/utils';
-import { LoadingStatus } from '@fable/common/dist/types';
+import { getDisplayableTime } from '@capturebliss/common/dist/utils';
+import { LoadingStatus } from '@capturebliss/common/dist/types';
 import { NavigateFunction } from 'react-router-dom';
 import { Popover, Button } from 'antd';
 import { withRouter, WithRouterProps } from '../../router-hoc';
@@ -27,7 +27,7 @@ import * as Tags from './styled';
 import { getAnnotationsPerScreen } from '../../utils';
 import UploadImageScreen from './upload-image-screen';
 import CloseIcon from '../../assets/tour/close.svg';
-import FableLogo from '../../assets/fable_logo_light_bg.png';
+import CaptureblissLogo from '../../assets/capturebliss_logo_light_bg.png';
 import NextIcon from '../../assets/tour/next.svg';
 import Loader from '../../component/loader';
 import { amplitudeAddScreensToTour, amplitudeNewAnnotationCreated, propertyCreatedFromWithType } from '../../amplitude';
@@ -347,7 +347,7 @@ class ScreenPicker extends React.PureComponent<IProps, IOwnStateProps> {
           {/* <Tags.PolkaDotGridBg /> */}
           {this.props.showCloseButton
           && <Tags.CloseIcon alt="" src={CloseIcon} onClick={this.props.hideScreenPicker} />}
-          <Tags.FableLogo alt="" src={FableLogo} />
+          <Tags.CaptureblissLogo alt="" src={CaptureblissLogo} />
           {!this.props.screenLoadingFinished && <Loader width="100px" txtBefore="Loading all screens" />}
           {this.props.screenLoadingFinished && (
             <>
@@ -374,7 +374,7 @@ class ScreenPicker extends React.PureComponent<IProps, IOwnStateProps> {
                 <Tags.Screen dontSelect>
                   <Tags.UploadImgCont>
                     <div className="typ-reg">
-                      Use Fable's Chrome extension to record your product screens and add those screens to this to this demo
+                      Use Capturebliss's Chrome extension to record your product screens and add those screens to this to this demo
                     </div>
                   </Tags.UploadImgCont>
                 </Tags.Screen>

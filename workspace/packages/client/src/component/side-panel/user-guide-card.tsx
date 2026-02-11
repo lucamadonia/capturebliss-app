@@ -122,7 +122,7 @@ export default function UserGuideCard(props: Props): JSX.Element {
         open={showModal}
         centered
         onCancel={closeModal}
-        title={`Hey${nickname}, we know you are super excited to explore Fable & how it all works. 😉`}
+        title={`Hey${nickname}, we know you are super excited to explore Capturebliss & how it all works. 😉`}
         footer={[
           <Button
             key={1}
@@ -138,7 +138,7 @@ export default function UserGuideCard(props: Props): JSX.Element {
           <br />
           Step 1: Open your product's webpage in Chrome
           <br />
-          Step 2: Click on <strong>Start Recording</strong> in Fable extension
+          Step 2: Click on <strong>Start Recording</strong> in Capturebliss extension
           <br />
           Step 3: Click on <strong>Stop Recording</strong> once you are done
           <br />

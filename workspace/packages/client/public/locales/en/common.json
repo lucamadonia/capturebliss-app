@@ -1,0 +1,38 @@
+{
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "close": "Close",
+  "loading": "Loading...",
+  "confirm": "Confirm",
+  "create": "Create",
+  "edit": "Edit",
+  "remove": "Remove",
+  "export": "Export",
+  "copy": "Copy",
+  "search": "Search",
+  "back": "Back",
+  "next": "Next",
+  "submit": "Submit",
+  "upgrade": "Upgrade",
+  "yes": "Yes",
+  "no": "No",
+  "nav": {
+    "interactiveDemos": "Interactive demos",
+    "demoHub": "Demo hub",
+    "leads": "Leads",
+    "integrations": "Integrations",
+    "userManagement": "User management",
+    "billing": "Billing",
+    "settings": "Settings",
+    "datasets": "Datasets",
+    "freeDemoConsultation": "Free demo consultation"
+  },
+  "clipboard": {
+    "clickToCopy": "Click to copy to clipboard",
+    "copied": "Copied to clipboard"
+  },
+  "supportEmail": "support@capturebliss.com",
+  "language": "Language",
+  "switchLanguage": "Switch language"
+}

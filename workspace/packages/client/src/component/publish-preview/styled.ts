@@ -236,14 +236,14 @@ export const URLCon = styled.div`
   .url-content {
     white-space: nowrap;
     padding: 0.7rem;
-    scrollbar-color: var(--fable-scrollbar-color);
+    scrollbar-color: var(--capturebliss-scrollbar-color);
     scrollbar-width: thin;
     overflow-y: hidden;
     overflow-x: auto;
   
     &::-webkit-scrollbar-track {
       padding: 2px 0;
-      background-color: var(--fable-scrollbar-track);
+      background-color: var(--capturebliss-scrollbar-track);
       border-radius: 10px;
       border: 1px solid #F3F4F6;
     }
@@ -256,7 +256,7 @@ export const URLCon = styled.div`
   
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--fable-scrollbar-thumb);
+      background-color: var(--capturebliss-scrollbar-thumb);
     } 
   }
 
@@ -360,7 +360,7 @@ export const ColorThemeCon = styled.div`
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   overflow-x: scroll;
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
 
   .card-con {
     width: max-content;

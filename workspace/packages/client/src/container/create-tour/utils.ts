@@ -14,8 +14,8 @@ import {
   ProxyAttrs,
   AiDxDy,
   IGlobalConfig,
-} from '@fable/common/dist/types';
-import api from '@fable/common/dist/api';
+} from '@capturebliss/common/dist/types';
+import api from '@capturebliss/common/dist/api';
 import {
   ApiResp,
   ReqCopyScreen,
@@ -33,7 +33,7 @@ import {
   EntityInfo,
   FrameSettings,
   LLMOps
-} from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/api-contract';
 import {
   createEmptyTourDataFile,
   getSampleConfig,
@@ -45,10 +45,10 @@ import {
   createLiteralProperty,
   SAMPLE_ANN_CONFIG_TEXT,
   getSampleJourneyData
-} from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/utils';
 import { nanoid } from 'nanoid';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import {
   CreateNewDemoV1,
   DemoMetadata,
@@ -57,14 +57,14 @@ import {
   RefForMMV,
   RouterForTypeOfDemoCreation,
   ThemeForGuideV1
-} from '@fable/common/dist/llm-contract';
-import { create_guides_router } from '@fable/common/dist/llm-fn-schema/create_guides_router';
+} from '@capturebliss/common/dist/llm-contract';
+import { create_guides_router } from '@capturebliss/common/dist/llm-fn-schema/create_guides_router';
 import { ToolUseBlockParam } from '@anthropic-ai/sdk/resources';
-import { suggest_guide_theme } from '@fable/common/dist/llm-fn-schema/suggest_guide_theme';
-import { post_process_demo } from '@fable/common/dist/llm-fn-schema/post_process_demo';
-import { create_guides_step_by_step } from '@fable/common/dist/llm-fn-schema/create_guides_step_by_step';
-import { create_guides_marketing } from '@fable/common/dist/llm-fn-schema/create_guides_marketing';
-import { demo_metadata } from '@fable/common/dist/llm-fn-schema/demo_metadata';
+import { suggest_guide_theme } from '@capturebliss/common/dist/llm-fn-schema/suggest_guide_theme';
+import { post_process_demo } from '@capturebliss/common/dist/llm-fn-schema/post_process_demo';
+import { create_guides_step_by_step } from '@capturebliss/common/dist/llm-fn-schema/create_guides_step_by_step';
+import { create_guides_marketing } from '@capturebliss/common/dist/llm-fn-schema/create_guides_marketing';
+import { demo_metadata } from '@capturebliss/common/dist/llm-fn-schema/demo_metadata';
 import {
   AiData,
   AiItem,
@@ -717,7 +717,7 @@ export function processScreen(
     if (frame.frameId === 0) {
       mainFrame = frame;
     } else {
-      data.frameId && lookupWithProp.push('fableGenFrameId', data.frameId, frame);
+      data.frameId && lookupWithProp.push('captureblissGenFrameId', data.frameId, frame);
       lookupWithProp.push('frameId', `${frame.frameId}`, frame);
       !(data.name === undefined || data.name === null || data.name === '')
         && lookupWithProp.push('name', data.name, frame);
@@ -755,7 +755,7 @@ export function processScreen(
         const urlLookupProp = postProcess.type === 'object' ? 'data' : 'src';
         let subFrame;
         let subFrames = [];
-        if ((subFrames = lookupWithProp.find('fableGenFrameId', node.attrs['fable-0-id-id'])).length === 1) {
+        if ((subFrames = lookupWithProp.find('captureblissGenFrameId', node.attrs['capturebliss-0-id-id'])).length === 1) {
           subFrame = subFrames[0];
         } else if ((subFrames = lookupWithProp.find('name', node.attrs.name)).length === 1) {
           // If we find a unique frame record with name then we take it
@@ -1135,7 +1135,7 @@ export function getAbsoluteUrl(urlStr: string, baseUrl: string, frameUrl: string
   }
 }
 
-type LookupWithPropType = 'name' | 'url' | 'urlBase' | 'dim' | 'frameId' | 'fableGenFrameId';
+type LookupWithPropType = 'name' | 'url' | 'urlBase' | 'dim' | 'frameId' | 'captureblissGenFrameId';
 class CreateLookupWithProp<T> {
   private static globalRec: Record<LookupWithPropType, Record<string, object[]>> = {
     name: {},
@@ -1143,7 +1143,7 @@ class CreateLookupWithProp<T> {
     urlBase: {},
     dim: {},
     frameId: {},
-    fableGenFrameId: {}
+    captureblissGenFrameId: {}
   };
 
   private rec: Record<LookupWithPropType, Record<string, T[]>> = {
@@ -1152,7 +1152,7 @@ class CreateLookupWithProp<T> {
     urlBase: {},
     dim: {},
     frameId: {},
-    fableGenFrameId: {}
+    captureblissGenFrameId: {}
   };
 
   static getNormalizedUrlStr(urlStr: string, justHost: boolean = true): string {

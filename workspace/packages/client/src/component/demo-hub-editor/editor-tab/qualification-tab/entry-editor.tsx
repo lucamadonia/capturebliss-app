@@ -315,7 +315,7 @@ export default function EntryEditor(props: Props): JSX.Element {
                                 <Tags.InputTextCon>
                                   <div className="typ-sm">Button type</div>
 
-                                  <GTags.FableSelect
+                                  <GTags.CaptureblissSelect
                                     className="typ-ip"
                                     defaultValue={props.entry.continueCTA.type}
                                     placeholder="Select CTA type"
@@ -406,7 +406,7 @@ export default function EntryEditor(props: Props): JSX.Element {
 
                                 <Tags.InputTextCon>
                                   <div className="typ-sm">CTA type</div>
-                                  <GTags.FableSelect
+                                  <GTags.CaptureblissSelect
                                     className="typ-ip"
                                     defaultValue={props.entry.skipCTA.type}
                                     placeholder="Select CTA type"

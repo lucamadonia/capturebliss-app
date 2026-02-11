@@ -1,10 +1,10 @@
 import { ArrowRightOutlined, BankOutlined, LoadingOutlined } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import {
   RespOrg
-} from '@fable/common/dist/api-contract';
-import { CmnEvtProp } from '@fable/common/dist/types';
-import { getDisplayableTime } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
+import { getDisplayableTime } from '@capturebliss/common/dist/utils';
 import React, { useEffect, useState } from 'react';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
 import { OurLink } from '../../common-styled';

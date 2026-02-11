@@ -1,0 +1,14 @@
+{
+  "welcome": "Welcome to Capturebliss",
+  "extensionInstalled": "Onboarding - Extension installed | Capturebliss",
+  "goToApp": "Onboarding - Go to the app | Capturebliss",
+  "userDetails": "Tell us about yourself",
+  "organizationDetails": "Organization details",
+  "usecases": "Use cases",
+  "installExtension": "Install extension",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "orgName": "Organization name",
+  "continue": "Continue",
+  "skip": "Skip"
+}

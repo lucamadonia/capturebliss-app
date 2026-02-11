@@ -1,4 +1,4 @@
-import { sentryTxReport } from '@fable/common/dist/sentry';
+import { sentryTxReport } from '@capturebliss/common/dist/sentry';
 import {
   DEFAULT_BORDER_RADIUS,
   CmnEvtProp,
@@ -8,14 +8,14 @@ import {
   ThemeCandidature,
   ThemeStats,
   IGlobalConfig,
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import { captureException, startTransaction, Transaction } from '@sentry/react';
 import React, { ReactElement, Suspense, lazy } from 'react';
 import { connect } from 'react-redux';
 import { TypeAnimation } from 'react-type-animation';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { RespProxyAsset, RespDemoEntity, RespSubscription } from '@fable/common/dist/api-contract';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { RespProxyAsset, RespDemoEntity, RespSubscription } from '@capturebliss/common/dist/api-contract';
 import {
   EditFilled,
   ArrowLeftOutlined,
@@ -28,10 +28,10 @@ import {
   BulbFilled,
 } from '@ant-design/icons';
 import { Modal, Select, Tooltip } from 'antd';
-import { getSampleConfig } from '@fable/common/dist/utils';
-import { create_guides_router } from '@fable/common/dist/llm-fn-schema/create_guides_router';
-import { suggest_guide_theme } from '@fable/common/dist/llm-fn-schema/suggest_guide_theme';
-import { openDb, DB_NAME, OBJECT_KEY, OBJECT_KEY_VALUE, OBJECT_STORE, DBData } from '@fable/common/dist/db-utils';
+import { getSampleConfig } from '@capturebliss/common/dist/utils';
+import { create_guides_router } from '@capturebliss/common/dist/llm-fn-schema/create_guides_router';
+import { suggest_guide_theme } from '@capturebliss/common/dist/llm-fn-schema/suggest_guide_theme';
+import { openDb, DB_NAME, OBJECT_KEY, OBJECT_KEY_VALUE, OBJECT_STORE, DBData } from '@capturebliss/common/dist/db-utils';
 import { addNewTourToAllTours, getAllTours, getGlobalConfig, getSubscriptionOrCheckoutNew } from '../../action/creator';
 import { P_RespSubscription, P_RespTour } from '../../entity-processor';
 import { TState } from '../../reducer';
@@ -515,11 +515,11 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
           markedImagesReceived++;
           this.skipAnnForScreenIds.push(index);
         } else {
-          llmWorker.postMessage({ frameRect, img, ctx, dxdy, sender: 'fable', index });
+          llmWorker.postMessage({ frameRect, img, ctx, dxdy, sender: 'capturebliss', index });
         }
 
         llmWorker.onmessage = async (e) => {
-          if (e.data.from === 'fable-worker') {
+          if (e.data.from === 'capturebliss-worker') {
             const imageName = `marked_image_${e.data.id}.png`;
             const file = new File([e.data.markImg], `temp${Math.random()}`, { type: LLM_IMAGE_TYPE });
             const d = uploadMarkedImageToAws(LLM_IMAGE_TYPE, this.state.anonymousDemoId, imageName, file);
@@ -1015,7 +1015,7 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
   // eslint-disable-next-line class-methods-use-this
   getAnnText = (type: AnnotationThemeType): string => {
     if (type === 'global') {
-      return 'This card style is generated from global style configured inside Fable.';
+      return 'This card style is generated from global style configured inside Capturebliss.';
     }
 
     if (type === 'page-generated') {
@@ -1119,13 +1119,13 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
     let step = 0;
     let fullheight = false;
     const totalSteps = 3;
-    let fableColorBorderRight = '21%';
+    let captureblissColorBorderRight = '21%';
     const demoTipsAnimation = DEMO_TIPS.flatMap((tip, index) => [tip.tip, 3000, () => this.handleTipsBgChange(index)]);
 
     switch (this.state.currentDisplayState) {
       case DisplayState.ShowTourCreationOptions:
         heading = 'Your interactive demo is on its way! 🎉';
-        subheading = 'Fable has captured all the actions you just undertook on your product including the animations and transition. Let us know where you want these captures to be added.';
+        subheading = 'Capturebliss has captured all the actions you just undertook on your product including the animations and transition. Let us know where you want these captures to be added.';
         break;
 
       case DisplayState.ShowAddExistingTourOptions:
@@ -1143,7 +1143,7 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
         subheading = 'We have curated a few themes based on your product’s color scheme. You can always edit this from inside the app after the interactive demo is created.';
         contentWidth = 'calc(100% - 26rem)';
         step = 1;
-        fableColorBorderRight = '0%';
+        captureblissColorBorderRight = '0%';
         fullheight = true;
         break;
 
@@ -1152,7 +1152,7 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
         subheading = 'We have created a couple of variations of annotation boxes for your interactive demo. You can always edit this from inside the app after the interactive demo is created.';
         contentWidth = 'calc(100% - 26rem)';
         step = 2;
-        fableColorBorderRight = '0%';
+        captureblissColorBorderRight = '0%';
         fullheight = true;
         break;
 
@@ -1182,7 +1182,7 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
           <Tags.LayoutContainer>
             <Tags.HeaderText>A little quiet here today</Tags.HeaderText>
             <Tags.SubheaderText>
-              No demos to be created. Use Fable's extension to record an interactive demo.
+              No demos to be created. Use Capturebliss's extension to record an interactive demo.
               <div style={{ fontStyle: 'italic' }}>
                 If you've just recorded an interactive demo and this screen is shown, then you might have only recorded empty chrome tabs.
               </div>
@@ -2044,7 +2044,7 @@ class CreateTour extends React.PureComponent<IProps, IOwnStateProps> {
                                   <div className="btn" />
                                 </div>
                               </Tags.ColorPalette>
-                              <p className="typ-sm subinfo" style={{ marginTop: '1rem' }}>This theme is defined in Fable's global demo styling.</p>
+                              <p className="typ-sm subinfo" style={{ marginTop: '1rem' }}>This theme is defined in Capturebliss's global demo styling.</p>
                             </Tags.ColorPaletteSuggest>
                           </div>
                         </Tags.ColorPaletteCon>

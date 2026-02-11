@@ -7,7 +7,7 @@
 // f-actn-idr--selected-subtree       :: replace this with selector of the subtree that is selected
 // f-actn-idr--selected-subtree-hss   :: replace this with selector of the subtree that has highest specificity
 
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 
 interface Effect {
   id: string;
@@ -101,8 +101,8 @@ export const elEffects: Effect[] = process([{
   desc: 'Effects from post apocalyptic world',
   css: `
 {{f-actn-idr--selected-subtree-hss}} {
-  border: 1px solid var(--fable-ann-bg-color);
-  filter: drop-shadow(5px 5px 0 var(--fable-ann-bg-color)) hue-rotate(180deg) drop-shadow(5px 5px 0 var(--fable-ann-bg-color));
+  border: 1px solid var(--capturebliss-ann-bg-color);
+  filter: drop-shadow(5px 5px 0 var(--capturebliss-ann-bg-color)) hue-rotate(180deg) drop-shadow(5px 5px 0 var(--capturebliss-ann-bg-color));
 }
 `.trim()
 }, {
@@ -111,8 +111,8 @@ export const elEffects: Effect[] = process([{
   desc: 'Change background color',
   css: `
 {{f-actn-idr--selected-subtree-hss}} {
-  --bg1: var(--fable-ann-bg-color);
-  --bg2: var(--fable-ann-bg-color);
+  --bg1: var(--capturebliss-ann-bg-color);
+  --bg2: var(--capturebliss-ann-bg-color);
 
   background: linear-gradient(90deg, color-mix(in srgb, var(--bg1)  90%, white) 0%, color-mix(in srgb, var(--bg2) 90%, black) 100%);
 }
@@ -209,9 +209,9 @@ export const annEffects: Effect[] = process([{
     content: '';
     position: absolute;
     background: var(--bg);
-    height: calc(100% - var(--fable-ann-con-pad-y) * 1px - var(--btm-offset) * 1px);
+    height: calc(100% - var(--capturebliss-ann-con-pad-y) * 1px - var(--btm-offset) * 1px);
     top: 0;
-    border-radius: calc(var(--fable-ann-border-radius) * 1px);
+    border-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
     z-index: 0;
   }
 
@@ -257,7 +257,7 @@ export const annEffects: Effect[] = process([{
   css: `
 {{f-actn-idr--ann-card-con}} {
   --filter: hue-rotate(180deg);
-  --bg: var(--fable-ann-bg-color);
+  --bg: var(--capturebliss-ann-bg-color);
 
   &::before {
     content: '';
@@ -269,46 +269,46 @@ export const annEffects: Effect[] = process([{
   &.dir-t {
     &::before {
       width: 100%;
-      height: calc(var(--fable-ann-con-pad-y) * 0.5px);
+      height: calc(var(--capturebliss-ann-con-pad-y) * 0.5px);
       bottom: 0;
-      border-bottom-left-radius: calc(var(--fable-ann-border-radius) * 1px);
-      border-bottom-right-radius: calc(var(--fable-ann-border-radius) * 1px);
+      border-bottom-left-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
+      border-bottom-right-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
     }
   }
 
   &.dir-b {
     &::before {
       width: 100%;
-      height: calc(var(--fable-ann-con-pad-y) * 0.5px);
+      height: calc(var(--capturebliss-ann-con-pad-y) * 0.5px);
       top: 0;
-      border-top-left-radius: calc(var(--fable-ann-border-radius) * 1px);
-      border-top-right-radius: calc(var(--fable-ann-border-radius) * 1px);
+      border-top-left-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
+      border-top-right-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
     }
   }
 
   &.dir-l {
     &::before {
-      width: calc(var(--fable-ann-con-pad-x) * 0.5px);
+      width: calc(var(--capturebliss-ann-con-pad-x) * 0.5px);
       height: 100%;
       right: 0;
-      border-top-right-radius: calc(var(--fable-ann-border-radius) * 1px);
-      border-bottom-right-radius: calc(var(--fable-ann-border-radius) * 1px);
+      border-top-right-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
+      border-bottom-right-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
     }
   }
 
   &.dir-r {
     &::before {
-      width: calc(var(--fable-ann-con-pad-x) * 0.5px);
+      width: calc(var(--capturebliss-ann-con-pad-x) * 0.5px);
       height: 100%;
       left: 0;
-      border-top-left-radius: calc(var(--fable-ann-border-radius) * 1px);
-      border-bottom-left-radius: calc(var(--fable-ann-border-radius) * 1px);
+      border-top-left-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
+      border-bottom-left-radius: calc(var(--capturebliss-ann-border-radius) * 1px);
     }
   }
 }
 .fab-arr-path {
   filter: hue-rotate(180deg);
-  fill: var(--fable-ann-bg-color);
+  fill: var(--capturebliss-ann-bg-color);
 }
 `.trim()
 }, {
@@ -317,8 +317,8 @@ export const annEffects: Effect[] = process([{
   desc: 'Glass effect on annotaiton card',
   css: `
 {{f-actn-idr--ann-card-con}} {
-  background-color: color-mix(in srgb, var(--fable-ann-bg-color) 20%, transparent) !important;
-  background: color-mix(in srgb, var(--fable-ann-bg-color) 20%, transparent) !important;
+  background-color: color-mix(in srgb, var(--capturebliss-ann-bg-color) 20%, transparent) !important;
+  background: color-mix(in srgb, var(--capturebliss-ann-bg-color) 20%, transparent) !important;
   backdrop-filter: blur(8px);
 }
 
@@ -335,7 +335,7 @@ export const annEffects: Effect[] = process([{
 }
 
 .fab-arr-path {
-  fill: color-mix(in srgb, var(--fable-ann-bg-color) 50%, transparent) !important;
+  fill: color-mix(in srgb, var(--capturebliss-ann-bg-color) 50%, transparent) !important;
 }
 `.trim()
 },
@@ -367,10 +367,10 @@ export const annEffects: Effect[] = process([{
 `.trim()
 }]);
 
-// .f-fable-an-t-path > :not(.f-fable-an-t-path, .f-fable-an-target) {
+// .f-capturebliss-an-t-path > :not(.f-capturebliss-an-t-path, .f-capturebliss-an-target) {
 //   filter: saturate(0);
 // }
 
-// .f-fable-an-target {
+// .f-capturebliss-an-target {
 //   filter: saturate(1);
 // }

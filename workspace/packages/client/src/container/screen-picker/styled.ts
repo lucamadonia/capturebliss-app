@@ -23,14 +23,14 @@ export const ScreenPicker = styled.div`
     padding: 0.25rem;
     position: relative;
     flex-wrap: wrap;
-    scrollbar-color: var(--fable-scrollbar-color);
+    scrollbar-color: var(--capturebliss-scrollbar-color);
     scrollbar-width: thin;
     overflow-y: auto;
     overflow-x: hidden;
 
     &::-webkit-scrollbar-track {
       padding: 2px 0;
-      background-color: var(--fable-scrollbar-track);
+      background-color: var(--capturebliss-scrollbar-track);
       border-radius: 10px;
       border: 1px solid #F3F4F6;
     }
@@ -43,7 +43,7 @@ export const ScreenPicker = styled.div`
   
     &::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: var(--fable-scrollbar-thumb);
+      background-color: var(--capturebliss-scrollbar-thumb);
     }
   `;
 
@@ -199,7 +199,7 @@ export const CloseIcon = styled.img`
   }
 `;
 
-export const FableLogo = styled.img`
+export const CaptureblissLogo = styled.img`
   position: absolute;
   width: 90px;
   top: 40px;
@@ -241,14 +241,14 @@ export const ScreenCardCon = styled.div`
   gap: 1rem;
   padding: 1rem;
 
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   scrollbar-width: thin;
   overflow-y: auto;
   overflow-x: hidden;
 
   &::-webkit-scrollbar-track {
     padding: 2px 0;
-    background-color: var(--fable-scrollbar-track);
+    background-color: var(--capturebliss-scrollbar-track);
     border-radius: 10px;
     border: 1px solid #F3F4F6;
   }
@@ -261,7 +261,7 @@ export const ScreenCardCon = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
   }
 `;
 

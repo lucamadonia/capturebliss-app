@@ -5,7 +5,7 @@ import * as Tags from './styled';
 import { ScreenSizeData } from '../../types';
 import { getBorderRadiusOfFrame, getBorderWidthOfFrame } from '../../component/screen-editor/preview-styled';
 import ViewDemoAnim from '../../assets/view-demo.json';
-import FableQuillLogo from '../../assets/fable-logo-2.svg';
+import CaptureblissQuillLogo from '../../assets/capturebliss-logo-2.svg';
 
 interface Props {
   screenSizeData: ScreenSizeData;
@@ -66,10 +66,10 @@ function ViewDemoOverlay(props: Props): JSX.Element {
       </div>
       {props.showWatermark && (
         <div className="wm">
-          <a href="https://www.sharefable.com?ref=exdm" target="_blank">
+          <a href="https://www.capturebliss.com?ref=exdm" target="_blank">
             Create interactive demos in 5 minutes with
-            <img src={FableQuillLogo} alt="Fable logo" />
-            Fable
+            <img src={CaptureblissQuillLogo} alt="Capturebliss logo" />
+            Capturebliss
           </a>
         </div>
       )}

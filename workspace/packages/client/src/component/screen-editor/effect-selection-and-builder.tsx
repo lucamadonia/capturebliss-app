@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 import * as GTags from '../../common-styled';
 import { elEffects, annEffects, getEffectFromString } from './effects';
 import CaretOutlined from '../icons/caret-outlined';
@@ -62,7 +62,7 @@ export default function EffectSelector(props: IProps): JSX.Element {
         }}
         >
           <div className="typ-reg">Choose a preset</div>
-          <GTags.FableSelect
+          <GTags.CaptureblissSelect
             bordered={false}
             defaultValue={stylePreset}
             style={{

@@ -1,5 +1,5 @@
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import {
   RespMediaProcessingInfo,
   ReqMediaProcessing,
@@ -8,7 +8,7 @@ import {
   ResponseStatus,
   PvtAssetType,
   EntityType
-} from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/api-contract';
 import { captureException } from '@sentry/react';
 
 export const getS3UploadUrl = async (type: string): Promise<{

@@ -1,4 +1,4 @@
-import { SerNode } from '@fable/common/dist/types';
+import { SerNode } from '@capturebliss/common/dist/types';
 
 export const hideChildren = (el: HTMLElement): void => {
   Array.from(el.children).forEach(child => {

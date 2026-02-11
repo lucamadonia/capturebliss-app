@@ -1,6 +1,6 @@
-import { Coords } from '@fable/common/dist/types';
+import { Coords } from '@capturebliss/common/dist/types';
 import { ROOT_EMBED_IFRAME_ID } from '../screen-editor/preview';
-import { getFableRtUmbrlDiv } from '../annotation/utils';
+import { getCaptureblissRtUmbrlDiv } from '../annotation/utils';
 
 export interface Rect {
   x: number;
@@ -228,7 +228,7 @@ export default abstract class HighlighterBase {
   }
 
   protected createMask(): HTMLDivElement {
-    const cls = `fable-el-mask-${(Math.random() * 10 ** 6) | 0}`;
+    const cls = `capturebliss-el-mask-${(Math.random() * 10 ** 6) | 0}`;
 
     const mask = this.doc.createElement('div');
     mask.setAttribute('class', cls);
@@ -278,11 +278,11 @@ export default abstract class HighlighterBase {
   }
 
   protected attachElToUmbrellaDiv(el: Element) {
-    const umbrellaDiv = getFableRtUmbrlDiv(this.doc);
+    const umbrellaDiv = getCaptureblissRtUmbrlDiv(this.doc);
     if (!umbrellaDiv) {
       throw new Error('Container div not found');
     }
-    const annotationsContainer = umbrellaDiv.querySelector('.fable-annotations--container');
+    const annotationsContainer = umbrellaDiv.querySelector('.capturebliss-annotations--container');
 
     umbrellaDiv.insertBefore(el, annotationsContainer);
     return this;

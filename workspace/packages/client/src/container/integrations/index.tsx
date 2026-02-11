@@ -13,9 +13,9 @@ import {
   RespSubscription,
   RespTenantIntegration,
   RespUser
-} from '@fable/common/dist/api-contract';
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+} from '@capturebliss/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { Tabs } from 'antd';
 import { CheckCircleOutlined, DeleteOutlined, LoadingOutlined, SmallDashOutlined } from '@ant-design/icons';
 import { None } from 'framer-motion';
@@ -92,7 +92,7 @@ const IntegrationOrder = [
   PlatformIntegrationType.Zapier,
   'slack',
   'pipedrive',
-  PlatformIntegrationType.FableWebhook,
+  PlatformIntegrationType.CaptureblissWebhook,
   'hubspot',
   'salesforce',
   'salesforce_pardot',
@@ -206,7 +206,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
   }
 
   componentDidUpdate(prevProps: Readonly<IProps>, prevState: Readonly<IOwnStateProps>, snapshot?: any): void {
-    if (!(this.state.selectedApp === PlatformIntegrationType.FableWebhook
+    if (!(this.state.selectedApp === PlatformIntegrationType.CaptureblissWebhook
       || this.state.selectedApp === PlatformIntegrationType.Zapier
     ) && this.state.selectedApp !== prevState.selectedApp) {
       let timeElapsed = 0;
@@ -215,7 +215,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
         const buttons = this.cobaltConfigWrapperRef.current?.getElementsByTagName('button');
 
         if (buttons && buttons.item(buttons.length - 1)) {
-          buttons.item(buttons.length - 1)?.classList.add('fable-color');
+          buttons.item(buttons.length - 1)?.classList.add('capturebliss-color');
           clearInterval(intervalId);
           return;
         }
@@ -240,14 +240,14 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
   }
 
   getIntegrationConfig(selectedApp: PlatformIntegrationType) {
-    if (selectedApp === PlatformIntegrationType.FableWebhook) {
+    if (selectedApp === PlatformIntegrationType.CaptureblissWebhook) {
       return (
         <Webhook
           config={this.state.listOfLinkedApps.find(f => f.type === selectedApp) as RespPlatformIntegration | undefined}
           deleteWebhook={(id: number) => {
             this.setState(state => {
               const webhookApp = state.listOfLinkedApps
-                .findIndex(app => app.type === PlatformIntegrationType.FableWebhook);
+                .findIndex(app => app.type === PlatformIntegrationType.CaptureblissWebhook);
 
               const tis = (state.listOfLinkedApps[webhookApp] as RespPlatformIntegration)
                 .tenantIntegrations.filter(ti => ti.id !== id);
@@ -279,7 +279,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
     } if (selectedApp === PlatformIntegrationType.Zapier) {
       return (
         <div>
-          <div className="typ-h1">Connect 6000+ apps to Fable via Zapier</div>
+          <div className="typ-h1">Connect 6000+ apps to Capturebliss via Zapier</div>
           <div style={{
             display: 'flex',
             flexDirection: 'column',
@@ -302,7 +302,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
             <Button
               intent="secondary"
               onClick={() => {
-                window.open('https://help.sharefable.com/Integrations/Zapier', '_blank');
+                window.open('https://help.capturebliss.com/Integrations/Zapier', '_blank');
               }}
             >
               Read how to connect to Zapier
@@ -317,7 +317,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
   // eslint-disable-next-line class-methods-use-this
   isOurIntegration(selectedApp: string | undefined) {
     if (!selectedApp) false;
-    return selectedApp!.startsWith('Fable') || selectedApp!.startsWith('Zapier');
+    return selectedApp!.startsWith('Capturebliss') || selectedApp!.startsWith('Zapier');
   }
 
   convertCustomFieldsToLabel() {
@@ -380,8 +380,8 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
                     </p>
                     <p>
                       Please contact us using the in app chat or email us at&nbsp;
-                      <a href="mailto:support@sharefable.com?subject=Can't access integrations">
-                        support@sharefable.com
+                      <a href="mailto:support@capturebliss.com?subject=Can't access integrations">
+                        support@capturebliss.com
                       </a>.
                     </p>
                   </div>
@@ -408,7 +408,7 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
                 <div className="typ-reg">
                   You can map a custom field that you've created in your lead form to a field in your integration.
                   <br />
-                  Fable by default map standard fields from your lead form to the relevant fields in your integration.
+                  Capturebliss by default map standard fields from your lead form to the relevant fields in your integration.
                 </div>
                 <Tags.CustomFieldCon className={`typ-reg ${this.state.opsInProgress ? 'disabled' : ''}`}>
                   <div>
@@ -536,8 +536,8 @@ class Integrations extends React.PureComponent<IProps, IOwnStateProps> {
                 // ideally, the better approach is to use redux state
                 if (open
                   && this.state.selectedApp
-                  && this.state.selectedApp.startsWith('Fable')
-                  && this.state.selectedApp === PlatformIntegrationType.FableWebhook
+                  && this.state.selectedApp.startsWith('Capturebliss')
+                  && this.state.selectedApp === PlatformIntegrationType.CaptureblissWebhook
                 ) {
                   this.getListOfLinkedCobaltApps();
                 }

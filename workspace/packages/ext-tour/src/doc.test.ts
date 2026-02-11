@@ -3,7 +3,7 @@
  */
 
 import { readFileSync } from "fs";
-import { SerNode } from "@fable/common/dist/types";
+import { SerNode } from "@capturebliss/common/dist/types";
 import { getSearializedDom } from "./doc";
 
 function getDocFor(filename: string) {

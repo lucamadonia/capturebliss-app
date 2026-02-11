@@ -11,14 +11,14 @@ import {
   TourScreenEntity,
   IGlobalConfig,
   SerNode,
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
 import { Tooltip, Button, Alert } from 'antd';
-import { ReqTourPropUpdate, RespOrg, RespSubscription, RespUser, ScreenType } from '@fable/common/dist/api-contract';
+import { ReqTourPropUpdate, RespOrg, RespSubscription, RespUser, ScreenType } from '@capturebliss/common/dist/api-contract';
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { createLiteralProperty, getDefaultLiteralTourOpts, getDefaultTourOpts } from '@fable/common/dist/utils';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
+import { createLiteralProperty, getDefaultLiteralTourOpts, getDefaultTourOpts } from '@capturebliss/common/dist/utils';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
 import {
   AnnAdd,
   UpdateScreenFn,
@@ -73,8 +73,8 @@ import {
   openTourExternalLink,
   getAnnotationsPerScreen,
   DEFAULT_ALERT_FOR_ANN_OPS,
-  getFableTimelineOrder,
-  saveFableTimelineOrder,
+  getCaptureblissTimelineOrder,
+  saveCaptureblissTimelineOrder,
   setEventCommonState,
   createIframeSrc,
   isBlankString,
@@ -199,11 +199,11 @@ const getTimeline = (allAnns: AnnotationPerScreen[], tour: P_RespTour): Timeline
     timeline.push(singleTimeline);
   });
 
-  const localStoreTimeline = getFableTimelineOrder();
+  const localStoreTimeline = getCaptureblissTimelineOrder();
 
   if (localStoreTimeline.order.length === 0 || tour.rid !== localStoreTimeline.rid) {
     const newTimelineOrder = generateTimelineOrder(timeline);
-    saveFableTimelineOrder({ order: newTimelineOrder, rid: tour.rid });
+    saveCaptureblissTimelineOrder({ order: newTimelineOrder, rid: tour.rid });
   } else {
     timeline.sort(
       (a, b) => localStoreTimeline.order.indexOf(a[0].grpId) - localStoreTimeline.order.indexOf(b[0].grpId)
@@ -382,7 +382,7 @@ interface IOwnStateProps {
 }
 
 class TourEditor extends React.PureComponent<IProps, IOwnStateProps> {
-  private static LOCAL_STORAGE_KEY_PREFIX = 'fable/syncnd';
+  private static LOCAL_STORAGE_KEY_PREFIX = 'capturebliss/syncnd';
 
   private static LOCAL_STORAGE_KEY_PREFIX_EDIT_CHUNK = `${TourEditor.LOCAL_STORAGE_KEY_PREFIX}/editchunk`;
 

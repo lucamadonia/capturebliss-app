@@ -1,8 +1,8 @@
 /* eslint-disable no-useless-escape */
 import { CaretRightOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { ReqTourPropUpdate, RespCommonConfig, RespOrg, RespScreen, RespSubscription, RespUser, ScreenType } from '@fable/common/dist/api-contract';
-import { CmnEvtProp, IAnnotationConfig, LoadingStatus, ScreenData, SerNode, TourData, TourScreenEntity } from '@fable/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { ReqTourPropUpdate, RespCommonConfig, RespOrg, RespScreen, RespSubscription, RespUser, ScreenType } from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp, IAnnotationConfig, LoadingStatus, ScreenData, SerNode, TourData, TourScreenEntity } from '@capturebliss/common/dist/types';
 import { Modal, message } from 'antd';
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
@@ -223,7 +223,7 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
 
     if (this.props.allToursLoadingStatus !== prevProps.allToursLoadingStatus && this.props.allToursLoadingStatus === LoadingStatus.Done) {
       this.setState({
-        // shouldShowOnboardingVideoModal: this.props.userCreatedTours.length === 0 && localStorage.getItem('fable/ovs') !== '1',
+        // shouldShowOnboardingVideoModal: this.props.userCreatedTours.length === 0 && localStorage.getItem('capturebliss/ovs') !== '1',
         // INFO only show this when user has clicked on the button explicitly
         shouldShowOnboardingVideoModal: false,
       });
@@ -251,7 +251,7 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
   } => {
     const foundUrls: Set<string> = new Set();
 
-    const regex = /(https?:\/\/(?:scdna\.sharefable\.com|fable-tour-app-gamma\.s3\.ap-south-1\.amazonaws\.com)\/[^\s"'(),\\\]}]+)/g;
+    const regex = /(https?:\/\/(?:scdna\.capturebliss\.com|capturebliss-tour-app-gamma\.s3\.ap-south-1\.amazonaws\.com)\/[^\s"'(),\\\]}]+)/g;
 
     const newstr = str.replace(regex, (match) => {
       try {
@@ -755,7 +755,7 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
     this.setState({
       shouldShowOnboardingVideoModal: false
     }),
-    localStorage.setItem('fable/ovs', '1');
+    localStorage.setItem('capturebliss/ovs', '1');
   };
 
   render(): ReactElement {
@@ -942,10 +942,10 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
             <div className="modal-content-cont">
               {this.state.ctxAction === CtxAction.Create ? (
                 <div>
-                  <p className="typ-h2">Use Fable's Chrome Extension to create a new demo</p>
+                  <p className="typ-h2">Use Capturebliss's Chrome Extension to create a new demo</p>
                   <ol className="typ-reg" style={{ padding: 0 }}>
                     <p>
-                      Go to the product you want to create a demo of & click on Fable's chrome extension to record a demo.
+                      Go to the product you want to create a demo of & click on Capturebliss's chrome extension to record a demo.
                     </p>
                     <ProductUrlInput />
                   </ol>
@@ -1111,7 +1111,7 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
                       children: (
                         <div style={{ fontFamily: 'Arial, sans-serif', fontSize: '14px', lineHeight: 1.6, color: '#333' }}>
                           <p style={{ marginBottom: '10px' }}>
-                            The Fable demo export includes most features, but a few functionalities are not available when you self-host the demo:
+                            The Capturebliss demo export includes most features, but a few functionalities are not available when you self-host the demo:
                           </p>
 
                           <ul style={{ paddingLeft: '20px', marginBottom: '10px' }}>
@@ -1133,7 +1133,7 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
                       )
                     }]}
                   />
-                  <p>If you have any queries, send us a mail at support@sharefable.com</p>
+                  <p>If you have any queries, send us a mail at support@capturebliss.com</p>
                   {
                     this.state.exportingDemo && (
                       <><LoadingOutlined />&nbsp;&nbsp;<>Exporting. This action might take sometime.</></>
@@ -1195,8 +1195,8 @@ class Tours extends React.PureComponent<IProps, IOwnStateProps> {
             }}
           >
             <iframe
-              src={`https://app.sharefable.com/embed/demo/fable-onboarding-demo-baehgzwhn5gfz1ly?email=${this.props.principal?.email}`}
-              title="How to use Fable"
+              src={`https://app.capturebliss.com/embed/demo/fable-onboarding-demo-baehgzwhn5gfz1ly?email=${this.props.principal?.email}`}
+              title="How to use Capturebliss"
               style={{
                 border: 'none',
                 width: '850px',

@@ -1,0 +1,38 @@
+{
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "close": "Schließen",
+  "loading": "Laden...",
+  "confirm": "Bestätigen",
+  "create": "Erstellen",
+  "edit": "Bearbeiten",
+  "remove": "Entfernen",
+  "export": "Exportieren",
+  "copy": "Kopieren",
+  "search": "Suchen",
+  "back": "Zurück",
+  "next": "Weiter",
+  "submit": "Absenden",
+  "upgrade": "Upgraden",
+  "yes": "Ja",
+  "no": "Nein",
+  "nav": {
+    "interactiveDemos": "Interaktive Demos",
+    "demoHub": "Demo-Hub",
+    "leads": "Leads",
+    "integrations": "Integrationen",
+    "userManagement": "Benutzerverwaltung",
+    "billing": "Abrechnung",
+    "settings": "Einstellungen",
+    "datasets": "Datensätze",
+    "freeDemoConsultation": "Kostenlose Demo-Beratung"
+  },
+  "clipboard": {
+    "clickToCopy": "Klicken zum Kopieren",
+    "copied": "In die Zwischenablage kopiert"
+  },
+  "supportEmail": "support@capturebliss.com",
+  "language": "Sprache",
+  "switchLanguage": "Sprache wechseln"
+}

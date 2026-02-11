@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAnnotationButton, IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationButton, IAnnotationConfig } from '@capturebliss/common/dist/types';
 import * as Tags from './styled';
 import { IAnnotationConfigWithScreen, Timeline } from '../../types';
 

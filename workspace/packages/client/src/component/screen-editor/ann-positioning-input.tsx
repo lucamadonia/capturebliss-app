@@ -1,4 +1,4 @@
-import { CustomAnnotationPosition } from '@fable/common/dist/types';
+import { CustomAnnotationPosition } from '@capturebliss/common/dist/types';
 import React from 'react';
 import * as Tags from './styled';
 

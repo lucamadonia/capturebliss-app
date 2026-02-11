@@ -1,9 +1,9 @@
-# Fable
+# Capturebliss
 
 > Open-source platform for creating interactive product demos and walkthroughs
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Version](https://img.shields.io/badge/version-2.1.9-green.svg)](https://github.com/sharefable/app)
+[![Version](https://img.shields.io/badge/version-2.1.9-green.svg)](https://github.com/capturebliss/app)
 
 ---
 
@@ -77,7 +77,7 @@ workspace/packages/
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:sharefable/app.git
+git clone git@github.com:capturebliss/app.git
 cd app
 ```
 
@@ -117,7 +117,7 @@ The repository includes a working `env.json` with default development values. Fo
 
 **For local development overrides:** Optionally create `env.local.json` (gitignored) to avoid modifying the shared `env.json`.
 
-**Note:** For database and backend setup, please check the [Fable API](https://github.com/sharefable) and Jobs repositories.
+**Note:** For database and backend setup, please check the [Capturebliss API](https://github.com/capturebliss) and Jobs repositories.
 
 ### 4. Set Up Auth0
 
@@ -217,7 +217,7 @@ Most routes use React lazy loading for code splitting and optimized bundle sizes
 
 ## Internal Details: How Interactive Demos Work
 
-Fable captures real web applications and turns them into interactive, editable demos. This section explains the technical architecture behind the demo capture, storage, and playback system.
+Capturebliss captures real web applications and turns them into interactive, editable demos. This section explains the technical architecture behind the demo capture, storage, and playback system.
 
 ### High-Level Overview
 
@@ -281,7 +281,7 @@ graph TB
     BG -->|"Capture Screenshot"| Screenshot["Screenshot Data"]
     BG -->|"Store Data"| IDB["IndexedDB"]
 
-    IDB -->|"Transfer on Stop"| Client["Fable Client App<br/>/preptour"]
+    IDB -->|"Transfer on Stop"| Client["Capturebliss Client App<br/>/preptour"]
     Client -->|"Reconcile & Upload"| S3["AWS S3 Storage"]
 
     style UserClick fill:#ff6b6b
@@ -408,14 +408,14 @@ The `getSearializedDom()` function traverses the entire DOM tree and creates a J
 
 - `<script>` tags (security)
 - `<noscript>` tags
-- Elements with class `fable-dont-serialize`
+- Elements with class `capturebliss-dont-serialize`
 - Hidden iframes (0px width/height)
 
 #### 3. **Style Theme Extraction**
 
 **File:** `workspace/packages/ext-tour/src/doc.ts` - `getScreenStyle()`
 
-While serializing, Fable also extracts theme information for AI-powered suggestions:
+While serializing, Capturebliss also extracts theme information for AI-powered suggestions:
 
 ```javascript
 {
@@ -432,19 +432,19 @@ While serializing, Fable also extracts theme information for AI-powered suggesti
 }
 ```
 
-This data helps Fable suggest consistent themes when users customize their demos.
+This data helps Capturebliss suggest consistent themes when users customize their demos.
 
 #### 4. **Data Storage in IndexedDB**
 
 **Files:**
 - `workspace/packages/ext-tour/src/background.ts` - Storage coordination
-- `@fable/common/dist/db-utils.ts` - IndexedDB operations
+- `@capturebliss/common/dist/db-utils.ts` - IndexedDB operations
 
 The background script stores all captured data in IndexedDB:
 
 ```javascript
 {
-  id: "fable-tour-data",
+  id: "capturebliss-tour-data",
   screensData: [
     {
       // Snapshot 1 (first user click)
@@ -480,7 +480,7 @@ sequenceDiagram
     participant Tab as Recorded Tab
     participant NewTab as /preptour Tab
     participant IDB as IndexedDB
-    participant Client as Fable Client
+    participant Client as Capturebliss Client
 
     User->>BG: Click "Stop Recording"
 
@@ -561,7 +561,7 @@ graph LR
 **S3 Storage Format:**
 
 ```
-s3://fable-tour-data/
+s3://capturebliss-tour-data/
   └── org_xyz/
       └── tour_abc123/
           ├── screen_001.json      # Snapshot 1 data
@@ -679,7 +679,7 @@ This ensures proper execution context and allows cross-origin iframes to be rend
 
 **Files:** `workspace/packages/client/src/component/screen-editor/utils/diffs/`
 
-When navigating between snapshots, Fable calculates and applies diffs to create smooth transitions:
+When navigating between snapshots, Capturebliss calculates and applies diffs to create smooth transitions:
 
 ```mermaid
 sequenceDiagram
@@ -788,7 +788,7 @@ graph TD
     Click -->|"3. Serialize DOM<br/>(doc.ts)"| Serialize["Serialized JSON"]
     Serialize -->|"4. Store"| IDB["IndexedDB"]
 
-    IDB -->|"5. Transfer"| PrepTour["Fable Client<br/>/preptour<br/>(prep-tour.tsx)"]
+    IDB -->|"5. Transfer"| PrepTour["Capturebliss Client<br/>/preptour<br/>(prep-tour.tsx)"]
     PrepTour -->|"6. Reconcile"| Reconcile["Merged Snapshots"]
     Reconcile -->|"7. Upload"| S3["AWS S3 Storage"]
 
@@ -952,7 +952,7 @@ The browser extension allows you to:
 - Record user interactions on any website
 - Capture screenshots and video
 - Create demo tours directly from browsing sessions
-- Sync recordings with the Fable platform
+- Sync recordings with the Capturebliss platform
 
 **Extension ID** is configured per environment in `env.json` (`REACT_APP_EXTENSION_ID`)
 
@@ -964,7 +964,7 @@ This project is licensed under the **Apache License 2.0**.
 
 See [LICENSE](LICENSE) file for details.
 
-Copyright © 2025 Fable. All rights reserved.
+Copyright © 2025 Capturebliss. All rights reserved.
 
 ---
 
@@ -981,13 +981,13 @@ For a complete list of dependencies and open-source libraries used in this proje
 
 For questions, issues, or feature requests:
 
-**[Open an issue on GitHub](https://github.com/sharefable/app/issues)**
+**[Open an issue on GitHub](https://github.com/capturebliss/app/issues)**
 
 ---
 
 ## Additional Resources
 
-- [Common Project Information](https://github.com/sharefable)
+- [Common Project Information](https://github.com/capturebliss)
 - [Yarn Workspaces Documentation](https://classic.yarnpkg.com/lang/en/docs/workspaces/)
 - [Create React App Documentation](https://create-react-app.dev/)
 - [Redux Documentation](https://redux.js.org/)

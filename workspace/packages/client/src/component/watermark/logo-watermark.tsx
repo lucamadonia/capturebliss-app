@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Tags from './styled';
-import FableQuillLogo from '../../assets/fable-logo-2.svg';
+import CaptureblissQuillLogo from '../../assets/capturebliss-logo-2.svg';
 
 interface Props {
   watermarkRef: React.MutableRefObject<HTMLAnchorElement | null>;
@@ -14,9 +14,9 @@ export default function LogoWatermark(props: Props): JSX.Element {
       ref={props.watermarkRef}
       target="_blank"
       rel="noopener noreferrer"
-      href="https://sharefable.com"
+      href="https://capturebliss.com"
     >
-      <img src={FableQuillLogo} alt="Fable logo" />
+      <img src={CaptureblissQuillLogo} alt="Capturebliss logo" />
     </Tags.LogoWatermark>
   );
 }

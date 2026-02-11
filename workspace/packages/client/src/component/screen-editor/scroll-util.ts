@@ -14,8 +14,8 @@ export function scrollIframeEls(version: string, doc: Document): Promise<void> {
             const contentDoc = iframeEl.contentDocument;
             if (contentDoc) scrollIframeEls(version, iframeEl.contentDocument);
           }
-          const scrollTopFactor = allDocEls[i].getAttribute('fable-stf') || '0';
-          const scrollLeftFactor = allDocEls[i].getAttribute('fable-slf') || '0';
+          const scrollTopFactor = allDocEls[i].getAttribute('capturebliss-stf') || '0';
+          const scrollLeftFactor = allDocEls[i].getAttribute('capturebliss-slf') || '0';
           const scrollTop = calculateScrollTopFromScrollFactor(scrollTopFactor, el);
           const scrollLeft = calculateScrollLeftFromScrollFactor(scrollLeftFactor, el);
           el.scroll({ top: scrollTop, left: scrollLeft });

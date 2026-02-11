@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import { withAuth0, WithAuth0Props } from '@auth0/auth0-react';
-import { RespOrg, RespUser } from '@fable/common/dist/api-contract';
-import { CmnEvtProp, LoadingStatus } from '@fable/common/dist/types';
-import { setSec } from '@fable/common/dist/fsec';
-import { resetProductAnalytics, setProductAnalyticsUserId } from '@fable/common/dist/amplitude';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { RespOrg, RespUser } from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp, LoadingStatus } from '@capturebliss/common/dist/types';
+import { setSec } from '@capturebliss/common/dist/fsec';
+import { resetProductAnalytics, setProductAnalyticsUserId } from '@capturebliss/common/dist/amplitude';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { TState } from '../../reducer';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { fetchOrg, iam } from '../../action/creator';
 import { setEventCommonState } from '../../utils';
 import FullPageTopLoader from '../../component/loader/full-page-top-loader';
 import { OnboardingSteps, USER_ONBOARDING_ROUTE } from '../user-onboarding';
-import { FABLE_LOCAL_STORAGE_ORG_ID_KEY } from '../../constants';
+import { CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY } from '../../constants';
 import WithPlanCheck from './with-plan-check';
 
 export const ENV = process.env.REACT_APP_ENVIRONMENT;
 
 function addSupportBot(name: string, email: string, createdAt: Date): void {
-  const id = 'fable-support-bot';
+  const id = 'capturebliss-support-bot';
 
   let script = document.getElementById(id);
   if (script) return;
@@ -148,7 +148,7 @@ class WithPrincipalCheck extends React.PureComponent<IProps, IOwnStateProps> {
     }
 
     // TODO no side effect here
-    const localStorageOrgId = localStorage.getItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY);
+    const localStorageOrgId = localStorage.getItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY);
     if (!this.props.principal.firstName) {
       // If user details are not yet completed
       if (!document.location.pathname.startsWith(`/${USER_ONBOARDING_ROUTE}`)) {

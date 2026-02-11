@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LoadingOutlined, WalletFilled } from '@ant-design/icons';
-import { ReqSubscriptionInfo, RespSubscription } from '@fable/common/dist/api-contract';
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { ReqSubscriptionInfo, RespSubscription } from '@capturebliss/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import Button from '../button';
 import { amplitudeBuyMoreQuillyCredit } from '../../amplitude';
 

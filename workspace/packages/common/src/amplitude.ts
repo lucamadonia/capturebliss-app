@@ -38,12 +38,12 @@ export const traceEvent = (eventName: string, eventProperties: Record<string, st
   }
 
   const finalEvenProperties = eventProperties;
-  const data = JSON.parse(localStorage.getItem('fable/ep')!);
+  const data = JSON.parse(localStorage.getItem('capturebliss/ep')!);
   commonEventProperties?.forEach((property) => {
     finalEvenProperties[property] = data[property];
   });
 
-  // if (data.email && data.email.endsWith('@sharefable.com')) {
+  // if (data.email && data.email.endsWith('@capturebliss.com')) {
   //   return;
   // }
   const timer = setTimeout(() => {
@@ -62,7 +62,7 @@ export const setProductAnalyticsUserId = (userId: string) => {
     { email: userId }
   );
   setUserId(userId);
-  // if (userId.endsWith('@sharefable.com')) {
+  // if (userId.endsWith('@capturebliss.com')) {
   //   posthog.opt_out_capturing();
   // } else if (posthog.has_opted_out_capturing()) {
   //   posthog.opt_in_capturing();

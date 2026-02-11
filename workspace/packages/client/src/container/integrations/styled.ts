@@ -70,11 +70,11 @@ export const WebhookConfCon = styled.div`
 `;
 
 export const CobaltConfigWrapper = styled.div`
-  .fable-color {
+  .capturebliss-color {
     background-color: #7567FF;
   }
 
-  .fable-color:hover {
+  .capturebliss-color:hover {
     background-color: #16023E;
   }
 `;

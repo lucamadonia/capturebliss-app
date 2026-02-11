@@ -9,9 +9,9 @@ import {
   ReqCreateOrUpdateTenantIntegration,
   RespPlatformIntegration,
   RespTenantIntegration
-} from '@fable/common/dist/api-contract';
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+} from '@capturebliss/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import * as Tags from './styled';
 import Button from '../button';
 import { isValidUrl } from '../../utils';
@@ -110,7 +110,7 @@ export default function WebhookForm(props: Props): JSX.Element {
       const resp = await api<ReqCreateWebhookConfig, ApiResp<RespPlatformIntegration[]>>('/tenant_integration', {
         auth: true,
         body: {
-          integrationType: PlatformIntegrationType.FableWebhook,
+          integrationType: PlatformIntegrationType.CaptureblissWebhook,
           event,
           tenantIntegrationId: props.webhook.id,
           tenantConfig: {
@@ -138,15 +138,15 @@ export default function WebhookForm(props: Props): JSX.Element {
           placeholder="My Webhook"
         />
         <p className="xtra">
-          When Fable calls this webhook, it must return HTTP StatusCode 200.
-          If any other StatusCode is returned by the webhook server, Fable makes 2 more attempts to
+          When Capturebliss calls this webhook, it must return HTTP StatusCode 200.
+          If any other StatusCode is returned by the webhook server, Capturebliss makes 2 more attempts to
           redeliver the data. These two calls are made in 30mins interval.
         </p>
       </div>
       <div className="body">
         <div className="when">
           <p>
-            When the following event happens in a Fable demo
+            When the following event happens in a Capturebliss demo
           </p>
           <Tags.BordededSelect
             onChange={(val) => setEvent(val as string)}
@@ -197,7 +197,7 @@ export default function WebhookForm(props: Props): JSX.Element {
             And following request headers
           </p>
           <div className="help">
-            Add all the headers in a single json object. Fable forward the header as is to the webhook.
+            Add all the headers in a single json object. Capturebliss forward the header as is to the webhook.
           </div>
           <CodeMirror
             onChange={val => setReqHeaders(val)}

@@ -1,12 +1,12 @@
-import { SerNode } from '@fable/common/dist/types';
+import { SerNode } from '@capturebliss/common/dist/types';
 import { nanoid } from 'nanoid';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { getUrlsFromSrcset } from '@fable/common/dist/utils';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { getUrlsFromSrcset } from '@capturebliss/common/dist/utils';
 import { captureException } from '@sentry/react';
 import { DeSerProps } from '../preview';
 import { addPointerEventsAutoToEl, isHTTPS } from '../../../utils';
 
-export const FABLE_CUSTOM_NODE = -1;
+export const CAPTUREBLISS_CUSTOM_NODE = -1;
 
 export function purifySrcDoc(htmlStr: string): string {
   try {
@@ -103,7 +103,7 @@ export const deser = (
       deserCustomCssStyleSheets(serNode, doc, node!);
       break;
 
-    case FABLE_CUSTOM_NODE: {
+    case CAPTUREBLISS_CUSTOM_NODE: {
       try {
         const wrapper = document.createElement('div');
         wrapper.innerHTML = serNode.props.content!;
@@ -189,7 +189,7 @@ function shouldReplaceSrcset(urlStrs: string): boolean {
     const urls = getUrlsFromSrcset(urlStrs);
     for (const urlStr of urls) {
       const url = new URL(urlStr);
-      // We are checking if an url has been successfully proxied by fable
+      // We are checking if an url has been successfully proxied by capturebliss
       if (url.host !== process.env.REACT_APP_DATA_CDN!) {
         return true;
       }
@@ -260,10 +260,10 @@ export const createHtmlElement = (
    // Since we proxy assets, the css files sometimes are edited with proxied url;
    // hence the integrity attribute might throw error https://stackoverflow.com/a/34429101
    * For dxdy & cdxdy:
-   // We tried recording a fable's screen editor demo with amplitude's screen,
+   // We tried recording a capturebliss's screen editor demo with amplitude's screen,
    // the iframes had a dxdy applied to it already
    // but after we record a demo of it, we will need to recalculate all those dxdy, for that we are skipping the attrs
-   // Ref: https://sharefable.slack.com/archives/C0491PEEPPZ/p1715333327007159
+   // Ref: https://capturebliss.slack.com/archives/C0491PEEPPZ/p1715333327007159
    */
   const attrsToSkip = ['integrity', 'dxdy', 'cdxdy'];
   for ([attrKey, attrValue] of Object.entries(node.attrs)) {
@@ -354,7 +354,7 @@ export const createHtmlElement = (
   }
 
   if (node.name.toLowerCase() === 'img' && node.attrs.srcset && node.attrs.src && !node.attrs.src.startsWith('blob:')) {
-    // WARN: If we find urls in srcset that are not proxied by fable, we replace srcset with src
+    // WARN: If we find urls in srcset that are not proxied by capturebliss, we replace srcset with src
     const replace = shouldReplaceSrcset(node.attrs.srcset);
     if (replace) el.setAttribute('srcset', `${node.attrs.src}`);
   }

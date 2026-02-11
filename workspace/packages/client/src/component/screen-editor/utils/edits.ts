@@ -1,4 +1,4 @@
-import { ScreenData, SerNode } from '@fable/common/dist/types';
+import { ScreenData, SerNode } from '@capturebliss/common/dist/types';
 import { nanoid } from 'nanoid';
 import {
   EditItem,

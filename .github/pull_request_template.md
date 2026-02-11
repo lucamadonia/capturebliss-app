@@ -15,9 +15,9 @@ Write description if applicable
 
 If others write issue details with screenshot / loom if applicable.
 
-### Sample fable demo link
+### Sample capturebliss demo link
 
-Link of a Fable demo where the issue is replicated and fixed. The demo must be created in sharefable.com account in staging. 
+Link of a Capturebliss demo where the issue is replicated and fixed. The demo must be created in capturebliss.com account in staging. 
 
 [demo link embedded in jsffiddle](https://jsfiddle.net/...) 
 

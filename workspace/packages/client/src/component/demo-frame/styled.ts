@@ -1,4 +1,4 @@
-import { FrameSettings } from '@fable/common/dist/api-contract';
+import { FrameSettings } from '@capturebliss/common/dist/api-contract';
 import styled from 'styled-components';
 import { IframePos } from '../../types';
 import { MAC_FRAME_HEIGHT } from '../../utils';

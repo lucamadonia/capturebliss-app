@@ -39,7 +39,7 @@ export default async function api<T, M>(
     // TODO error handling in case the user is not logged in or there is a token invalidation exception
     try {
       const token = await fsec.getAccessToken();
-      const orgId = localStorage.getItem('fable/oid');
+      const orgId = localStorage.getItem('capturebliss/oid');
       const prefix = orgId ? `${orgId}:` : '';
       (headers as any).Authorization = `Bearer ${prefix}${token}`;
     } catch (e) {

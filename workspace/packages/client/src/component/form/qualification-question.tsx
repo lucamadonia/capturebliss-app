@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FableCircularLogo from '../../assets/form/logo_fable_circular.svg';
+import CaptureblissCircularLogo from '../../assets/form/logo_capturebliss_circular.svg';
 import StarImg from '../../assets/form/star.svg';
 import * as Tags from './styled';
 import AnswerBtn from './answer-btn';
@@ -44,7 +44,7 @@ function QualificationQuestion({ form, descision, formHeader, contact }: IProps)
   return (
     <Tags.QBuilderContainer>
       <Tags.SectionTop>
-        <img src={FableCircularLogo} alt="Fable circular logo" />
+        <img src={CaptureblissCircularLogo} alt="Capturebliss circular logo" />
         <div>
           <p>{formHeader}</p>
           { contact && (

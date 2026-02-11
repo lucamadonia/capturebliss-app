@@ -29,17 +29,17 @@ export function StepContainer({
       <SetupStep
         index={1}
         isStepComplete={extensionInstalled}
-        title="Download Fable’s Chrome Extension"
+        title="Download Capturebliss’s Chrome Extension"
         description={(
           <div>
-            This is a mandatory step for you to start creating amazing demos with Fable.
+            This is a mandatory step for you to start creating amazing demos with Capturebliss.
           </div>
         )}
         footer={extensionInstalled ? undefined : (
           <Button
             onClick={() => {
               window.open(
-                'https://chrome.google.com/webstore/detail/fable/ekmabenadlgfkjplmpldkjkhiikobaoc',
+                'https://chrome.google.com/webstore/detail/capturebliss/ekmabenadlgfkjplmpldkjkhiikobaoc',
                 '_blank'
               );
             }}
@@ -62,7 +62,7 @@ export function StepContainer({
         description={(
           <>
             <p>
-              Go to the product you want to create a demo of & click on Fable's chrome extension to record a demo.
+              Go to the product you want to create a demo of & click on Capturebliss's chrome extension to record a demo.
             </p>
             {extensionInstalled && (
               <ProductUrlInput />

@@ -1,6 +1,6 @@
 /* eslint-disable no-mixed-operators */
 import React, { useEffect, useState } from 'react';
-import { FrameSettings } from '@fable/common/dist/api-contract';
+import { FrameSettings } from '@capturebliss/common/dist/api-contract';
 import { ExtMsg, IframePos, InternalEvents, Payload_Navigation } from '../../types';
 import * as Tags from './styled';
 import { AnnotationSerialIdMap } from '../annotation/ops';

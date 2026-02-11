@@ -22,7 +22,7 @@ function Form() {
 
   useEffect(() => {
     (async () => {
-      const resp = await fetch(`https://fable-tour-app-gamma.s3.ap-south-1.amazonaws.com/root/form-data/manual_form_data.json?ts=${+new Date()}`);
+      const resp = await fetch(`https://capturebliss-tour-app-gamma.s3.ap-south-1.amazonaws.com/root/form-data/manual_form_data.json?ts=${+new Date()}`);
       const data = await resp.json() as FullFormData;
       setDataLoaded(true);
       setFormData(data);

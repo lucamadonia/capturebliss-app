@@ -1,4 +1,4 @@
-import { IAnnotationConfig, ITourDataOpts } from '@fable/common/dist/types';
+import { IAnnotationConfig, ITourDataOpts } from '@capturebliss/common/dist/types';
 
 export type AnnUpdate = {
     config: IAnnotationConfig,

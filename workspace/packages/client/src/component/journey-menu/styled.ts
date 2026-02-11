@@ -1,4 +1,4 @@
-import { CreateJourneyPositioning } from '@fable/common/dist/types';
+import { CreateJourneyPositioning } from '@capturebliss/common/dist/types';
 import { Button } from 'antd';
 import styled from 'styled-components';
 import { getColorContrast } from '../../utils';

@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { FullscreenOutlined } from '@ant-design/icons';
 import * as Tags from './styled';
 import { SiteData } from '../../types';
-import FableLogo from '../../assets/fable-logo-2.svg';
+import CaptureblissLogo from '../../assets/capturebliss-logo-2.svg';
 import { getColorContrast } from '../../utils';
 
 interface Props {
@@ -38,12 +38,12 @@ export default function Header(props: Props): JSX.Element {
         }}
       >
         <a
-          href={props.site.navLink._val || 'https://sharefable.com'}
+          href={props.site.navLink._val || 'https://capturebliss.com'}
           style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           target="_blank"
           rel="noreferrer"
         >
-          <img src={props.site.logo._val || FableLogo} alt="" height={35} />
+          <img src={props.site.logo._val || CaptureblissLogo} alt="" height={35} />
         </a>
         <div className="typ-h2" style={{ fontWeight: 600, color }}>
           {props.site.title}

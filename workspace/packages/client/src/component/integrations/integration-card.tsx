@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PlatformIntegrationType, RespLinkedApps, RespPlatformIntegration } from '@fable/common/dist/api-contract';
+import { PlatformIntegrationType, RespLinkedApps, RespPlatformIntegration } from '@capturebliss/common/dist/api-contract';
 import * as Tags from './styled';
 import UpgradeIcon from '../upgrade/icon';
 import UpgradeModal from '../upgrade/upgrade-modal';
@@ -17,11 +17,11 @@ const Desc = {
   pipedrive: (
     <>
       <p>
-        Fable's integration with Pipedrive CRM helps you by:
+        Capturebliss's integration with Pipedrive CRM helps you by:
       </p>
       <ul>
         <li>Adds or updates <em>lead</em> information in Pipedrive whenever a lead form is filled up</li>
-        <li>Adds or updates <em>lead</em> information in Pipedrive whenever lead information is passed to Fable</li>
+        <li>Adds or updates <em>lead</em> information in Pipedrive whenever lead information is passed to Capturebliss</li>
       </ul>
       <p>You can then proceed to send your nurture drip campaigns to engage your leads and convert them to customers</p>
     </>
@@ -29,11 +29,11 @@ const Desc = {
   slack: (
     <>
       <p>
-        Fable's integration with slack allows you to get real-time messages when:
+        Capturebliss's integration with slack allows you to get real-time messages when:
       </p>
       <ul>
         <li>A lead form is filled up in the demo</li>
-        <li>A lead information is passed to Fable</li>
+        <li>A lead information is passed to Capturebliss</li>
       </ul>
       <p>In an event that the same person views the demo again, you'll receive another alert on the slack channel.</p>
       <p>This integration unfurls the demo link with CTA whenever your viewers share the demo link in a slack channel</p>
@@ -42,11 +42,11 @@ const Desc = {
   salesforce: (
     <>
       <p>
-        Fable's integration with Salesforce helps you by:
+        Capturebliss's integration with Salesforce helps you by:
       </p>
       <ul>
         <li>When a lead submits a form</li>
-        <li>When a lead information is passed to Fable</li>
+        <li>When a lead information is passed to Capturebliss</li>
       </ul>
       <p>You can then proceed to send your nurture drip campaigns to engage your leads and convert them to customers.</p>
     </>
@@ -54,11 +54,11 @@ const Desc = {
   mailchimp: (
     <>
       <p>
-        Fable's integration with MailChimp helps you by:
+        Capturebliss's integration with MailChimp helps you by:
       </p>
       <ul>
         <li>Adding / updating contact  in your audience list when a lead submits a form</li>
-        <li>Adding / updating contact  in your audience list when lead information is passed to Fable</li>
+        <li>Adding / updating contact  in your audience list when lead information is passed to Capturebliss</li>
       </ul>
       <p>You can then proceed to send your nurture drip campaigns to engage your leads and convert them to customers.</p>
     </>
@@ -66,8 +66,8 @@ const Desc = {
   hubspot: (
     <>
       <p>
-        Fable seamlessly integrates with various modules of HubSpot.
-        Fable supports the following operations:
+        Capturebliss seamlessly integrates with various modules of HubSpot.
+        Capturebliss supports the following operations:
       </p>
       <ul>
         <li>Syncs <em>contact</em> information with HubSpot</li>
@@ -79,30 +79,30 @@ const Desc = {
           </ul>
         </li>
         <li>Adds <em>custom contact properties</em> for reporting and analytics of demos</li>
-        <li>Adds contact group called <em>Fable Demo</em> to show a detailed overview of all actions performed by the contact</li>
-        <li>Creates a drill-down called Fable drill-down which shows the top demos engaged by the contact</li>
+        <li>Adds contact group called <em>Capturebliss Demo</em> to show a detailed overview of all actions performed by the contact</li>
+        <li>Creates a drill-down called Capturebliss drill-down which shows the top demos engaged by the contact</li>
       </ul>
     </>
   ),
-  [PlatformIntegrationType.FableWebhook]: (
+  [PlatformIntegrationType.CaptureblissWebhook]: (
     <>
       <p>
-        Fable helps you configure your webhooks here to receive data as and when an event happens in a demo.
-        Fable sends the following event data to a webhook:
+        Capturebliss helps you configure your webhooks here to receive data as and when an event happens in a demo.
+        Capturebliss sends the following event data to a webhook:
       </p>
       <ul>
         <li>When a lead submits a form</li>
-        <li>When a lead information is passed to Fable</li>
+        <li>When a lead information is passed to Capturebliss</li>
       </ul>
       <p>
         If you need any other custom event data posted to your webhook, please contact us via our in-app chat or write to us at&nbsp;
         <a
-          href="mailto:support@sharefable.com?subject=Custom requirement for webhook"
+          href="mailto:support@capturebliss.com?subject=Custom requirement for webhook"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          support@sharefable.com
+          support@capturebliss.com
         </a>
       </p>
     </>
@@ -110,21 +110,21 @@ const Desc = {
   [PlatformIntegrationType.Zapier]: (
     <>
       <p>
-        Fable's integration with Zapier lets you trigger a zap (zapier workflow) whenever a following event occurs:
+        Capturebliss's integration with Zapier lets you trigger a zap (zapier workflow) whenever a following event occurs:
       </p>
       <ul>
         <li>When a lead submits a form</li>
-        <li>When a lead information is passed to Fable</li>
+        <li>When a lead information is passed to Capturebliss</li>
       </ul>
       <p>
         If you need any other custom event data posted to Zapier, please contact us via our in-app chat or write to us at&nbsp;
         <a
-          href="mailto:support@sharefable.com?subject=Add event for zapier"
+          href="mailto:support@capturebliss.com?subject=Add event for zapier"
           onClick={(e) => {
             e.stopPropagation();
           }}
         >
-          support@sharefable.com
+          support@capturebliss.com
         </a>
       </p>
     </>

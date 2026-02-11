@@ -3,11 +3,11 @@ import {
   NODE_NAME,
   ThemeBorderRadiusCandidatePerNode,
   ThemeColorCandidatPerNode
-} from "@fable/common/dist/types";
+} from "@capturebliss/common/dist/types";
 import { nanoid } from "nanoid";
-import { rgbToHex, getUrlsFromSrcset } from "@fable/common/dist/utils";
+import { rgbToHex, getUrlsFromSrcset } from "@capturebliss/common/dist/utils";
 import {
-  FABLE_DONT_SER_CLASSNAME,
+  CAPTUREBLISS_DONT_SER_CLASSNAME,
   isCrossOrigin,
   isContentEmpty,
   isVisible,
@@ -170,8 +170,8 @@ export function getSearializedDom(
         // ADD SCROLL FACTOR HERE:
         const scrollTopFactor = calculateScrollTopFactor(tNode).toString();
         const scrollLeftFactor = calculateScrollLeftFactor(tNode).toString();
-        sNode.attrs["fable-stf"] = scrollTopFactor;
-        sNode.attrs["fable-slf"] = scrollLeftFactor;
+        sNode.attrs["capturebliss-stf"] = scrollTopFactor;
+        sNode.attrs["capturebliss-slf"] = scrollLeftFactor;
 
         if (tNode.shadowRoot) sNode.props.isShadowHost = true;
 
@@ -218,7 +218,7 @@ export function getSearializedDom(
       return { serNode: sNode, shouldSkip: true };
     }
 
-    if (sNode.attrs.class?.includes(FABLE_DONT_SER_CLASSNAME)) {
+    if (sNode.attrs.class?.includes(CAPTUREBLISS_DONT_SER_CLASSNAME)) {
       return { serNode: sNode, shouldSkip: true };
     }
 
@@ -525,10 +525,10 @@ export function getSearializedDom(
 
 /**
  *
- * Adding fable ids to els
+ * Adding capturebliss ids to els
  *
  */
-export function addFableIdsToAllEls(
+export function addCaptureblissIdsToAllEls(
   params?: any,
   testInjectedParams?: {
     doc: Document;
@@ -755,7 +755,7 @@ export function getScreenStyle(
 
     if (node.nodeType === Node.ELEMENT_NODE
       && node.nodeName.toLowerCase() in NODE_NAME
-      && !tNode.classList.contains(FABLE_DONT_SER_CLASSNAME)) {
+      && !tNode.classList.contains(CAPTUREBLISS_DONT_SER_CLASSNAME)) {
       const colorMap = nodeColor[node.nodeName.toLowerCase() as NODE_NAME];
       const borderRadiusForNode = nodeBorderRadius[node.nodeName.toLowerCase() as NODE_NAME];
 

@@ -103,7 +103,7 @@ export const ModalButtonsContainer = styled.div`
   gap: 1rem;
 `;
 
-export const FableColorSplit = styled.div`
+export const CaptureblissColorSplit = styled.div`
     position: absolute;
     top: 0;
     left: 0;
@@ -222,7 +222,7 @@ export const AnnCardContainer = styled.div`
         position: absolute;    
     }
 
-    .fable-ann-card{
+    .capturebliss-ann-card{
         border: none;
     }
 `;

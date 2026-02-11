@@ -4,7 +4,7 @@ import {
   AnnotationButtonStyle,
   AnnotationButtonLayoutType,
   AnnotationFontSize
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import { Rect } from '../base/hightligher-base';
 import { generateShadeColor } from './utils';
 import { getColorContrast } from '../../utils';
@@ -74,7 +74,7 @@ export const AnContent = styled.div<{
   }
 
   .hide-span-child iframe,
-  .fable-video-embed-frame {
+  .capturebliss-video-embed-frame {
     aspect-ratio: 16/9;
     width: 100%;
     border: none;
@@ -149,7 +149,7 @@ export const AnContent = styled.div<{
     font-size: 1.35rem;
     border: 0px;
     padding: 8px 16px;
-    color: var(--fable-ann-font-color);
+    color: var(--capturebliss-ann-font-color);
     background-color: transparent;
     font-weight: bold;
     outline: 0px;

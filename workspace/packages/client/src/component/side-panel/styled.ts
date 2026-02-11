@@ -120,7 +120,7 @@ export const UserGuideDetailsCon = styled.div<{inDropdown: boolean}>`
   z-index: 1;
   padding: ${props => (props.inDropdown ? '0rem' : '1rem 2rem')};
   overflow-y: auto;
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   border: ${props => (props.inDropdown ? 'none' : '1px solid lightgray')};
   flex-direction: column;
   box-shadow: ${props => (props.inDropdown ? 'none' : 'rgba(0, 0, 0, 0.06) 1px 0px 2px')};
@@ -172,9 +172,9 @@ export const SectionHeading = styled.div`
   margin-bottom: 0.25rem;
 `;
 
-// ~~~~~~~~~~~~~~~~~~~~~ INTRO FABLE GUIDES ~~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~~ INTRO CAPTUREBLISS GUIDES ~~~~~~~~~~~~~~~~~~~~~
 
-export const IntroFableGuidesCon = styled.div`
+export const IntroCaptureblissGuidesCon = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;

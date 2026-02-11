@@ -1,8 +1,8 @@
 {
-  "name": "@fable/common",
+  "name": "@capturebliss/common",
   "version": "1.0.0",
   "description": "Common libs used by all the workspace packages",
-  "repository": "git+ssh://git@github.com:sharefable/app.git",
+  "repository": "git+ssh://git@github.com:capturebliss/app.git",
   "author": "akash",
   "main": "dist/",
   "license": "Apache-2.0",

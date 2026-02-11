@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Tooltip } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp } from '@fable/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import CopyHandler from './copy-handler';
 import * as Tags from './styled';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';

@@ -5,7 +5,7 @@ import {
   RespHouseLead,
   RespOrg,
   RespUser
-} from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/api-contract';
 import {
   JourneyData,
   EditFile,
@@ -16,7 +16,7 @@ import {
   ScreenData,
   TourData,
   IGlobalConfig,
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import ActionType from '../action/type';
 import {
   TGenericLoading,

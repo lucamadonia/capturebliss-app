@@ -137,7 +137,7 @@ export interface ITourDataOpts extends IChronoUpdatable {
   annotationFontColor: Property<string>;
   main: string;
   borderRadius: Property<number>;
-  showFableWatermark: Property<boolean>;
+  showCaptureblissWatermark: Property<boolean>;
   annotationPadding: Property<string>;
   showStepNum: Property<boolean>;
   reduceMotionForMobile: boolean;
@@ -146,7 +146,7 @@ export interface ITourDataOpts extends IChronoUpdatable {
 export type TourDataOpts_WithProperty = Pick<
    ITourDataOpts,
   'primaryColor'| 'annotationBodyBackgroundColor' |'annotationBodyBorderColor'
-  | 'annotationFontFamily' |'annotationFontColor' | 'borderRadius' | 'showFableWatermark'
+  | 'annotationFontFamily' |'annotationFontColor' | 'borderRadius' | 'showCaptureblissWatermark'
   | 'annotationPadding' | 'showStepNum'
 >
 

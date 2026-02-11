@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AnnotationButtonSize,
   JourneyData, CreateJourneyPositioning, ITourDataOpts, JourneyFlow,
-  IGlobalConfig } from '@fable/common/dist/types';
+  IGlobalConfig } from '@capturebliss/common/dist/types';
 import { Button as AntdButton, Select, Tooltip, Divider } from 'antd';
 import { DeleteFilled, DeleteOutlined, HolderOutlined, PlusOutlined } from '@ant-design/icons';
-import { GlobalPropsPath, createGlobalProperty, createLiteralProperty, getSampleJourneyData } from '@fable/common/dist/utils';
+import { GlobalPropsPath, createGlobalProperty, createLiteralProperty, getSampleJourneyData } from '@capturebliss/common/dist/utils';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { TState } from '../../reducer';
@@ -332,7 +332,7 @@ class CreateJourney extends React.PureComponent<IProps, IOwnStateProps> {
                                       onBlur={(e) => { this.updateFlowAtIndex(idx, 'header2', e.target.value); }}
                                     />
 
-                                    <GTags.FableSelect
+                                    <GTags.CaptureblissSelect
                                       bordered={false}
                                       size="large"
                                       defaultValue={flow.main || undefined}
@@ -362,7 +362,7 @@ class CreateJourney extends React.PureComponent<IProps, IOwnStateProps> {
                                           <b>{ann.stepNumber}</b>: {ann.displayText}
                                         </Option>
                                       ))))}
-                                    </GTags.FableSelect>
+                                    </GTags.CaptureblissSelect>
 
                                     <div>
                                       <GTags.OurCheckbox
@@ -513,7 +513,7 @@ class CreateJourney extends React.PureComponent<IProps, IOwnStateProps> {
                       <Tags.CTAInputCon>
                         <div className="typ-reg">Size</div>
                         <div className="ver-center">
-                          <GTags.FableSelect
+                          <GTags.CaptureblissSelect
                             bordered={false}
                             style={{ width: '50%' }}
                             size="large"

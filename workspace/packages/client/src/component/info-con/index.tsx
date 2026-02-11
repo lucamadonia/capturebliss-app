@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import FableLogo from '../../assets/fable_logo_light_bg.png';
+import CaptureblissLogo from '../../assets/capturebliss_logo_light_bg.png';
 import Button from '../button';
 
 export interface InfoBtn {
@@ -21,8 +21,8 @@ export default function infoCon(props: IOwnProps): JSX.Element {
   return (
     <InfoCon>
       <img
-        src={FableLogo}
-        alt="fable-logo"
+        src={CaptureblissLogo}
+        alt="capturebliss-logo"
         style={{
           height: '2rem',
           marginBottom: '2rem',

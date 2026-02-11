@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ITourLoaderData } from '@fable/common/dist/types';
+import { ITourLoaderData } from '@capturebliss/common/dist/types';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { TState } from '../../reducer';
 import { P_RespSubscription, P_RespTour } from '../../entity-processor';

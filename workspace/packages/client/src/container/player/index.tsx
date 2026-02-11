@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import {
   JourneyData, IAnnotationButtonType, IAnnotationConfig, ITourDataOpts, ITourLoaderData,
   LoadingStatus, ScreenData,
-} from '@fable/common/dist/types';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { FrameSettings, Responsiveness, ScreenType } from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/types';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { FrameSettings, Responsiveness, ScreenType } from '@capturebliss/common/dist/api-contract';
 import { loadScreenAndData, loadTourAndData, removeScreenDataForRids, updateElPathKey } from '../../action/creator';
 import * as GTags from '../../common-styled';
 import PreviewWithEditsAndAnRO from '../../component/screen-editor/preview-with-edits-and-annotations-readonly';
@@ -76,7 +76,7 @@ import { ANN_ZOOMED, DEMO_LOADED_AFTER_AI_UPDATE, HEADER_CTA, IFRAME_BASE_URL, S
 import { emitEvent } from '../../internal-events';
 import MainValidityInfo from './main-validity-info';
 import { CtaClickedInternal, CtaFrom } from '../../analytics/types';
-import { FableLeadContactProps, JourneyNameIndexData, UserFromQueryParams, addToGlobalAppData } from '../../global';
+import { CaptureblissLeadContactProps, JourneyNameIndexData, UserFromQueryParams, addToGlobalAppData } from '../../global';
 import { isSerNodeDifferent } from '../../component/screen-editor/utils/diffs/get-diffs';
 import RotateScreenModal from './rotate-srn-modal';
 import DemoProgressBar from '../../component/demo-progress-bar';
@@ -712,7 +712,7 @@ class Player extends React.PureComponent<IProps, IOwnStateProps> {
 
     const pk_val = userFromQueryParams[this.props.tourOpts!.lf_pkf];
     if (pk_val || userEmail || firstName || lastName || org || phone) {
-      emitEvent<Partial<FableLeadContactProps>>(InternalEvents.LeadAssign, {
+      emitEvent<Partial<CaptureblissLeadContactProps>>(InternalEvents.LeadAssign, {
         pk_key: this.props.tourOpts!.lf_pkf,
         pk_val: pk_val as string,
         email: userEmail,
@@ -1185,7 +1185,7 @@ class Player extends React.PureComponent<IProps, IOwnStateProps> {
         >
           <img src="/not-found.png" alt="not-found" />
           <div>
-            This <GTags.OurLink href="https://sharefable.com" inline>Fable demo</GTags.OurLink> is not available any more
+            This <GTags.OurLink href="https://capturebliss.com" inline>Capturebliss demo</GTags.OurLink> is not available any more
           </div>
         </div>
       );
@@ -1325,7 +1325,7 @@ class Player extends React.PureComponent<IProps, IOwnStateProps> {
                 borderRadius={getBorderRadiusForAnnotation(
                   ann.positioning,
                   Boolean(this.state.annPos && this.state.annPos.annotationType === 'cover'),
-                  this.props.tourOpts!.showFableWatermark._val,
+                  this.props.tourOpts!.showCaptureblissWatermark._val,
                   this.state.annPos && this.state.currAnnRefId === ann.refId
                     ? this.state.annPos.dir : 'l',
                   this.props.tourOpts!.borderRadius._val
@@ -1470,13 +1470,13 @@ class Player extends React.PureComponent<IProps, IOwnStateProps> {
             this.playMediaAnnn();
             this.setState({ showViewDemo: false });
           }}
-          showWatermark={this.props.tourOpts?.showFableWatermark._val || false}
+          showWatermark={this.props.tourOpts?.showCaptureblissWatermark._val || false}
         />}
         {this.state.screenSizeData[currScreenId]
          && !this.state.showViewDemo && this.state.showVoiceoverControl
          && (
          <VoiceoverControl
-           isWatermarkPresent={this.props.tourOpts?.showFableWatermark._val || false}
+           isWatermarkPresent={this.props.tourOpts?.showCaptureblissWatermark._val || false}
            screenSizeData={this.state.screenSizeData[currScreenId]}
            replayScreen={() => this.playMediaAnnn()}
            playPauseVideo={() => this.handleDemoPlayAndPause()}

@@ -1,7 +1,7 @@
 /* TODO There are some repetation of code across creators, fix those
  */
 
-import api from '@fable/common/dist/api';
+import api from '@capturebliss/common/dist/api';
 import {
   ApiResp,
   ReqCopyScreen,
@@ -54,11 +54,11 @@ import {
   ReqNewDataset,
   ReqUpdateSubInfo,
   ReqUserSignupDetails,
-} from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/api-contract';
 import {
   ReqGenerateAudio,
   RespGenerateAudio
-} from '@fable/common/dist/jobs-contract';
+} from '@capturebliss/common/dist/jobs-contract';
 import {
   JourneyData,
   EditFile,
@@ -72,15 +72,15 @@ import {
   TourScreenEntity,
   IGlobalConfig,
   SerNode,
-} from '@fable/common/dist/types';
-import { createLiteralProperty, deepcopy, getCurrentUtcUnixTime, getImgScreenData } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { createLiteralProperty, deepcopy, getCurrentUtcUnixTime, getImgScreenData } from '@capturebliss/common/dist/utils';
 import { Dispatch } from 'react';
 import { setUser } from '@sentry/react';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { update_demo_content } from '@fable/common/dist/llm-fn-schema/update_demo_content';
-import { root_router } from '@fable/common/dist/llm-fn-schema/root_router';
-import { RootRouterReq, guide_theme, UpdateDemoContentV1 } from '@fable/common/dist/llm-contract';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { update_demo_content } from '@capturebliss/common/dist/llm-fn-schema/update_demo_content';
+import { root_router } from '@capturebliss/common/dist/llm-fn-schema/root_router';
+import { RootRouterReq, guide_theme, UpdateDemoContentV1 } from '@capturebliss/common/dist/llm-contract';
 import { ToolUseBlockParam } from '@anthropic-ai/sdk/resources';
 import {
   convertEditsToLineItems,
@@ -132,7 +132,7 @@ import {
 } from '../types';
 import ActionType from './type';
 import { uploadImageAsBinary } from '../upload-media-to-aws';
-import { FABLE_LOCAL_STORAGE_ORG_ID_KEY } from '../constants';
+import { CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY } from '../constants';
 import { FeatureForPlan, FeaturePerPlan } from '../plans';
 import { createBatches, getAnnotationsPerScreen, getDemoStateFromTourData, handleLlmApi, handleRaiseDeferredErrorWithAnnonymousId, datasetQueryParser, isValidStrWithAlphaNumericValues, mapPlanIdAndIntervals, updateTourDataFromLLMRespItems, updateTourDataWithThemeContent, ParsedQueryResult, processVarMap, updateTourDataToAddVoiceOver, isMediaAnnotation, getAllOrderedAnnotationsInTour } from '../utils';
 import { getUUID } from '../analytics/utils';
@@ -231,7 +231,7 @@ export function iam() {
     });
 
     let orgId;
-    if (orgId = localStorage.getItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY)) {
+    if (orgId = localStorage.getItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY)) {
       dispatch({
         type: ActionType.LC_ORG_ID,
         orgId: +orgId
@@ -268,7 +268,7 @@ function passAdditionalSignupParams() {
     const timer = setTimeout(() => {
       try {
         clearTimeout(timer);
-        const additionalUserData = sessionStorage.getItem('fable/usrsp');
+        const additionalUserData = sessionStorage.getItem('capturebliss/usrsp');
         if (additionalUserData) {
           api<ReqUserSignupDetails, ApiResp<String>>('/usrsudet', {
             auth: true,
@@ -276,7 +276,7 @@ function passAdditionalSignupParams() {
               p: additionalUserData
             }
           });
-          sessionStorage.removeItem('fable/usrsp');
+          sessionStorage.removeItem('capturebliss/usrsp');
         }
       } catch (e) {
         raiseDeferredError(e as Error);
@@ -300,7 +300,7 @@ export function createOrg(displayName: string) {
     });
 
     await passAdditionalSignupParams();
-    localStorage.setItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY, data.data.id.toString());
+    localStorage.setItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY, data.data.id.toString());
     await dispatch(getSubscriptionOrCheckoutNew(true));
 
     dispatch({
@@ -350,7 +350,7 @@ export function assignOrgToUser(orgId: number, isJoinViaInvite = false) {
     if (isJoinViaInvite) {
       await passAdditionalSignupParams();
     }
-    localStorage.setItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY, orgId.toString());
+    localStorage.setItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY, orgId.toString());
     await dispatch(getSubscriptionOrCheckoutNew());
 
     dispatch({
@@ -510,7 +510,7 @@ export function checkout(
 
     if (license) {
       // must delete a license key if it's present once the processing is done
-      localStorage.removeItem('fable/asll');
+      localStorage.removeItem('capturebliss/asll');
     }
 
     dispatch({
@@ -527,7 +527,7 @@ export function getSubscriptionOrCheckoutNew(shouldCreateNewSubsIfNotPresent = f
     const data = await api<null, ApiResp<RespSubscription>>('/subs', { auth: true });
     let subs = data.data;
     if (shouldCreateNewSubsIfNotPresent) {
-      const appsumoLicense = localStorage.getItem('fable/asll') || '';
+      const appsumoLicense = localStorage.getItem('capturebliss/asll') || '';
       if (!appsumoLicense && subs) {
         await dispatch({
           type: ActionType.SUBS,

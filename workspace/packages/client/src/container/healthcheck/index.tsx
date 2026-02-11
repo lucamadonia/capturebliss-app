@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { TourData } from '@fable/common/dist/types';
+import { TourData } from '@capturebliss/common/dist/types';
 import { validate } from './utils';
 
 export default function Healthcheck(): JSX.Element {

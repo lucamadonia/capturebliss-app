@@ -1,12 +1,12 @@
-import { sentryCaptureException, init as sentryInit } from "@fable/common/dist/sentry";
-import { sleep, snowflake } from "@fable/common/dist/utils";
+import { sentryCaptureException, init as sentryInit } from "@capturebliss/common/dist/sentry";
+import { sleep, snowflake } from "@capturebliss/common/dist/utils";
 import {
   SerDoc,
   NODE_NAME,
   ThemeStats,
   ThemeBorderRadiusCandidatePerNode,
   ThemeColorCandidatPerNode
-} from "@fable/common/dist/types";
+} from "@capturebliss/common/dist/types";
 import { AGGRESSIVE_BUFFER_PRESERVATION, getActiveTab, PURIFY_DOM_SERIALIZATION, SettingState } from "./common";
 import { Msg, MsgPayload } from "./msg";
 import {
@@ -75,7 +75,7 @@ chrome.runtime.onMessageExternal.addListener(
       sendResponse({ version });
     }
     // used for capture screen editor screenshot. commented as not required for AI v1
-    // if (data && data.sender && data.sender === "fable") {
+    // if (data && data.sender && data.sender === "capturebliss") {
     //   const lastTabCaptureImageData = await chrome.tabs.captureVisibleTab({ format: "png" });
     //   sendResponse({ data: lastTabCaptureImageData });
     // }
@@ -755,8 +755,8 @@ function registerContentScriptWithId(id: string, script: string): void {
 }
 
 function initRegisteredContentScripts() {
-  const drawingBufferScriptId = "fable/preservedrawingbuffer";
-  const purifyDomScriptId = "fable/purifydom";
+  const drawingBufferScriptId = "capturebliss/preservedrawingbuffer";
+  const purifyDomScriptId = "capturebliss/purifydom";
 
   chrome.scripting.getRegisteredContentScripts()
     .then((scripts) => {

@@ -1,0 +1,14 @@
+{
+  "welcome": "Willkommen bei Capturebliss",
+  "extensionInstalled": "Onboarding - Erweiterung installiert | Capturebliss",
+  "goToApp": "Onboarding - Zur App gehen | Capturebliss",
+  "userDetails": "Erzählen Sie uns von sich",
+  "organizationDetails": "Organisationsdetails",
+  "usecases": "Anwendungsfälle",
+  "installExtension": "Erweiterung installieren",
+  "firstName": "Vorname",
+  "lastName": "Nachname",
+  "orgName": "Organisationsname",
+  "continue": "Weiter",
+  "skip": "Überspringen"
+}

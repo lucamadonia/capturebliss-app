@@ -19,19 +19,19 @@ import {
   ITourEntityHotspot,
   ScreenData,
   IGlobalConfig
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import { Modal, Button, Tooltip } from 'antd';
-import { FrameSettings, ReqTourPropUpdate, Responsiveness } from '@fable/common/dist/api-contract';
+import { FrameSettings, ReqTourPropUpdate, Responsiveness } from '@capturebliss/common/dist/api-contract';
 import { D3DragEvent, drag, DragBehavior, SubjectPosition } from 'd3-drag';
 import { pointer as fromPointer, select, selectAll, Selection as D3Selection } from 'd3-selection';
 import { curveBasis, line } from 'd3-shape';
 import { D3ZoomEvent, ZoomBehavior, zoom, zoomIdentity } from 'd3-zoom';
 import dagre from 'dagre';
 import React, { useEffect, useRef, useState } from 'react';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import { interpolate } from 'd3-interpolate';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
-import { createLiteralProperty, getRandomId } from '@fable/common/dist/utils';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
+import { createLiteralProperty, getRandomId } from '@capturebliss/common/dist/utils';
 import * as GTags from '../../common-styled';
 import {
   updateGrpIdForTimelineTillEnd,
@@ -2780,7 +2780,7 @@ export default function TourCanvas(props: CanvasProps): JSX.Element {
           <Header
             showOnboardingGuides
             userGuidesToShow={[
-              'Exploring Fable’s canvas',
+              'Exploring Capturebliss’s canvas',
               'Editing the interactive demo that you have captured',
               'Sharing or embedding your interactive demo'
             ]}
@@ -3424,7 +3424,7 @@ export default function TourCanvas(props: CanvasProps): JSX.Element {
             )
           } */}
           {props.timeline.length && <SelectorComponent key={selectorComponentKey} userGuides={userGuides} />}
-          {img && <img src={img} id="fable-srn-ed" alt="captured frame" style={{ zIndex: 9999, height: '20vh', width: '40vw' }} />}
+          {img && <img src={img} id="capturebliss-srn-ed" alt="captured frame" style={{ zIndex: 9999, height: '20vh', width: '40vw' }} />}
           <ResponsiveStrategyDrawer
             showMobileResponsivenessDrawer={showMobileResponsivenessDrawer}
             setShowMobileResponsivenessDrawer={setShowMobileResponsivenessDrawer}

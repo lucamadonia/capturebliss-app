@@ -1,10 +1,10 @@
-import { getRandomId, sleep, snowflake } from "@fable/common/dist/utils";
-import { init as sentryInit } from "@fable/common/dist/sentry";
-import raiseDeferredError from "@fable/common/dist/deferred-error";
+import { getRandomId, sleep, snowflake } from "@capturebliss/common/dist/utils";
+import { init as sentryInit } from "@capturebliss/common/dist/sentry";
+import raiseDeferredError from "@capturebliss/common/dist/deferred-error";
 import { nanoid } from "nanoid";
-import { RectWithFId } from "@fable/common/dist/types";
+import { RectWithFId } from "@capturebliss/common/dist/types";
 import { Msg, MsgPayload } from "./msg";
-import { addFableIdsToAllEls, getScreenStyle, getSearializedDom } from "./doc";
+import { addCaptureblissIdsToAllEls, getScreenStyle, getSearializedDom } from "./doc";
 import {
   ReqScreenshotData,
   ScreenSerDataFromCS,
@@ -14,17 +14,17 @@ import {
   SerializeFrameData,
   StopRecordingData
 } from "./types";
-import { FABLE_DONT_SER_CLASSNAME } from "./utils";
+import { CAPTUREBLISS_DONT_SER_CLASSNAME } from "./utils";
 import { version } from "../package.json";
 import { CountDownModal } from "./components/countdown-modal";
 import { ExtensionInfoModal } from "./components/extension-info-modal";
 
 sentryInit("extension", version);
 
-const FABLE_MSG_LISTENER_DIV_ID = "fable-0-cm-presence";
-const FABLE_DOM_EVT_LISTENER_DIV = "fable-0-de-presence";
-const FABLE_ID_ID = "fable-0-id-id";
-const FABLE_MSG_FROM_IDENTIFIER = "sharefable.com";
+const CAPTUREBLISS_MSG_LISTENER_DIV_ID = "capturebliss-0-cm-presence";
+const CAPTUREBLISS_DOM_EVT_LISTENER_DIV = "capturebliss-0-de-presence";
+const CAPTUREBLISS_ID_ID = "capturebliss-0-id-id";
+const CAPTUREBLISS_MSG_FROM_IDENTIFIER = "capturebliss.com";
 
 const isDocHtml4P1 = (el: Node): boolean => {
   const res = !!((el.nodeName || "").toLowerCase() === "html"
@@ -115,7 +115,7 @@ function serialize(
     data: { id }
   });
 
-  addFableIdsToAllEls();
+  addCaptureblissIdsToAllEls();
   let elPath;
   const el = els?.targetEl;
   if (el) {
@@ -126,8 +126,8 @@ function serialize(
     }
   } else if (el === null) elPath = "$";
 
-  const fablePresenceDiv = document.getElementById(FABLE_DOM_EVT_LISTENER_DIV);
-  const frameId = fablePresenceDiv?.getAttribute(FABLE_ID_ID) || null;
+  const captureblissPresenceDiv = document.getElementById(CAPTUREBLISS_DOM_EVT_LISTENER_DIV);
+  const frameId = captureblissPresenceDiv?.getAttribute(CAPTUREBLISS_ID_ID) || null;
 
   const serDoc = getSearializedDom({ frameId });
   const screenStyle = getScreenStyle();
@@ -228,7 +228,7 @@ function adjustElementAndGetCandidates(element: HTMLElement) {
 }
 
 const onClickHandler = async (e: MouseEvent) => {
-  if ((e.target as HTMLElement).classList.contains(FABLE_DONT_SER_CLASSNAME)) return;
+  if ((e.target as HTMLElement).classList.contains(CAPTUREBLISS_DONT_SER_CLASSNAME)) return;
   let el = e.target;
   let isInsideShadowDom = false;
   try {
@@ -251,10 +251,10 @@ const onClickHandler = async (e: MouseEvent) => {
 
 function createListenerMarkerDivIfNotPresent(doc: Document) {
   // this div is present once the onClick listener is added to a frame and all same origin frame wrt to the parent frame
-  const div = doc.getElementById(FABLE_DOM_EVT_LISTENER_DIV);
+  const div = doc.getElementById(CAPTUREBLISS_DOM_EVT_LISTENER_DIV);
   if (div === null) {
     const nDiv = doc.createElement("div");
-    nDiv.setAttribute("id", FABLE_DOM_EVT_LISTENER_DIV);
+    nDiv.setAttribute("id", CAPTUREBLISS_DOM_EVT_LISTENER_DIV);
     doc.body.appendChild(nDiv);
     return true;
   }
@@ -274,14 +274,14 @@ function getAllIframesInDoc(type: "crossorigin" | "sameorigin", doc: Document) {
 function installMessageListenerInFrame(win: Window, frameId: string) {
   if (!(win && frameId)) return;
 
-  (win as any).__data_fable_frameid__ = frameId;
+  (win as any).__data_capturebliss_frameid__ = frameId;
   let i = 1;
   const timer = setInterval(() => {
     // we will try this 5 times in case the parent frame hasn't been set up when the child frame send the message.
     // This message passing could be called multiple times hence we should always make this function idempotent
     if (i++ > 5) clearTimeout(timer);
     win.parent.postMessage({
-      from: FABLE_MSG_FROM_IDENTIFIER,
+      from: CAPTUREBLISS_MSG_FROM_IDENTIFIER,
       type: "idpropagation",
       relay: frameId,
       value: frameId
@@ -289,16 +289,16 @@ function installMessageListenerInFrame(win: Window, frameId: string) {
   }, 1000);
 
   win.addEventListener("message", msg => {
-    if (msg && msg.data && msg.data.from === FABLE_MSG_FROM_IDENTIFIER) {
-      // console.log("[Fable] Interframe listener installation. Trying...");
+    if (msg && msg.data && msg.data.from === CAPTUREBLISS_MSG_FROM_IDENTIFIER) {
+      // console.log("[Capturebliss] Interframe listener installation. Trying...");
       if (msg.data.type === "idpropagation") {
         const frames = getAllIframesInDoc("crossorigin", win.document);
         const fs = frames.filter(f => f.contentWindow === msg.source);
         if (fs.length !== 1) {
-          console.warn("[Fable] No unique target found. Required 1, recieved ", fs.length, ". id", frameId);
+          console.warn("[Capturebliss] No unique target found. Required 1, recieved ", fs.length, ". id", frameId);
           return;
         }
-        fs[0].setAttribute(FABLE_ID_ID, msg.data.value);
+        fs[0].setAttribute(CAPTUREBLISS_ID_ID, msg.data.value);
       }
     }
   });
@@ -308,13 +308,13 @@ function installMessageListenerInFrame(win: Window, frameId: string) {
 }
 
 function installMessageListener(frameId: string) {
-  const fablePresenceDiv = document.getElementById(FABLE_DOM_EVT_LISTENER_DIV);
-  if (!fablePresenceDiv) {
-    console.warn("[Fable] Couldn't establish message passing pipes as target el is not found");
+  const captureblissPresenceDiv = document.getElementById(CAPTUREBLISS_DOM_EVT_LISTENER_DIV);
+  if (!captureblissPresenceDiv) {
+    console.warn("[Capturebliss] Couldn't establish message passing pipes as target el is not found");
     return;
   }
-  if (fablePresenceDiv.getAttribute(FABLE_ID_ID) !== null) return; // message passing alrady installed
-  fablePresenceDiv.setAttribute(FABLE_ID_ID, frameId);
+  if (captureblissPresenceDiv.getAttribute(CAPTUREBLISS_ID_ID) !== null) return; // message passing alrady installed
+  captureblissPresenceDiv.setAttribute(CAPTUREBLISS_ID_ID, frameId);
   installMessageListenerInFrame(window, frameId);
 }
 
@@ -398,7 +398,7 @@ function installListener(doc: Document) {
   for (const d of sameOriginDocs) {
     try {
       installListener(d!);
-      installMessageListenerInFrame(d!.defaultView!, (doc.defaultView as any).__data_fable_frameid__);
+      installMessageListenerInFrame(d!.defaultView!, (doc.defaultView as any).__data_capturebliss_frameid__);
     } catch (e) {
       console.error("Error installing msg listeners", e);
     }
@@ -471,16 +471,16 @@ function init() {
 
 // Presence of this div detects if the messaging with the background script has been
 // established by a frame in a tab
-function createFableZeroPx() {
+function createCaptureblissZeroPx() {
   const div = document.createElement("div");
-  div.setAttribute("id", FABLE_MSG_LISTENER_DIV_ID);
+  div.setAttribute("id", CAPTUREBLISS_MSG_LISTENER_DIV_ID);
   document.body.appendChild(div);
 }
 
 // This is a guard against content script getting called multiple time when tab gets re-loaded
 // or even url change
-if (document.getElementById(FABLE_MSG_LISTENER_DIV_ID) == null) {
-  createFableZeroPx();
+if (document.getElementById(CAPTUREBLISS_MSG_LISTENER_DIV_ID) == null) {
+  createCaptureblissZeroPx();
   init();
 }
 

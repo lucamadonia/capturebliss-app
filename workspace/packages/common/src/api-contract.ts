@@ -1005,7 +1005,7 @@ export const enum LeadInfoKey {
 }
 
 export const enum PlatformIntegrationType {
-    FableWebhook = "FableWebhook",
+    CaptureblissWebhook = "CaptureblissWebhook",
     Zapier = "Zapier",
 }
 

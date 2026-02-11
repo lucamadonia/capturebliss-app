@@ -1,7 +1,7 @@
-import { hexToRGB } from "@fable/common/dist/utils";
-import { DEFAULT_BORDER_RADIUS } from "@fable/common/dist/types";
+import { hexToRGB } from "@capturebliss/common/dist/utils";
+import { DEFAULT_BORDER_RADIUS } from "@capturebliss/common/dist/types";
 
-export const FABLE_DONT_SER_CLASSNAME = "fable-dont-ser";
+export const CAPTUREBLISS_DONT_SER_CLASSNAME = "capturebliss-dont-ser";
 /**
  * If the app being recorded is heavy with a lot of elements,
  * batching of 5 screens together was also exceeding the limit.
@@ -197,9 +197,9 @@ export const createShadowDOM = (
   });
   shadowRoot.innerHTML = innerHTML;
 
-  hostCon.classList.add(FABLE_DONT_SER_CLASSNAME);
+  hostCon.classList.add(CAPTUREBLISS_DONT_SER_CLASSNAME);
   shadowRoot.querySelectorAll("*").forEach((el) => {
-    el.classList.add(FABLE_DONT_SER_CLASSNAME);
+    el.classList.add(CAPTUREBLISS_DONT_SER_CLASSNAME);
   });
 
   return { hostCon, shadowRoot };

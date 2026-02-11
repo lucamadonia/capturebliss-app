@@ -68,7 +68,7 @@ function HomeDropDown(props: Props) : JSX.Element {
           )
         }, {
           key: '3',
-          label: <div className="typ-h3 collapse-header">See what you can do with Fable</div>,
+          label: <div className="typ-h3 collapse-header">See what you can do with Capturebliss</div>,
           children: <UseCases singleRow />
         }, {
           key: '4',
@@ -92,7 +92,7 @@ function HomeDropDown(props: Props) : JSX.Element {
             style={{ padding: '1rem 1.5rem', margin: '1rem auto' }}
             onClick={() => {
               window.open(
-                'https://chrome.google.com/webstore/detail/fable/ekmabenadlgfkjplmpldkjkhiikobaoc',
+                'https://chrome.google.com/webstore/detail/capturebliss/ekmabenadlgfkjplmpldkjkhiikobaoc',
                 '_blank'
               );
             }}

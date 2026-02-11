@@ -1,13 +1,13 @@
 import React, { RefObject, ReactElement } from 'react';
 import Hls from 'hls.js';
-import { IAnnotationConfig, ITourDataOpts, VideoAnnotationPositions } from '@fable/common/dist/types';
+import { IAnnotationConfig, ITourDataOpts, VideoAnnotationPositions } from '@capturebliss/common/dist/types';
 import {
   ArrowLeftOutlined,
   PauseCircleFilled,
   PlayCircleFilled,
   ReloadOutlined,
 } from '@ant-design/icons';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import * as Tags from './styled';
 import { isCoverAnnotation } from './annotation-config-utils';
 import {
@@ -18,7 +18,7 @@ import { convertUrlToBlobUrl, generateShadeColor } from './utils';
 import AudioVisualizer from '../audio-visualizer';
 import { getColorContrast, isSafari } from '../../utils';
 import SoundWavePlaceholder from './sound-wave-placeholder';
-import { FABLE_AUDIO_MEDIA_CONTROLS } from '../../constants';
+import { CAPTUREBLISS_AUDIO_MEDIA_CONTROLS } from '../../constants';
 import { getAnnotationBtn } from './ops';
 import * as GTags from '../../common-styled';
 import { generateCSSSelectorFromText } from '../screen-editor/utils/css-styles';
@@ -433,8 +433,8 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
             this.props.type === 'video' && (
               <Tags.AnVideo
                 ref={this.mediaRef}
-                id={`fable-ann-video-${config.refId}`}
-                className="fable-video"
+                id={`capturebliss-ann-video-${config.refId}`}
+                className="capturebliss-video"
                 playsInline
                 onPause={() => this.onMediaPause()}
                 onPlay={() => this.onMediaPlay()}
@@ -458,8 +458,8 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
             this.props.type === 'audio' && (
               <Tags.AnAudioCon
                 style={{ borderRadius: this.props.borderRadius }}
-                id={`fable-ann-audio-${config.refId}`}
-                className="fable-audio"
+                id={`capturebliss-ann-audio-${config.refId}`}
+                className="capturebliss-audio"
                 bgColor={this.props.opts.annotationBodyBackgroundColor._val}
               >
                 <audio
@@ -517,7 +517,7 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
                       onClick={() => {
                         this.playMediaFromStart();
                       }}
-                      className={FABLE_AUDIO_MEDIA_CONTROLS}
+                      className={CAPTUREBLISS_AUDIO_MEDIA_CONTROLS}
                     >
                       <ReloadOutlined />
                     </Tags.AnMediaCtrlBtn>
@@ -532,7 +532,7 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
                       onClick={() => {
                         this.playMedia();
                       }}
-                      className={FABLE_AUDIO_MEDIA_CONTROLS}
+                      className={CAPTUREBLISS_AUDIO_MEDIA_CONTROLS}
                     >
                       <PlayCircleFilled />
                     </Tags.AnMediaCtrlBtn>
@@ -547,7 +547,7 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
                       onClick={() => {
                         this.mediaRef.current!.pause();
                       }}
-                      className={FABLE_AUDIO_MEDIA_CONTROLS}
+                      className={CAPTUREBLISS_AUDIO_MEDIA_CONTROLS}
                     >
                       <PauseCircleFilled />
                     </Tags.AnMediaCtrlBtn>

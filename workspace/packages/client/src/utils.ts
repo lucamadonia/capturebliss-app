@@ -6,8 +6,8 @@ import {
   Status,
   Plan,
   ApiResp,
-} from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+} from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import {
   IAnnotationConfig,
   IAnnotationOriginConfig,
@@ -22,20 +22,20 @@ import {
   TourData,
   TourScreenEntity,
   VideoAnnotationPositions,
-} from '@fable/common/dist/types';
-import { GlobalPropsPath, compileValue, createGlobalProperty, createLiteralProperty, deepcopy, getCurrentUtcUnixTime, getRandomId } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { GlobalPropsPath, compileValue, createGlobalProperty, createLiteralProperty, deepcopy, getCurrentUtcUnixTime, getRandomId } from '@capturebliss/common/dist/utils';
 import { nanoid } from 'nanoid';
 import { useEffect, useRef } from 'react';
 import Handlebars from 'handlebars';
 import { ToolUseBlockParam } from '@anthropic-ai/sdk/resources';
-import api from '@fable/common/dist/api';
-import { PostProcessDemoV1, ThemeForGuideV1, CreateNewDemoV1, RouterForTypeOfDemoCreation, DemoMetadata, LLMResp, UpdateDemoContentV1, RootRouterReq } from '@fable/common/dist/llm-contract';
-import { update_demo_content } from '@fable/common/dist/llm-fn-schema/update_demo_content';
-import { suggest_guide_theme } from '@fable/common/dist/llm-fn-schema/suggest_guide_theme';
+import api from '@capturebliss/common/dist/api';
+import { PostProcessDemoV1, ThemeForGuideV1, CreateNewDemoV1, RouterForTypeOfDemoCreation, DemoMetadata, LLMResp, UpdateDemoContentV1, RootRouterReq } from '@capturebliss/common/dist/llm-contract';
+import { update_demo_content } from '@capturebliss/common/dist/llm-fn-schema/update_demo_content';
+import { suggest_guide_theme } from '@capturebliss/common/dist/llm-fn-schema/suggest_guide_theme';
 import { ColumnsType } from 'antd/es/table';
 import { IAnnotationConfigWithScreenId, updateAnnotationAudio, updateAnnotationBoxSize, updateAnnotationPositioning, updateOverlay } from './component/annotation/annotation-config-utils';
 import { getAnnotationBtn, getAnnotationByRefId } from './component/annotation/ops';
-import { FABLE_LEAD_FORM_FIELD_NAME, FABLE_PERS_VARS_FOR_TOUR } from './constants';
+import { CAPTUREBLISS_LEAD_FORM_FIELD_NAME, CAPTUREBLISS_PERS_VARS_FOR_TOUR } from './constants';
 import { P_RespSubscription, P_RespTour } from './entity-processor';
 import { AnalyticsValue, AnnotationValue, FeatureForPlan, PlanDetail } from './plans';
 import { TState } from './reducer';
@@ -84,7 +84,7 @@ import {
 } from './types';
 import { Rect } from './component/base/hightligher-base';
 
-export const LOCAL_STORE_TIMELINE_ORDER_KEY = 'fable/timeline_order_2';
+export const LOCAL_STORE_TIMELINE_ORDER_KEY = 'capturebliss/timeline_order_2';
 const EXTENSION_ID = process.env.REACT_APP_EXTENSION_ID as string;
 export const AEP_HEIGHT = 25;
 export const ANN_EDIT_PANEL_WIDTH = 350;
@@ -122,8 +122,8 @@ export function openTourExternalLink(uri: string, openInSameTab?: boolean): void
   });
 
   const url = new URL(uri);
-  const sharefableUrl = new URL(process.env.REACT_APP_CLIENT_ENDPOINT as string);
-  if (url.host === sharefableUrl.host) {
+  const captureblissUrl = new URL(process.env.REACT_APP_CLIENT_ENDPOINT as string);
+  if (url.host === captureblissUrl.host) {
     window.open(uri, '_self');
   } else if (openInSameTab) {
     window.open(uri, '_top');
@@ -222,14 +222,14 @@ export const generateTimelineOrder = (timeline: Timeline): string[] => {
   return newTimelineOrder;
 };
 
-export const getFableTimelineOrder = (): LocalStoreTimelineOrder => {
-  const FABLE_TIMELINE_ORDER = localStorage.getItem(LOCAL_STORE_TIMELINE_ORDER_KEY);
-  return FABLE_TIMELINE_ORDER
-    ? JSON.parse(FABLE_TIMELINE_ORDER) as LocalStoreTimelineOrder
+export const getCaptureblissTimelineOrder = (): LocalStoreTimelineOrder => {
+  const CAPTUREBLISS_TIMELINE_ORDER = localStorage.getItem(LOCAL_STORE_TIMELINE_ORDER_KEY);
+  return CAPTUREBLISS_TIMELINE_ORDER
+    ? JSON.parse(CAPTUREBLISS_TIMELINE_ORDER) as LocalStoreTimelineOrder
     : { rid: '', order: [] };
 };
 
-export const saveFableTimelineOrder = (timelineOrder: LocalStoreTimelineOrder): void => {
+export const saveCaptureblissTimelineOrder = (timelineOrder: LocalStoreTimelineOrder): void => {
   localStorage.setItem(LOCAL_STORE_TIMELINE_ORDER_KEY, JSON.stringify(timelineOrder));
 };
 
@@ -239,9 +239,9 @@ interface LocalStoreTimelineOrder {
 }
 
 export const updateLocalTimelineGroupProp = (grpId: string, nearbygrpId: string): void => {
-  const FABLE_TIMELINE_ORDER = getFableTimelineOrder();
-  FABLE_TIMELINE_ORDER.order.splice(FABLE_TIMELINE_ORDER.order.indexOf(nearbygrpId) + 1, 0, grpId);
-  saveFableTimelineOrder(FABLE_TIMELINE_ORDER);
+  const CAPTUREBLISS_TIMELINE_ORDER = getCaptureblissTimelineOrder();
+  CAPTUREBLISS_TIMELINE_ORDER.order.splice(CAPTUREBLISS_TIMELINE_ORDER.order.indexOf(nearbygrpId) + 1, 0, grpId);
+  saveCaptureblissTimelineOrder(CAPTUREBLISS_TIMELINE_ORDER);
 };
 
 export const isNavigateHotspot = (hotspot: ITourEntityHotspot | null): boolean => {
@@ -265,11 +265,11 @@ export function getColorContrast(hex: string): 'dark' | 'light' {
 }
 
 export const setEventCommonState = (property: string, value: any): void => {
-  const ep = localStorage.getItem('fable/ep');
+  const ep = localStorage.getItem('capturebliss/ep');
   const eventProperties = ep ? JSON.parse(ep) : {};
   eventProperties[property] = value;
 
-  localStorage.setItem('fable/ep', JSON.stringify(eventProperties));
+  localStorage.setItem('capturebliss/ep', JSON.stringify(eventProperties));
 };
 
 export const baseURL = process.env.REACT_APP_CLIENT_ENDPOINT as string;
@@ -323,8 +323,8 @@ export const getAnnotationWithScreenAndIdx = (
 };
 
 export const getJourneyProgress = (): Record<string, FlowProgress[]> => {
-  const FABLE_JOURNEY_PROGRESS = sessionStorage.getItem(JOURNEY_PROGRESS_LOCAL_STORE_KEY);
-  return FABLE_JOURNEY_PROGRESS ? JSON.parse(FABLE_JOURNEY_PROGRESS) as Record<string, FlowProgress[]> : {};
+  const CAPTUREBLISS_JOURNEY_PROGRESS = sessionStorage.getItem(JOURNEY_PROGRESS_LOCAL_STORE_KEY);
+  return CAPTUREBLISS_JOURNEY_PROGRESS ? JSON.parse(CAPTUREBLISS_JOURNEY_PROGRESS) as Record<string, FlowProgress[]> : {};
 };
 
 export const saveJourneyProgress = (journeyProgress: Record<string, FlowProgress[]>): void => {
@@ -492,7 +492,7 @@ export const getChildElementByFid = (node: Node, fid: string): HTMLElement | nul
 
 export function postMessageForEvent<T>(eventType: ExtMsg, payload: T): void {
   const message = {
-    sender: 'sharefable.com',
+    sender: 'capturebliss.com',
     type: eventType,
     payload,
   };
@@ -679,7 +679,7 @@ const prefillLeadForm = (
     const inputEls = Array.from(dom.getElementsByTagName('input'));
 
     inputEls.forEach(el => {
-      const leadFormField = el.getAttribute(FABLE_LEAD_FORM_FIELD_NAME);
+      const leadFormField = el.getAttribute(CAPTUREBLISS_LEAD_FORM_FIELD_NAME);
       if (leadFormField && queryParams[leadFormField]) {
         el.setAttribute('value', queryParams[leadFormField]);
         el.disabled = true;
@@ -855,7 +855,7 @@ export function removeDuplicatesFromStrArr(arr1: string[]): string[] {
 }
 
 export function getPersVarsDataFromLS(): LSSavedPersVarData[] | null {
-  const localStoreVal = localStorage.getItem(FABLE_PERS_VARS_FOR_TOUR) as string;
+  const localStoreVal = localStorage.getItem(CAPTUREBLISS_PERS_VARS_FOR_TOUR) as string;
   if (!localStoreVal) return null;
 
   const allPerVals: LSSavedPersVarData[] = JSON.parse(localStoreVal);
@@ -906,7 +906,7 @@ export function setPersValuesInLS(perVars: PerVarData, demoRid: string): void {
         obj.perVars = perVars;
       }
     });
-    localStorage.setItem(FABLE_PERS_VARS_FOR_TOUR, JSON.stringify(allPerVals));
+    localStorage.setItem(CAPTUREBLISS_PERS_VARS_FOR_TOUR, JSON.stringify(allPerVals));
     return;
   }
 
@@ -916,7 +916,7 @@ export function setPersValuesInLS(perVars: PerVarData, demoRid: string): void {
 
   allPerVals.push({ rid: demoRid, perVars });
 
-  localStorage.setItem(FABLE_PERS_VARS_FOR_TOUR, JSON.stringify(allPerVals));
+  localStorage.setItem(CAPTUREBLISS_PERS_VARS_FOR_TOUR, JSON.stringify(allPerVals));
 }
 
 export function getAnnTextEditorErrors(perVars: string[]): string[] {
@@ -1325,7 +1325,7 @@ export const getIsMobileSize = (): boolean => {
 //   const dpr = window.devicePixelRatio || 1;
 //   chrome.runtime.sendMessage(
 //     EXTENSION_ID,
-//     { sender: 'fable' },
+//     { sender: 'capturebliss' },
 //     (response) => {
 //       if (response && response.data) {
 //         const img = new Image();
@@ -1361,8 +1361,8 @@ export const isGlobalProperty = <T>(value: Property<T>): boolean => value.type =
 export const getSampleDemoHubConfig = (): IDemoHubConfig => ({
   v: 1,
   lastUpdatedAt: getCurrentUtcUnixTime(),
-  logo: createGlobalProperty('https://s3.amazonaws.com/app.sharefable.com/favicon.png', GlobalPropsPath.logo),
-  companyName: createLiteralProperty('Fable'),
+  logo: createGlobalProperty('https://s3.amazonaws.com/app.capturebliss.com/favicon.png', GlobalPropsPath.logo),
+  companyName: createLiteralProperty('Capturebliss'),
   fontFamily: createGlobalProperty('', GlobalPropsPath.fontFamily),
   baseFontSize: 16,
   cta: [
@@ -1387,7 +1387,7 @@ export const getSampleDemoHubConfig = (): IDemoHubConfig => ({
       iconPlacement: 'left',
       deletable: true,
       __linkType: 'open_ext_url',
-      link: createGlobalProperty('https://www.sharefable.com/get-a-demo?ref=dh_others', GlobalPropsPath.customBtn1URL),
+      link: createGlobalProperty('https://www.capturebliss.com/get-a-demo?ref=dh_others', GlobalPropsPath.customBtn1URL),
       __definedBy: 'system',
       type: createGlobalProperty('primary', GlobalPropsPath.customBtn1Style),
       style: {
@@ -1603,7 +1603,7 @@ export const getSampleSelectEntry = (
     // icon?: Icon;
     iconPlacement: 'left',
     __linkType: 'continue_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system',
     type: 'primary',
@@ -1620,7 +1620,7 @@ export const getSampleSelectEntry = (
     // icon?: Icon,
     iconPlacement: 'left',
     __linkType: 'skip_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system',
     type: 'primary',
@@ -1649,7 +1649,7 @@ export const getSampleBaseEntry = (
     // icon?: Icon;
     iconPlacement: 'left',
     __linkType: 'continue_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system',
     type: 'primary',
@@ -1666,7 +1666,7 @@ export const getSampleBaseEntry = (
     // icon?: Icon,
     iconPlacement: 'left',
     __linkType: 'skip_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system',
     type: 'primary',
@@ -1683,10 +1683,10 @@ export const getSampleSelectEntryOption = (idx: number): SelectEntryOption => ({
 });
 
 export const getOrCreateDemoHubStyleEl = (customStyles: string) : void => {
-  let styleEl = document.getElementById('fable-styles');
+  let styleEl = document.getElementById('capturebliss-styles');
   if (!styleEl) {
     styleEl = document.createElement('style');
-    styleEl.id = 'fable-styles';
+    styleEl.id = 'capturebliss-styles';
     document.head.append(styleEl);
   }
   styleEl.textContent = customStyles;
@@ -1703,18 +1703,18 @@ const isValidScript = (scriptContent : string) : boolean => {
 };
 
 export const getorCreateDemoHubScriptEl = (customScripts : string) : void => {
-  let scriptWrapperEl = document.getElementById('fable-script');
+  let scriptWrapperEl = document.getElementById('capturebliss-script');
   if (!scriptWrapperEl) {
     scriptWrapperEl = document.createElement('div');
-    scriptWrapperEl.id = 'fable-script';
+    scriptWrapperEl.id = 'capturebliss-script';
     document.body.append(scriptWrapperEl);
   }
   scriptWrapperEl.style.display = 'none';
   scriptWrapperEl.innerHTML = customScripts;
-  let scriptContainer = document.getElementById('fable-script-container');
+  let scriptContainer = document.getElementById('capturebliss-script-container');
   if (!scriptContainer) {
     scriptContainer = document.createElement('div');
-    scriptContainer.id = 'fable-script-container';
+    scriptContainer.id = 'capturebliss-script-container';
     document.body.append(scriptContainer);
   }
   scriptContainer.innerHTML = '';
@@ -2011,7 +2011,7 @@ export const isAIParamPresent = (): boolean => {
 export const initLLMSurvey = (): void => {
   if (isAIParamPresent()) {
     const surveyDiv = document.createElement('div');
-    surveyDiv.id = 'survey-fable';
+    surveyDiv.id = 'survey-capturebliss';
     document.body.appendChild(surveyDiv);
   }
 };
@@ -2057,12 +2057,12 @@ export const DEMO_TIPS = [
     type: ['sales'],
     tip: `Personalize your demo for each prospect. 
     Even small things such as adding their logo and including their name can make a huge difference. 
-    For sales/ marketing: Integrate Fable with slack to get real time alerts about your demo viewers.`
+    For sales/ marketing: Integrate Capturebliss with slack to get real time alerts about your demo viewers.`
   },
   {
     type: ['sales'],
     tip: `Customize your demo to remove irrelevant information from the screens. 
-    With Fable, you can blur/ hide/ remove/ replace any elements on your screen. Give it a try! `
+    With Capturebliss, you can blur/ hide/ remove/ replace any elements on your screen. Give it a try! `
   },
   {
     type: ['sales', 'marketing'],
@@ -2072,7 +2072,7 @@ export const DEMO_TIPS = [
   },
   {
     type: ['customer-success'],
-    tip: 'Fable’s interactive guides can help you onboard customers 24*7. Async onboarding is easier than ever. '
+    tip: 'Capturebliss’s interactive guides can help you onboard customers 24*7. Async onboarding is easier than ever. '
   },
   {
     type: ['customer-success'],

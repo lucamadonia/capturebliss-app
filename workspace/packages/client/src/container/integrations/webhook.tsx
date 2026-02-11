@@ -1,4 +1,4 @@
-import { RespPlatformIntegration } from '@fable/common/dist/api-contract';
+import { RespPlatformIntegration } from '@capturebliss/common/dist/api-contract';
 import React from 'react';
 import { ToTopOutlined } from '@ant-design/icons';
 import * as Tags from './styled';

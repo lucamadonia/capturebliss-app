@@ -1,7 +1,7 @@
 import { BarsOutlined, CaretRightFilled, CloseOutlined, ContainerOutlined, LockFilled, RightCircleFilled } from '@ant-design/icons';
 import { Dropdown, Tooltip } from 'antd';
 import React, { ReactElement, useEffect, useState } from 'react';
-import { JourneyData, ITourDataOpts, JourneyFlow, CreateJourneyPositioning } from '@fable/common/dist/types';
+import { JourneyData, ITourDataOpts, JourneyFlow, CreateJourneyPositioning } from '@capturebliss/common/dist/types';
 import * as Tags from './styled';
 import * as GTags from '../../common-styled';
 import { getColorContrast, getProcessedJourney, isBlankString } from '../../utils';

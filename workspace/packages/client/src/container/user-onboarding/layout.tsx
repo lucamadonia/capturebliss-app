@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as Tags from './styled';
-import FableLogo from '../../assets/fable_logo_light_bg.png';
+import CaptureblissLogo from '../../assets/capturebliss_logo_light_bg.png';
 
 interface Props {
   children: ReactNode;
@@ -12,8 +12,8 @@ export default function Layout(props: Props) {
   return (
     <Tags.Con>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
-      <Tags.FableLogoImg
-        src={FableLogo}
+      <Tags.CaptureblissLogoImg
+        src={CaptureblissLogo}
         alt=""
         height={30}
       />

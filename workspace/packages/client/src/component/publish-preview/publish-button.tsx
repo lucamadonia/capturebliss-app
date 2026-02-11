@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp } from '@fable/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import { ShareAltOutlined } from '@ant-design/icons';
 import Button from '../button';
 import { P_RespTour } from '../../entity-processor';

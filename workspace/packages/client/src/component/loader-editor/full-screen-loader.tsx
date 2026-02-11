@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ITourLoaderData } from '@fable/common/dist/types';
+import { ITourLoaderData } from '@capturebliss/common/dist/types';
 import { createPortal } from 'react-dom';
-import { FrameSettings, TourSettings } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { FrameSettings, TourSettings } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import Loader from './loader';
 import * as Tags from './styled';
 import { MAC_FRAME_HEIGHT } from '../../utils';
@@ -27,7 +27,7 @@ function FullScreenLoader(props: Props): JSX.Element {
   useEffect(() => {
     if (!props.isResponsive && props.vpd) {
       try {
-        const loaderCon = document.getElementById('fable-loader-con');
+        const loaderCon = document.getElementById('capturebliss-loader-con');
         const parent = loaderCon!.parentElement;
         const origFrameViewPort = parent!.getBoundingClientRect();
 
@@ -60,7 +60,7 @@ function FullScreenLoader(props: Props): JSX.Element {
       bg="#F5F5F5"
       width={width}
       height={height}
-      id="fable-loader-con"
+      id="capturebliss-loader-con"
       top={top}
       left={left}
       applyTransform={applyTransform}

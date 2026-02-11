@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { ConfigProvider as AntDesignThemeConfigProvider } from 'antd';
-import { init as sentryInit } from '@fable/common/dist/sentry';
+import { init as sentryInit } from '@capturebliss/common/dist/sentry';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
+import './i18n';
+import AntdLocaleProvider from './i18n/AntdLocaleProvider';
 import App from './container/app';
 import reportWebVitals from './reportWebVitals';
 import config from './store-config';
@@ -53,7 +55,7 @@ if (document.location.pathname !== '/aboutblank') {
     sentryInit('client', packageJSON.version);
     addChargebeeScript();
     addReditusTrackingScript();
-    import('@fable/common/dist/amplitude').then((res) => {
+    import('@capturebliss/common/dist/amplitude').then((res) => {
       res.initProductAnalytics();
     }).catch((error) => {
       console.log("Couldn't load Amplitude Script ", error);
@@ -122,7 +124,7 @@ const router = createBrowserRouter([
             path: 'extension-installed',
             async lazy() {
               const PinExt = await import('./component/ext-onboarding/pages/pin-ext').then(module => module.default);
-              return { Component: () => <PinExt title="Onboarding - Extension installed | Fable" /> };
+              return { Component: () => <PinExt title="Onboarding - Extension installed | Capturebliss" /> };
             }
           },
           {
@@ -130,7 +132,7 @@ const router = createBrowserRouter([
             async lazy() {
               const ProductTours = await import('./component/ext-onboarding/pages/product-tours')
                 .then(module => module.default);
-              return { Component: () => <ProductTours title="Onboarding - Go to the app | Fable" /> };
+              return { Component: () => <ProductTours title="Onboarding - Go to the app | Capturebliss" /> };
             }
           }
         ]
@@ -152,7 +154,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'embed/tour/:tourId',
-        element: <Player staging={staging} title="Fable" />,
+        element: <Player staging={staging} title="Capturebliss" />,
         children: [
           {
             path: ':screenRid',
@@ -168,7 +170,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'embed/demo/:tourId',
-        element: <Player staging={staging} title="Fable" />,
+        element: <Player staging={staging} title="Capturebliss" />,
         children: [
           {
             path: ':screenRid',
@@ -216,22 +218,22 @@ const router = createBrowserRouter([
       },
       {
         path: '/live/demo/:tourId',
-        element: <PreviewForCta title="Fable" />
+        element: <PreviewForCta title="Capturebliss" />
       },
       {
         path: 'preptour',
         async lazy() {
           const PrepTour = await import('./container/create-tour/prep-tour').then(module => module.default);
-          return { Component: () => <PrepTour title="Creating demo | Fable" /> };
+          return { Component: () => <PrepTour title="Creating demo | Capturebliss" /> };
         },
       },
       {
         path: '/hub/seeall/:demoHubRid',
-        element: <DemoHubSeeAll staging={staging} title="Fable" />,
+        element: <DemoHubSeeAll staging={staging} title="Capturebliss" />,
       },
       {
         path: 'hub/q/:demoHubRid',
-        element: <DemoHubQualification staging={staging} title="Fable" />,
+        element: <DemoHubQualification staging={staging} title="Capturebliss" />,
         children: [
           {
             path: ':qualificationSlug',
@@ -263,7 +265,7 @@ const router = createBrowserRouter([
         path: 'aslp',
         async lazy() {
           const AppSumoLandingPage = await import('./container/appsumo-landing-page').then(module => module.default);
-          return { Component: () => <AppSumoLandingPage title="Fable <> AppSumo" /> };
+          return { Component: () => <AppSumoLandingPage title="Capturebliss <> AppSumo" /> };
         }
       },
       {
@@ -284,14 +286,14 @@ const router = createBrowserRouter([
             path: 'integrations',
             async lazy() {
               const Integrations = await import('./container/integrations').then(module => module.default);
-              return { Component: () => <Integrations title="Integrations | Fable" /> };
+              return { Component: () => <Integrations title="Integrations | Capturebliss" /> };
             },
           },
           {
             path: 'settings',
             async lazy() {
               const Settings = await import('./container/settings').then(module => module.default);
-              return { Component: () => <Settings title="Settings | Fable" /> };
+              return { Component: () => <Settings title="Settings | Capturebliss" /> };
             },
           },
           {
@@ -319,14 +321,14 @@ const router = createBrowserRouter([
             path: 'demos',
             async lazy() {
               const Tours = await import('./container/tours').then(module => module.default);
-              return { Component: () => <Tours title="Interactive demos | Fable" /> };
+              return { Component: () => <Tours title="Interactive demos | Capturebliss" /> };
             },
           },
           {
             path: 'datasets',
             async lazy() {
               const Datasets = await import('./container/datasets').then(module => module.default);
-              return { Component: () => <Datasets title="Datasets  | Fable" /> };
+              return { Component: () => <Datasets title="Datasets  | Capturebliss" /> };
             },
             children: [
               {
@@ -340,42 +342,42 @@ const router = createBrowserRouter([
             path: 'demo-hubs',
             async lazy() {
               const DemoHubsList = await import('./container/demo-hubs-list').then(module => module.default);
-              return { Component: () => <DemoHubsList title="Creating demo hub | Fable" /> };
+              return { Component: () => <DemoHubsList title="Creating demo hub | Capturebliss" /> };
             },
           },
           {
             path: 'leads',
             async lazy() {
               const AggregateAnalytics = await import('./container/aggregate-analytics').then(module => module.default);
-              return { Component: () => <AggregateAnalytics title="Creating demo hub | Fable" /> };
+              return { Component: () => <AggregateAnalytics title="Creating demo hub | Capturebliss" /> };
             },
           },
           {
             path: 'preview/hub/:demoHubId',
             async lazy() {
               const DemoHubPreview = await import('./container/preview-demo-hub').then(module => module.default);
-              return { Component: () => <DemoHubPreview title="Preview demo hub | Fable" /> };
+              return { Component: () => <DemoHubPreview title="Preview demo hub | Capturebliss" /> };
             },
           },
           {
             path: 'users',
             async lazy() {
               const UserManagement = await import('./container/user-management').then(module => module.default);
-              return { Component: () => <UserManagement title="User Management | Fable" /> };
+              return { Component: () => <UserManagement title="User Management | Capturebliss" /> };
             },
           },
           {
             path: 'billing',
             async lazy() {
               const Billing = await import('./container/billing').then(module => module.default);
-              return { Component: () => <Billing title="Billing & Subscription | Fable" /> };
+              return { Component: () => <Billing title="Billing & Subscription | Capturebliss" /> };
             }
           },
           {
             path: 'tour/:tourId',
             async lazy() {
               const TourEditor = await import('./container/tour-editor').then(module => module.default);
-              return { Component: () => <TourEditor title="Demo editor | Fable" /> };
+              return { Component: () => <TourEditor title="Demo editor | Capturebliss" /> };
             },
 
             children: [
@@ -395,7 +397,7 @@ const router = createBrowserRouter([
             path: 'hub/:demoHubRid',
             async lazy() {
               const DemoHubEditor = await import('./container/dh-editor').then(module => module.default);
-              return { Component: () => <DemoHubEditor title="Demo Hub Editor | Fable" /> };
+              return { Component: () => <DemoHubEditor title="Demo Hub Editor | Capturebliss" /> };
             },
 
             children: [
@@ -415,7 +417,7 @@ const router = createBrowserRouter([
             path: 'demo/:tourId',
             async lazy() {
               const TourEditor2 = (await import('./container/tour-editor')).default;
-              return { Component: () => <TourEditor2 title="Demo editor | Fable" /> };
+              return { Component: () => <TourEditor2 title="Demo editor | Capturebliss" /> };
             },
             children: [
               {
@@ -441,21 +443,21 @@ const router = createBrowserRouter([
             path: 'create-interactive-demo',
             async lazy() {
               const CreateTour = await import('./container/create-tour').then(module => module.default);
-              return { Component: () => <CreateTour title="Create interactive demo | Fable" /> };
+              return { Component: () => <CreateTour title="Create interactive demo | Capturebliss" /> };
             },
           },
           {
             path: 'login',
             async lazy() {
               const Login = await import('./component/auth/login').then(module => module.default);
-              return { Component: () => <Login title="Login | Fable" /> };
+              return { Component: () => <Login title="Login | Capturebliss" /> };
             },
           },
           {
             path: 'logout',
             async lazy() {
               const Logout = await import('./component/auth/logout').then(module => module.default);
-              return { Component: () => <Logout title="Logout | Fable" /> };
+              return { Component: () => <Logout title="Logout | Capturebliss" /> };
             },
           },
           {
@@ -469,14 +471,14 @@ const router = createBrowserRouter([
             path: 'preview/demo/:tourId',
             async lazy() {
               const PublishPreview = await import('./container/publish-preview').then(module => module.default);
-              return { Component: () => <PublishPreview title="Preview | Fable" /> };
+              return { Component: () => <PublishPreview title="Preview | Capturebliss" /> };
             },
           },
           {
             path: 'preview/tour/:tourId',
             async lazy() {
               const PublishPreview = await import('./container/publish-preview').then(module => module.default);
-              return { Component: () => <PublishPreview title="Preview | Fable" /> };
+              return { Component: () => <PublishPreview title="Preview | Capturebliss" /> };
             },
           }
         ]
@@ -487,29 +489,33 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <Provider store={config}>
-    <ThemeProvider theme={theme}>
-      <AntDesignThemeConfigProvider theme={{
-        token: {
-          colorPrimary: theme.colors.component.primary,
-          colorBorder: theme.colors.component.primary,
-          colorLink: theme.colors.component.primary,
-          colorLinkHover: theme.colors.dark.idle.background,
-          fontSize: 14,
-          borderRadius: 2
-        }
-      }}
-      >
-        <App router={router} />
-      </AntDesignThemeConfigProvider>
-    </ThemeProvider>
-  </Provider>
+  <Suspense fallback={<div />}>
+    <Provider store={config}>
+      <ThemeProvider theme={theme}>
+        <AntDesignThemeConfigProvider theme={{
+          token: {
+            colorPrimary: theme.colors.component.primary,
+            colorBorder: theme.colors.component.primary,
+            colorLink: theme.colors.component.primary,
+            colorLinkHover: theme.colors.dark.idle.background,
+            fontSize: 14,
+            borderRadius: 2
+          }
+        }}
+        >
+          <AntdLocaleProvider>
+            <App router={router} />
+          </AntdLocaleProvider>
+        </AntDesignThemeConfigProvider>
+      </ThemeProvider>
+    </Provider>
+  </Suspense>
 );
 
-type FableTheme = typeof theme;
+type CaptureblissTheme = typeof theme;
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends FableTheme { }
+  export interface DefaultTheme extends CaptureblissTheme { }
 }
 
 // If you want to start measuring performance in your app, pass a function

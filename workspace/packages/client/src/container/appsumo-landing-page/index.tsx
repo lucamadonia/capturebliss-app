@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ArrowsAltOutlined } from '@ant-design/icons';
-import { Interval } from '@fable/common/dist/api-contract';
+import { Interval } from '@capturebliss/common/dist/api-contract';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { TState } from '../../reducer';
 import * as Tags from './styled';
-import FableLogo from '../../assets/fable_logo_light_bg.png';
+import CaptureblissLogo from '../../assets/capturebliss_logo_light_bg.png';
 import AppSumoLogo from '../../assets/appsumo_logo.svg';
 
 const mapDispatchToProps = (dispatch: any) => ({ });
@@ -48,7 +48,7 @@ class AppSumoLandingPage extends React.PureComponent<IProps, IOwnStateProps> {
     }
     if (license) {
       // asll -> appsumo lifetime license
-      localStorage.setItem('fable/asll', license);
+      localStorage.setItem('capturebliss/asll', license);
       !err && this.timers.push(setTimeout(() => {
         this.clearTimers();
         this.props.navigate('/');
@@ -60,14 +60,14 @@ class AppSumoLandingPage extends React.PureComponent<IProps, IOwnStateProps> {
     return (
       <Tags.Con>
         <div className="img-header">
-          <img src={FableLogo} alt="fable-log" height={48} />
+          <img src={CaptureblissLogo} alt="capturebliss-logo" height={48} />
           <ArrowsAltOutlined
             style={{
               fontSize: '3rem'
             }}
             rotate={45}
           />
-          <img src={AppSumoLogo} alt="fable-log" height={36} />
+          <img src={AppSumoLogo} alt="capturebliss-logo" height={36} />
         </div>
         {this.state.err ? (
           <div className="body">
@@ -75,10 +75,10 @@ class AppSumoLandingPage extends React.PureComponent<IProps, IOwnStateProps> {
               Something went wrong while connecting to AppSumo ⛈️
             </div>
             <div className="typ-h2">
-              You might have to reactivate Fable from AppSumo dashboard
+              You might have to reactivate Capturebliss from AppSumo dashboard
             </div>
             <div className="typ-reg">
-              If the problem persists write to us @ <a href="mailto:support@sharefable.com?subject=AppSumo%20connection%20error">support@sharefable.com</a>
+              If the problem persists write to us @ <a href="mailto:support@capturebliss.com?subject=AppSumo%20connection%20error">support@capturebliss.com</a>
             </div>
             <div className="err-details">
               <div className="header">
@@ -95,7 +95,7 @@ class AppSumoLandingPage extends React.PureComponent<IProps, IOwnStateProps> {
               Things are looking good ☀️ Please wait while we set things up for you.
             </div>
             <div className="typ-h2">
-              You will be automatically redirected to Fable in couple of seconds.
+              You will be automatically redirected to Capturebliss in couple of seconds.
             </div>
             <div className="typ-reg">
               Please don't refresh this page or go back.

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import InfoCon, { InfoBtn } from '../info-con';
 import FullPageTopLoader from '../loader/full-page-top-loader';
 
@@ -19,6 +20,7 @@ export const enum LoginErrorType {
 export default function LogIn(props: Props): JSX.Element {
   const [searchParams] = useSearchParams();
   const { loginWithRedirect } = useAuth0();
+  const { t } = useTranslation('auth');
 
   const [heading, setHeading] = useState('');
   const [btns, setBtns] = useState<Array<InfoBtn>>([]);
@@ -61,14 +63,14 @@ export default function LogIn(props: Props): JSX.Element {
     });
     allParams = allParams.trim();
     if (allParams) {
-      sessionStorage.setItem('fable/usrsp', allParams);
+      sessionStorage.setItem('capturebliss/usrsp', allParams);
     }
   }, [searchParams]);
 
   return (
     <div>
       {showLoader
-        ? <FullPageTopLoader showLogo text="Logging in" />
+        ? <FullPageTopLoader showLogo text={t('loggingIn')} />
         : <InfoCon
             heading={heading}
             body=""

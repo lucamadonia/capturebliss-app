@@ -107,7 +107,7 @@ export const commonExportDOMOverride = (url: string): DOMExportOutput => {
     container.classList.add('hide-span-child');
 
     iframeEL.src = videoEmbedabilityProps.embedUrl;
-    iframeEL.classList.add('fable-video-embed-frame');
+    iframeEL.classList.add('capturebliss-video-embed-frame');
 
     container.appendChild(iframeEL);
 

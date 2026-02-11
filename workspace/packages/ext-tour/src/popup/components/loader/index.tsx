@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import loader from "@fable/common/dist/loader";
-import { sleep } from "@fable/common/dist/utils";
+import loader from "@capturebliss/common/dist/loader";
+import { sleep } from "@capturebliss/common/dist/utils";
 
 interface Props {}
 

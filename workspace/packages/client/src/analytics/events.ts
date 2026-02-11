@@ -1,14 +1,14 @@
 // Analytics v2 events
 // After the migration is done, rename all events as if these are primay events
 
-import api from '@fable/common/dist/api';
-import { ClientLogClass } from '@fable/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import { ClientLogClass } from '@capturebliss/common/dist/api-contract';
 import { Clock, GlobalSettings, getGlobalData } from '../global';
 import { getAnonymousUserId, getSessionId, getTimezoneOffset, getUtcUnixTimestamp } from './utils';
 import { P_RespTour } from '../entity-processor';
 
 // analytics v2 events
-// ref https://github.com/sharefable/api/wiki/Analytics#frontend-events
+// ref https://github.com/capturebliss/api/wiki/Analytics#frontend-events
 
 // AAE -> App Analytics Event
 type AppAnalyticsEvents = 'demo_opened'

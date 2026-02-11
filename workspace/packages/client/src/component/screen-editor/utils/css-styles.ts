@@ -1,4 +1,4 @@
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 
 export const generateCSSSelectorFromText = (text: string): string => text.toLowerCase().trim().replace(/\W+/g, '-');
 

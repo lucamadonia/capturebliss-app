@@ -34,7 +34,7 @@ export default function ProductTours(props: Props): JSX.Element {
             You are all set!
           </CTags.Header>
           <CTags.Subtitle>
-            Head to the Fable app and start creating your first interactive demo.
+            Head to the Capturebliss app and start creating your first interactive demo.
           </CTags.Subtitle>
           <CTags.FlexColContainer>
             <Tags.CardCon>

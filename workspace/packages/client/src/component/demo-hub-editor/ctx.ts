@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
-import { ReqDemoHubPropUpdate } from '@fable/common/dist/api-contract';
-import { IGlobalConfig } from '@fable/common/dist/types';
+import { ReqDemoHubPropUpdate } from '@capturebliss/common/dist/api-contract';
+import { IGlobalConfig } from '@capturebliss/common/dist/types';
 import { IDemoHubConfig, OnDemoHubConfigChangeFn, P_RespDemoHub } from '../../types';
 import { P_RespTour } from '../../entity-processor';
 

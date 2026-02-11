@@ -1,66 +1,66 @@
-import { IAnnotationConfig } from '@fable/common/dist/types';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { IAnnoationDisplayConfig } from '.';
 import { Rect } from '../base/hightligher-base';
 import { AnnotationPerScreen } from '../../types';
 import { AllDimsForAnnotation } from './types';
-import { FABLE_LEAD_FORM_FIELD_NAME, FABLE_LEAD_FORM_VALIDATION_FN } from '../../constants';
+import { CAPTUREBLISS_LEAD_FORM_FIELD_NAME, CAPTUREBLISS_LEAD_FORM_VALIDATION_FN } from '../../constants';
 import { FIELD_NAME_VARIABLE_REGEX,
   LeadFormField,
   OPTION_INPUT_CLASSNAME,
   OPTION_INPUT_IS_OPTIONAL
 } from '../annotation-rich-text-editor/utils/lead-form-node-utils';
 
-export const FABLE_RT_UMBRL = 'fable-rt-umbrl';
-export const FABLE_RT_UMBRL_WRAPPER = 'fable-rt-umbrl-wrapper';
-export const FABLE_SH_HOST = 'fable-sh-host';
+export const CAPTUREBLISS_RT_UMBRL = 'capturebliss-rt-umbrl';
+export const CAPTUREBLISS_RT_UMBRL_WRAPPER = 'capturebliss-rt-umbrl-wrapper';
+export const CAPTUREBLISS_SH_HOST = 'capturebliss-sh-host';
 
-export const getFableRtUmbrlDiv = (doc: Document): HTMLDivElement | null => {
-  const host = getFableShHost(doc);
+export const getCaptureblissRtUmbrlDiv = (doc: Document): HTMLDivElement | null => {
+  const host = getCaptureblissShHost(doc);
   if (!host) return null;
 
   const shadowRoot = host.shadowRoot!;
-  const umbrlDiv = shadowRoot.querySelector(`.${FABLE_RT_UMBRL}`);
+  const umbrlDiv = shadowRoot.querySelector(`.${CAPTUREBLISS_RT_UMBRL}`);
   return umbrlDiv as HTMLDivElement;
 };
 
-export const getFableShHost = (doc: Document): HTMLDivElement => {
-  const umbrlDivShHost = doc.getElementsByClassName(FABLE_SH_HOST)[0];
+export const getCaptureblissShHost = (doc: Document): HTMLDivElement => {
+  const umbrlDivShHost = doc.getElementsByClassName(CAPTUREBLISS_SH_HOST)[0];
   return umbrlDivShHost as HTMLDivElement;
 };
 
-export const getFableRtUmbrlDivWrapper = (doc: Document): HTMLDivElement => {
-  const umbrlDivShHost = doc.getElementsByClassName(FABLE_RT_UMBRL_WRAPPER)[0];
+export const getCaptureblissRtUmbrlDivWrapper = (doc: Document): HTMLDivElement => {
+  const umbrlDivShHost = doc.getElementsByClassName(CAPTUREBLISS_RT_UMBRL_WRAPPER)[0];
   return umbrlDivShHost as HTMLDivElement;
 };
 
-export const createFableRtUmbrlDivWrapper = (doc: Document): HTMLDivElement => {
+export const createCaptureblissRtUmbrlDivWrapper = (doc: Document): HTMLDivElement => {
   const umbrlDivShHost = doc.createElement('div');
   umbrlDivShHost.style.setProperty('display', 'block', 'important');
   umbrlDivShHost.style.setProperty('visibility', 'visible', 'important');
   umbrlDivShHost.style.setProperty('opacity', '1', 'important');
-  umbrlDivShHost.classList.add(FABLE_RT_UMBRL_WRAPPER);
+  umbrlDivShHost.classList.add(CAPTUREBLISS_RT_UMBRL_WRAPPER);
   umbrlDivShHost.appendChild(createOverrideDivEmptyStyleEl(doc));
-  umbrlDivShHost.appendChild(createFableShHost(doc));
+  umbrlDivShHost.appendChild(createCaptureblissShHost(doc));
   doc.body.appendChild(umbrlDivShHost);
   return umbrlDivShHost;
 };
 
-export const createFableShHost = (doc: Document): HTMLDivElement => {
-  const fableShHost = doc.createElement('div');
-  fableShHost.attachShadow({ mode: 'open' });
-  const shadowRoot = fableShHost.shadowRoot!;
-  fableShHost.classList.add(FABLE_SH_HOST);
+export const createCaptureblissShHost = (doc: Document): HTMLDivElement => {
+  const captureblissShHost = doc.createElement('div');
+  captureblissShHost.attachShadow({ mode: 'open' });
+  const shadowRoot = captureblissShHost.shadowRoot!;
+  captureblissShHost.classList.add(CAPTUREBLISS_SH_HOST);
   shadowRoot.appendChild(createOverrideStyleEl(doc));
   shadowRoot.appendChild(createFablrRtUmbrlDiv(doc));
-  return fableShHost;
+  return captureblissShHost;
 };
 
 export const createFablrRtUmbrlDiv = (doc: Document): HTMLDivElement => {
   const htmlElementLeftOffset = getHTMLElLeftOffset(doc);
 
   const umbrellaDiv = doc.createElement('div');
-  umbrellaDiv.setAttribute('class', FABLE_RT_UMBRL);
+  umbrellaDiv.setAttribute('class', CAPTUREBLISS_RT_UMBRL);
   umbrellaDiv.style.position = 'absolute';
   umbrellaDiv.style.left = `-${htmlElementLeftOffset}px`;
   umbrellaDiv.style.top = `${0}`;
@@ -68,7 +68,7 @@ export const createFablrRtUmbrlDiv = (doc: Document): HTMLDivElement => {
 
   // This iframe was added to support autocomplete posting when lead form is present.
   // This is how leadform values are saved in browser for autocomplete. Ref: https://stackoverflow.com/a/29885896
-  const iframeEl = createEmptyFableIframe();
+  const iframeEl = createEmptyCaptureblissIframe();
   umbrellaDiv.appendChild(iframeEl);
 
   return umbrellaDiv;
@@ -199,7 +199,7 @@ export const generatePointFiveLightShate = (color: string): string => {
 };
 
 export const getIframeByScreenId = (screenId: string): HTMLIFrameElement | null => {
-  const iframe = document.querySelector(`.fable-iframe-${screenId}`) as HTMLIFrameElement;
+  const iframe = document.querySelector(`.capturebliss-iframe-${screenId}`) as HTMLIFrameElement;
   return iframe;
 };
 
@@ -270,14 +270,14 @@ export const validateInput = (field: HTMLDivElement): {
   const inpulEl = field.getElementsByClassName(OPTION_INPUT_CLASSNAME).item(0);
   const isOptional = inpulEl?.classList.contains(OPTION_INPUT_IS_OPTIONAL) || false;
 
-  const validationType = (field.getAttribute(FABLE_LEAD_FORM_VALIDATION_FN) || 'text') as LeadFormField;
+  const validationType = (field.getAttribute(CAPTUREBLISS_LEAD_FORM_VALIDATION_FN) || 'text') as LeadFormField;
   const validationFn = validationFnMap[validationType];
   const fieldValue = (inpulEl as HTMLInputElement).value.trim() || undefined;
-  const fieldName = inpulEl?.getAttribute(FABLE_LEAD_FORM_FIELD_NAME) || '';
+  const fieldName = inpulEl?.getAttribute(CAPTUREBLISS_LEAD_FORM_FIELD_NAME) || '';
   const isValid = fieldValue ? validationFn(fieldValue) : isOptional;
 
-  const uid = field.getAttribute('fable-input-field-uid');
-  const errorMsgEl = field.querySelector(`[fable-validation-uid="${uid}"]`) as HTMLDivElement;
+  const uid = field.getAttribute('capturebliss-input-field-uid');
+  const errorMsgEl = field.querySelector(`[capturebliss-validation-uid="${uid}"]`) as HTMLDivElement;
 
   if (isValid) hideValidationError(errorMsgEl as HTMLDivElement);
   else showValidationError(errorMsgEl as HTMLDivElement, getValidationErrorMsg(fieldValue, validationType));
@@ -312,14 +312,14 @@ export const hideValidationError = (errorMsgEl: HTMLDivElement): void => {
   if (errorMsgEl) (errorMsgEl as HTMLDivElement).style.visibility = 'hidden';
 };
 
-export const EMPTY_IFRAME_ID = 'fable-empty-iframe';
+export const EMPTY_IFRAME_ID = 'capturebliss-empty-iframe';
 
-export const createEmptyFableIframe = (): HTMLIFrameElement => {
+export const createEmptyCaptureblissIframe = (): HTMLIFrameElement => {
   const iframeEl = document.createElement('iframe');
   iframeEl.name = EMPTY_IFRAME_ID;
   iframeEl.style.display = 'none';
   iframeEl.src = 'about:blank';
-  iframeEl.title = 'Fable Empty Iframe';
+  iframeEl.title = 'Capturebliss Empty Iframe';
   return iframeEl;
 };
 
@@ -337,8 +337,8 @@ export const createOverrideStyleEl = (doc: Document): HTMLStyleElement => {
 export const createOverrideDivEmptyStyleEl = (doc: Document): HTMLStyleElement => {
   const styleEl = doc.createElement('style');
   styleEl.textContent = `
-    .${FABLE_SH_HOST}:empty,
-    .${FABLE_SH_HOST} div:empty {
+    .${CAPTUREBLISS_SH_HOST}:empty,
+    .${CAPTUREBLISS_SH_HOST} div:empty {
       display: block !important;
     }
   `;

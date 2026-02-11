@@ -21,7 +21,7 @@ import {
   ScrollAdjustmentType,
   JourneyData,
   IGlobalConfig
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import { Input, Popover, Tabs, Modal, Button as AntButton, Tooltip, Collapse, Radio, Dropdown, Space } from 'antd';
 import {
   DeleteOutlined,
@@ -49,9 +49,9 @@ import {
   MoreOutlined,
   WarningOutlined,
 } from '@ant-design/icons';
-import { ReqTourPropUpdate, ScreenType } from '@fable/common/dist/api-contract';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@fable/common/dist/utils';
+import { ReqTourPropUpdate, ScreenType } from '@capturebliss/common/dist/api-contract';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@capturebliss/common/dist/utils';
 import Button from '../button';
 import * as Tags from './styled';
 import * as GTags from '../../common-styled';
@@ -116,7 +116,7 @@ import { deleteAnnotation } from '../annotation/ops';
 import { AnnUpdateType } from '../annotation/types';
 import AnnotationRichTextEditor from '../annotation-rich-text-editor';
 import ALCM from '../annotation/lifecycle-manager';
-import FableInput from '../input';
+import CaptureblissInput from '../input';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
 import {
   amplitudeAnnotationApplyAll,
@@ -854,26 +854,26 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
               }
             }}
           >
-            <GlobalTitle title="Show Fable Watermark" />
+            <GlobalTitle title="Show Capturebliss Watermark" />
             {!watermarkFeatureAvailable.isAvailable && <UpgradeIcon isInBeta={watermarkFeatureAvailable.isInBeta} />}
           </div>
           <div className="ver-center">
             <Tags.StyledSwitch
               size="small"
-              style={{ backgroundColor: opts.showFableWatermark._val ? '#7567FF' : '#BDBDBD' }}
-              defaultChecked={opts.showFableWatermark._val}
-              checked={opts.showFableWatermark._val}
+              style={{ backgroundColor: opts.showCaptureblissWatermark._val ? '#7567FF' : '#BDBDBD' }}
+              defaultChecked={opts.showCaptureblissWatermark._val}
+              checked={opts.showCaptureblissWatermark._val}
               onChange={(e) => {
                 amplitudeRemoveWatermark('acp');
                 if (!watermarkFeatureAvailable.isAvailable) {
                   setUpgradeModalDetail({ isInBeta: leadFormFeatureAvailable.isInBeta, open: true });
                   return;
                 }
-                setTourDataOpts(t => updateTourDataOpts(t, 'showFableWatermark', createLiteralProperty(e)));
+                setTourDataOpts(t => updateTourDataOpts(t, 'showCaptureblissWatermark', createLiteralProperty(e)));
               }}
             />
             <ApplyStylesMenu
-              isGlobal={isGlobalProperty(opts.showFableWatermark)}
+              isGlobal={isGlobalProperty(opts.showCaptureblissWatermark)}
               onApplyGlobal={() => {
                 amplitudeApplyGlobalStyles(
                   'annotation',
@@ -882,8 +882,8 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                 );
                 setTourDataOpts(t => updateTourDataOpts(
                   t,
-                  'showFableWatermark',
-                  createGlobalProperty(t.showFableWatermark._val, GlobalPropsPath.showWatermark)
+                  'showCaptureblissWatermark',
+                  createGlobalProperty(t.showCaptureblissWatermark._val, GlobalPropsPath.showWatermark)
                 ));
               }}
             />
@@ -972,7 +972,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                   <div style={commonActionPanelItemStyle}>
                     <GlobalTitle title="Font family" />
                     <div className="ver-center">
-                      <GTags.FableSelect
+                      <GTags.CaptureblissSelect
                         className="typ-ip"
                         defaultValue={opts.annotationFontFamily._val}
                         value={opts.annotationFontFamily._val}
@@ -1027,7 +1027,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                       <div className="typ-reg">Selection Effect</div>
                     </div>
                     <div className="ver-center">
-                      <GTags.FableSelect
+                      <GTags.CaptureblissSelect
                         className="typ-ip"
                         title={config.selectionShape._val === 'pulse' ? 'Mask type is set to `regular` for Pulse shaped box' : ''}
                         disabled={config.selectionShape._val === 'pulse'}
@@ -1072,7 +1072,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
 
                     </div>
                     <div className="ver-center">
-                      <GTags.FableSelect
+                      <GTags.CaptureblissSelect
                         className="typ-ip"
                         defaultValue={config.selectionShape._val}
                         size="small"
@@ -1271,7 +1271,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                                       <div
                                         style={{ width: '100%' }}
                                       >
-                                        <FableInput
+                                        <CaptureblissInput
                                           label="Enter a link that would open in new tab"
                                           value={
                                             currTextInputVals.buttons.find(btn => btn.id === btnConf.id)?.actionValue || ''
@@ -1442,7 +1442,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                                       : (
                                         <div>
                                           <iframe
-                                            src="https://help.sharefable.com/Editing-Demos/Reordering-the-Demo"
+                                            src="https://help.capturebliss.com/Editing-Demos/Reordering-the-Demo"
                                             width="480"
                                             height="500"
                                             title="recording demo"
@@ -1549,7 +1549,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                     <div style={commonActionPanelItemStyle}>
                       <div style={{ marginRight: '0.5rem' }}>Button style</div>
                       <div className="ver-center">
-                        <GTags.FableSelect
+                        <GTags.CaptureblissSelect
                           defaultValue={btnConf.style._val}
                           value={btnConf.style._val}
                           size="small"
@@ -1607,7 +1607,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
                         <div style={{ marginRight: '0.5rem' }}>Button size</div>
                       </div>
                       <div className="ver-center">
-                        <GTags.FableSelect
+                        <GTags.CaptureblissSelect
                           defaultValue={btnConf.size._val}
                           value={btnConf.size._val}
                           size="small"
@@ -1842,7 +1842,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
       <ActionPanel title="Sizing & Positioning" icon={<img src={SizingIcon} alt="" />}>
         <div style={commonActionPanelItemStyle}>
           <div style={commonActionPanelItemStyle}>Positioning</div>
-          <GTags.FableSelect
+          <GTags.CaptureblissSelect
             defaultValue={isAnnCustomPosition(config.positioning) ? 'custom' : config.positioning}
             className="typ-ip"
             value={config.positioning}
@@ -1888,7 +1888,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
         }
         <div style={commonActionPanelItemStyle}>
           <div>Box sizing</div>
-          <GTags.FableSelect
+          <GTags.CaptureblissSelect
             defaultValue={config.size ?? 'small'}
             size="small"
             className="typ-ip"
@@ -2063,7 +2063,7 @@ export default function AnnotationCreatorPanel(props: IProps): ReactElement {
         </div>
         <div style={commonActionPanelItemStyle}>
           <div style={commonActionPanelItemStyle}>Scroll Adjustment</div>
-          <GTags.FableSelect
+          <GTags.CaptureblissSelect
             className="typ-ip"
             defaultValue={config.scrollAdjustment}
             size="small"

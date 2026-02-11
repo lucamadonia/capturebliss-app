@@ -1,11 +1,11 @@
 import React from 'react';
 import { MobileOutlined } from '@ant-design/icons';
 import { Radio } from 'antd';
-import { ReqTourPropUpdate, Responsiveness } from '@fable/common/dist/api-contract';
+import { ReqTourPropUpdate, Responsiveness } from '@capturebliss/common/dist/api-contract';
 import * as Tags from './styled';
 import { P_RespTour } from '../../entity-processor';
 import { isTourResponsive } from '../../utils';
-import FableButton from '../button';
+import CaptureblissButton from '../button';
 import { OurLink, OurRadio } from '../../common-styled';
 import { amplitudeResponsivenessChange, amplitudeResponsivenessSelectRadio } from '../../amplitude';
 
@@ -54,9 +54,9 @@ export default function ResponsiveStrategyDrawer(props: Props): JSX.Element {
           <>
             <p className="typ-reg">
               If your application is mobile responsive, please click the button below.
-              Fable will manage your demo on mobile gracefully.
+              Capturebliss will manage your demo on mobile gracefully.
             </p>
-            <FableButton
+            <CaptureblissButton
               onClick={() => {
                 props.updateResponsiveness(Responsiveness.Responsive);
                 amplitudeResponsivenessChange(Responsiveness.Responsive, 'canvas-menu-item-drawer');
@@ -67,7 +67,7 @@ export default function ResponsiveStrategyDrawer(props: Props): JSX.Element {
                 ? 'Your app is made responsive'
                 : 'Make this demo mobile responsive'}
 
-            </FableButton>
+            </CaptureblissButton>
 
             {isTourResponsive(props.tour) && (
             <>
@@ -99,7 +99,7 @@ export default function ResponsiveStrategyDrawer(props: Props): JSX.Element {
           {props.selectedResponsivenessStrategy === Responsiveness.NoResponsive && (
           <>
             <p className="typ-reg">
-              If your application is not mobile responsive, Fable tries to provide a
+              If your application is not mobile responsive, Capturebliss tries to provide a
               standard experience when your demo is viewed on mobile.
             </p>
 

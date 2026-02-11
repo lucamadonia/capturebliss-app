@@ -1,9 +1,9 @@
 import React, { ReactElement, SetStateAction, useEffect, useRef, Dispatch, useState } from 'react';
 import { Tabs } from 'antd';
-import { IAnnotationConfig, VideoAnnotationPositions } from '@fable/common/dist/types';
+import { IAnnotationConfig, VideoAnnotationPositions } from '@capturebliss/common/dist/types';
 import { captureException } from '@sentry/react';
-import { MediaType } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { MediaType } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import Button from '../button';
 import { uploadMediaToAws, transcodeVideo, transcodeAudio, uploadImgFileObjectToAws } from '../../upload-media-to-aws';
 import {

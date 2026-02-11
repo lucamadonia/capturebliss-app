@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import type { FormInstance, InputRef, TableProps } from 'antd';
 import { Form } from 'antd';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { DeleteOutlined } from '@ant-design/icons';
 import { DatasetConfig, TableColumn, TableRow } from '../../types';
 import { DATASET_COL_ID_ID } from '../../utils';

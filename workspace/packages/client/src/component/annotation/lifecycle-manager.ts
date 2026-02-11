@@ -1,25 +1,25 @@
 import ReactDOM, { Root } from 'react-dom/client';
-import { IAnnotationButtonType, IAnnotationConfig, ITourDataOpts } from '@fable/common/dist/types';
+import { IAnnotationButtonType, IAnnotationConfig, ITourDataOpts } from '@capturebliss/common/dist/types';
 import React from 'react';
 import { StyleSheetManager } from 'styled-components';
-import { ScreenType } from '@fable/common/dist/api-contract';
-import { sleep } from '@fable/common/dist/utils';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
+import { sleep } from '@capturebliss/common/dist/utils';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import HighlighterBase, { HighlighterBaseConfig, Rect } from '../base/hightligher-base';
 import { IAnnoationDisplayConfig, AnnotationCon, AnnotationContent, IAnnProps } from '.';
 import { AnnotationPerScreen, ElPathKey, INTERACTIVE_MODE, NavFn } from '../../types';
 import { isBodyEl, isMediaAnnotation } from '../../utils';
 import {
   DEFAULT_DIMS_FOR_ANN,
-  createFableRtUmbrlDivWrapper,
-  getFableRtUmbrlDiv,
-  getFableRtUmbrlDivWrapper,
+  createCaptureblissRtUmbrlDivWrapper,
+  getCaptureblissRtUmbrlDiv,
+  getCaptureblissRtUmbrlDivWrapper,
   scrollToAnn
 } from './utils';
 import { ApplyDiffAndGoToAnn, NavToAnnByRefIdFn } from '../screen-editor/types';
 import { AnnElsVisibilityObserver } from './ann-els-visibility-observer';
 import { AllDimsForAnnotation } from './types';
-import { FABLE_IFRAME_GENERIC_CLASSNAME } from '../../constants';
+import { CAPTUREBLISS_IFRAME_GENERIC_CLASSNAME } from '../../constants';
 import { P_RespScreen } from '../../entity-processor';
 import { IAnnotationConfigWithScreenId } from './annotation-config-utils';
 
@@ -89,11 +89,11 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
 
   private interactiveMode: INTERACTIVE_MODE;
 
-  static getFablePrefixedClsName(cls: string): string {
+  static getCaptureblissPrefixedClsName(cls: string): string {
     return `f-c-${cls}`;
   }
 
-  static getFablePrefixedId(id: string): string {
+  static getCaptureblissPrefixedId(id: string): string {
     return `f-i-${id}`;
   }
 
@@ -104,13 +104,13 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
     let isOurId = false;
     let id = el.getAttribute('id');
     if (!id) {
-      id = AnnotationLifecycleManager.getFablePrefixedId(config.refId);
+      id = AnnotationLifecycleManager.getCaptureblissPrefixedId(config.refId);
       isOurId = true;
     }
-    const cls = AnnotationLifecycleManager.getFablePrefixedClsName(config.refId);
+    const cls = AnnotationLifecycleManager.getCaptureblissPrefixedClsName(config.refId);
     let hotspotCls: string | undefined;
     if (config.hotspotElPath) {
-      hotspotCls = 'fable-hotspot';
+      hotspotCls = 'capturebliss-hotspot';
     }
     return [`#${id}.${cls}`, {
       isOurId,
@@ -124,19 +124,19 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
     if (!effect) return '';
     effect = effect.replaceAll(
       '{{f-actn-idr--not-selected-subtree}}',
-      '.f-fable-an-t-path > :not(.f-fable-an-t-path, .f-fable-an-target)'
+      '.f-capturebliss-an-t-path > :not(.f-capturebliss-an-t-path, .f-capturebliss-an-target)'
     );
     effect = effect.replaceAll(
       '{{f-actn-idr--selected-subtree}}',
-      '.f-fable-an-target'
+      '.f-capturebliss-an-target'
     );
     effect = effect.replaceAll(
       '{{f-actn-idr--selected-subtree-hss}}',
-      `.${this.getFablePrefixedClsName(config.refId)}.f-fable-an-target`
+      `.${this.getCaptureblissPrefixedClsName(config.refId)}.f-capturebliss-an-target`
     );
     effect = effect.replaceAll(
       '{{f-actn-idr--ann-card-con}}',
-      `.f-a-c-${config.refId}.fable-ann-card`
+      `.f-a-c-${config.refId}.capturebliss-ann-card`
     );
     return effect;
   }
@@ -236,9 +236,9 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
   };
 
   resetCons(): void {
-    let umbrellaDiv = getFableRtUmbrlDivWrapper(this.doc) as HTMLDivElement;
+    let umbrellaDiv = getCaptureblissRtUmbrlDivWrapper(this.doc) as HTMLDivElement;
     if (!umbrellaDiv) {
-      umbrellaDiv = createFableRtUmbrlDivWrapper(this.doc);
+      umbrellaDiv = createCaptureblissRtUmbrlDivWrapper(this.doc);
       // Before resetting the react managed dom objects we have to delete any existing managed objects that might have
       // been created by react before. This is a critical step to clear out any listener.
       // Our keyboard events depends on this listener creation
@@ -336,7 +336,7 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
         const tEl = ptr as Document;
         if (tEl.defaultView
           && tEl.defaultView!.frameElement
-          && !(tEl.defaultView!.frameElement as HTMLIFrameElement).classList.contains(FABLE_IFRAME_GENERIC_CLASSNAME)
+          && !(tEl.defaultView!.frameElement as HTMLIFrameElement).classList.contains(CAPTUREBLISS_IFRAME_GENERIC_CLASSNAME)
         ) {
           ptr = tEl.defaultView.frameElement;
         } else break;
@@ -360,10 +360,10 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
   }
 
   // algorithm: https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#how_is_specificity_calculated
-  // Target element receives f-fable-an-target class.
-  // The ancestors receives f-fable-an-t-path class.
+  // Target element receives f-capturebliss-an-target class.
+  // The ancestors receives f-capturebliss-an-t-path class.
   // Use this to form selection of subtree. Ex the following code selects all subtree but the target one
-  //  .f-fable-an-t-path > :not(.f-fable-an-t-path, .f-fable-an-target) {
+  //  .f-capturebliss-an-t-path > :not(.f-capturebliss-an-t-path, .f-capturebliss-an-target) {
   //    background: rgba(0, 0, 0, 0.15);
   //    filter: blur(1px);
   //  }
@@ -376,12 +376,12 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
       el.setAttribute('id', sel.id);
     }
     el.classList.add(sel.cls);
-    el.classList.add('f-fable-anim-target');
-    el.classList.add('f-fable-an-target');
+    el.classList.add('f-capturebliss-anim-target');
+    el.classList.add('f-capturebliss-an-target');
     const ancestors = this.getAncestorsFromExclusive(el);
     for (const ancestorEl of ancestors) {
       try {
-        ancestorEl.classList.add('f-fable-an-t-path');
+        ancestorEl.classList.add('f-capturebliss-an-t-path');
       } catch (e) {
         raiseDeferredError(e as Error);
       }
@@ -389,11 +389,11 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
     return () => {
       if (sel.isOurId) el.removeAttribute('id');
       el.classList.remove(sel.cls);
-      el.classList.remove('f-fable-anim-target');
-      el.classList.remove('f-fable-an-target');
+      el.classList.remove('f-capturebliss-anim-target');
+      el.classList.remove('f-capturebliss-an-target');
       for (const ancestorEl of ancestors) {
         try {
-          ancestorEl.classList.remove('f-fable-an-t-path');
+          ancestorEl.classList.remove('f-capturebliss-an-t-path');
         } catch (e) {
           raiseDeferredError(e as Error);
         }
@@ -402,7 +402,7 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
   }
 
   private static readonly ANIM_ONLY_CSS = `
-.f-fable-anim-target, .f-fable-anim-target * {
+.f-capturebliss-anim-target, .f-capturebliss-anim-target * {
   transition: all 0.3s ease-out;
 }
 `.trim();
@@ -421,14 +421,14 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
 
     return `
 :${cssVarsLoc} {
-  --fable-primary-color: ${this.opts.primaryColor._val};
-  --fable-selection-color: ${this.config.selectionColor};
-  --fable-ann-bg-color: ${this.opts.annotationBodyBackgroundColor._val};
-  --fable-ann-border-color: ${this.opts.annotationBodyBorderColor._val};
-  --fable-ann-font-color: ${this.opts.annotationFontColor._val};
-  --fable-ann-border-radius: ${this.opts.borderRadius._val};
-  --fable-ann-con-pad-x: ${padX};
-  --fable-ann-con-pad-y: ${padY};
+  --capturebliss-primary-color: ${this.opts.primaryColor._val};
+  --capturebliss-selection-color: ${this.config.selectionColor};
+  --capturebliss-ann-bg-color: ${this.opts.annotationBodyBackgroundColor._val};
+  --capturebliss-ann-border-color: ${this.opts.annotationBodyBorderColor._val};
+  --capturebliss-ann-font-color: ${this.opts.annotationFontColor._val};
+  --capturebliss-ann-border-radius: ${this.opts.borderRadius._val};
+  --capturebliss-ann-con-pad-x: ${padX};
+  --capturebliss-ann-con-pad-y: ${padY};
 }
 
 `;
@@ -442,10 +442,10 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
     this.updateConfig('selectionColor', 'transparent');
 
     const doc = el.ownerDocument;
-    let styleTag = doc.getElementById('f-fable-override-eph-style');
+    let styleTag = doc.getElementById('f-capturebliss-override-eph-style');
     if (!styleTag) {
       styleTag = doc.createElement('style');
-      styleTag.setAttribute('id', 'f-fable-override-eph-style');
+      styleTag.setAttribute('id', 'f-capturebliss-override-eph-style');
       if (doc.body) doc.body.appendChild(styleTag);
     }
     const compiledStyleStr = AnnotationLifecycleManager.compileCSSForEffect(styleStr, config);
@@ -470,12 +470,12 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
   }
 
   addAnnStyleTag(styleStr: string, config: IAnnotationConfig):void {
-    const fableAnnOverrideStyleTagId = 'f-fable-override-ann-style';
-    const umbrlDiv = getFableRtUmbrlDiv(this.doc)!;
-    let styleTag = umbrlDiv.querySelector(`#${fableAnnOverrideStyleTagId}`);
+    const captureblissAnnOverrideStyleTagId = 'f-capturebliss-override-ann-style';
+    const umbrlDiv = getCaptureblissRtUmbrlDiv(this.doc)!;
+    let styleTag = umbrlDiv.querySelector(`#${captureblissAnnOverrideStyleTagId}`);
     if (!styleTag) {
       styleTag = this.doc.createElement('style');
-      styleTag.setAttribute('id', fableAnnOverrideStyleTagId);
+      styleTag.setAttribute('id', captureblissAnnOverrideStyleTagId);
       umbrlDiv.prepend(styleTag);
     }
     const compiledStyleStr = AnnotationLifecycleManager.compileCSSForEffect(styleStr, config);
@@ -531,9 +531,9 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
   };
 
   private onIframeElsScroll = (ev: Event): void => {
-    const fableCard = this.doc.querySelector('#fable-ann-card-rendered');
-    if (fableCard && ev.target) {
-      if (fableCard.contains(ev.target as HTMLElement)) return;
+    const captureblissCard = this.doc.querySelector('#capturebliss-ann-card-rendered');
+    if (captureblissCard && ev.target) {
+      if (captureblissCard.contains(ev.target as HTMLElement)) return;
     }
 
     if (this.mode === AnnotationViewMode.Hide) return;
@@ -547,8 +547,8 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
 
   private createContainerRoot(type: '' | 'ann-probe' | 'ann-video' = ''): [HTMLDivElement, Root] {
     const con = this.doc.createElement('div');
-    con.setAttribute('class', `fable-annotations-${type}-container`);
-    con.setAttribute('fable-ignr-sel', 'true');
+    con.setAttribute('class', `capturebliss-annotations-${type}-container`);
+    con.setAttribute('capturebliss-ignr-sel', 'true');
     con.style.position = 'absolute';
     con.style.left = '0';
     con.style.top = '0';
@@ -594,7 +594,7 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
 
     this.beforeScrollStart();
     // we don't use el.scrollIntoView directly as it moves whole page layout if we want to keep the target el in center.
-    // Fable's tour is embedded in iframe of customer's page, we can't let the document scroll outside fable's iframe.
+    // Capturebliss's tour is embedded in iframe of customer's page, we can't let the document scroll outside capturebliss's iframe.
     // el.scrollIntoView does not allow us to provide any boundary.
     //
     // We detect body element and then don't apply scroll as the library we use sometime scrolls the page all the way to
@@ -688,7 +688,7 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
     this.rRoot.render(
       React.createElement(
         StyleSheetManager,
-        { target: getFableRtUmbrlDiv(this.doc) as HTMLElement },
+        { target: getCaptureblissRtUmbrlDiv(this.doc) as HTMLElement },
         React.createElement(AnnotationCon, {
           data: props,
           nav: this.nav,
@@ -853,7 +853,7 @@ export default class AnnotationLifecycleManager extends HighlighterBase {
       this.rRootProbe.render(
         React.createElement(
           StyleSheetManager,
-          { target: getFableRtUmbrlDiv(this.doc) as HTMLElement },
+          { target: getCaptureblissRtUmbrlDiv(this.doc) as HTMLElement },
           React.createElement(
             'div',
             {},

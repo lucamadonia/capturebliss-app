@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import api from '@fable/common/dist/api';
-import { ApiResp, ReqNewInvite, RespNewInvite, ResponseStatus } from '@fable/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import { ApiResp, ReqNewInvite, RespNewInvite, ResponseStatus } from '@capturebliss/common/dist/api-contract';
 import Input from '../input';
 import Button from '../button';
 import UrlCodeShare from '../publish-preview/url-code-share';
@@ -35,7 +35,7 @@ export default function InviteUserForm(): JSX.Element {
   return (
     <>
       <div className="modal-title">Invite a user</div>
-      Please enter the email ID of the person that you want to invite to Fable.
+      Please enter the email ID of the person that you want to invite to Capturebliss.
       <form
         onSubmit={handleSubmit}
         style={{
@@ -82,7 +82,7 @@ export default function InviteUserForm(): JSX.Element {
         >
           <span>
             You can share the link below with the same person.
-            The user can join Fable by clicking on this link.
+            The user can join Capturebliss by clicking on this link.
           </span>
           <UrlCodeShare url={`${baseURL}/join/org?ic=${inviteCode}`} />
         </div>

@@ -11,7 +11,7 @@ import {
   Dataset,
   RespDataset,
   RespUploadUrl,
-} from '@fable/common/dist/api-contract';
+} from '@capturebliss/common/dist/api-contract';
 import {
   AnnBtnKeysWithProperty,
   AnnConfigKeysWithProperty,
@@ -23,7 +23,7 @@ import {
   getSampleGlobalConfig,
   getSampleJourneyData,
   isProdEnv
-} from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/utils';
 import {
   AnnotationPositions,
   JourneyData,
@@ -41,8 +41,8 @@ import {
   JourneyCTA,
   SerNode,
   CreateJourneyPositioning,
-} from '@fable/common/dist/types';
-import { DEFAULT_BLUE_BORDER_COLOR } from '@fable/common/dist/constants';
+} from '@capturebliss/common/dist/types';
+import { DEFAULT_BLUE_BORDER_COLOR } from '@capturebliss/common/dist/constants';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import {
@@ -149,7 +149,7 @@ export function processRawScreenData(screen: RespScreen, config: RespCommonConfi
     isRootScreen: screen.parentScreenId === 0,
     displayableUpdatedAt: getDisplayableTime(d),
     urlStructured: screen.url === ''
-      ? new URL(`https://${screen.displayName.toLowerCase().trim().replace(/\W+/g, '-')}}.img.flbk.sharefable.com`)
+      ? new URL(`https://${screen.displayName.toLowerCase().trim().replace(/\W+/g, '-')}}.img.flbk.capturebliss.com`)
       : new URL(screen.url),
     thumbnailUri: isForExportedTour ? new URL(`${config.commonAssetPath}${screen.thumbnail}`, baseUrl) : new URL(`${config.commonAssetPath}${screen.thumbnail}`),
     dataFileUri,
@@ -1238,16 +1238,16 @@ export function normalizeBackwardCompatibilityForOpts(opts: ITourDataOpts): ITou
     newOpts.annotationPadding = createLiteralProperty('14 14');
   }
 
-  if (newOpts.showFableWatermark === undefined || newOpts.showFableWatermark === null) {
-    newOpts.showFableWatermark = createLiteralProperty(true);
+  if (newOpts.showCaptureblissWatermark === undefined || newOpts.showCaptureblissWatermark === null) {
+    newOpts.showCaptureblissWatermark = createLiteralProperty(true);
   }
 
-  if (typeof newOpts.showFableWatermark === 'boolean') {
-    newOpts.showFableWatermark = createLiteralProperty(newOpts.showFableWatermark);
+  if (typeof newOpts.showCaptureblissWatermark === 'boolean') {
+    newOpts.showCaptureblissWatermark = createLiteralProperty(newOpts.showCaptureblissWatermark);
   }
 
-  if (newOpts.showFableWatermark._val === undefined || newOpts.showFableWatermark._val === null) {
-    newOpts.showFableWatermark = createLiteralProperty(true);
+  if (newOpts.showCaptureblissWatermark._val === undefined || newOpts.showCaptureblissWatermark._val === null) {
+    newOpts.showCaptureblissWatermark = createLiteralProperty(true);
   }
 
   if (newOpts.showStepNum === undefined || newOpts.showStepNum === null) {

@@ -1,6 +1,6 @@
-import { IAnnotationButton, IAnnotationConfig, IGlobalConfig, ITourDataOpts, ITourEntityHotspot } from '@fable/common/dist/types';
+import { IAnnotationButton, IAnnotationConfig, IGlobalConfig, ITourDataOpts, ITourEntityHotspot } from '@capturebliss/common/dist/types';
 import { nanoid } from 'nanoid';
-import { getSampleConfig } from '@fable/common/dist/utils';
+import { getSampleConfig } from '@capturebliss/common/dist/utils';
 import { AnnotationPerScreen, DestinationAnnotationPosition, IAnnotationConfigWithScreen, Timeline } from '../../types';
 import { IAnnotationConfigWithScreenId, updateAnnotationGrpId } from './annotation-config-utils';
 import { AnnUpdate, AnnUpdateType, GroupUpdatesByAnnotationType } from './types';

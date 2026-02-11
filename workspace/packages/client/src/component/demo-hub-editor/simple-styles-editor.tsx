@@ -1,5 +1,5 @@
 import React from 'react';
-import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@fable/common/dist/utils';
+import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@capturebliss/common/dist/utils';
 import * as GTags from '../../common-styled';
 import { InputNumberBorderRadius } from '../screen-editor/styled';
 import { SimpleStyle } from '../../types';

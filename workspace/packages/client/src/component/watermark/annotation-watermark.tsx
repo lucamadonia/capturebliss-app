@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as Tags from './styled';
-import FableLogoWithQuill from '../../assets/fableLogo.svg';
+import CaptureblissLogoWithQuill from '../../assets/captureblissLogo.svg';
 import { AnimEntryDir, Positions } from '../../types';
 
 interface Props {
@@ -100,7 +100,7 @@ export default function AnnotationWatermark(props: Props): JSX.Element {
 
   return (
     <Tags.WatermarkCon
-      className="fable-watermark-con"
+      className="capturebliss-watermark-con"
       style={{
         padding: '4px 0',
         position: 'absolute',
@@ -114,7 +114,7 @@ export default function AnnotationWatermark(props: Props): JSX.Element {
       }}
       target="_blank"
       rel="noopener noreferrer"
-      href="https://sharefable.com"
+      href="https://capturebliss.com"
     >
       <WatermarkText />
     </Tags.WatermarkCon>
@@ -139,7 +139,7 @@ export function WatermarkText(): JSX.Element {
         }}
       >
         <img
-          src={FableLogoWithQuill}
+          src={CaptureblissLogoWithQuill}
           style={{
             maxHeight: '18px'
           }}

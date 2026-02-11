@@ -15,16 +15,16 @@ import ReordingGif from '../assets/user-guide/reordering-2.gif';
 
 export const guide: Guide = {
   id: 'exploring-canvas-guide',
-  name: 'Exploring Fable’s canvas',
+  name: 'Exploring Capturebliss’s canvas',
   serialId: 1,
   desc: {
-    toursCreated: 'Fable’s canvas is the playground where the magic sauce is added to an interactive demo after capturing it.',
+    toursCreated: 'Capturebliss’s canvas is the playground where the magic sauce is added to an interactive demo after capturing it.',
     toursNotCreated: 'Create a demo to see this guide'
   },
   steps: [
     {
       title: 'The auto-stitched flow of your interactive demo',
-      description: 'Fable auto-magically stitches together the entire flow of your interactive demo based on the actions carried out by you at the time of capture and presents it in the canvas as shown.',
+      description: 'Capturebliss auto-magically stitches together the entire flow of your interactive demo based on the actions carried out by you at the time of capture and presents it in the canvas as shown.',
       target: null,
       nextButtonProps: {
         children: <NextBtnPropChildren />,
@@ -146,10 +146,10 @@ function PreviewAndEmbedGuide(props: GuideProps): JSX.Element {
         title={
           <>
             Hey{nickname} 👋🏻 <br />
-            In this guide, we’ll see what Fable’s playground is all about
+            In this guide, we’ll see what Capturebliss’s playground is all about
           </>
         }
-        description="Fable’s canvas is where you can sprinkle the magic sauce that will make your interactive demo awesome. Let’s dive into this guide to see what the canvas is all about."
+        description="Capturebliss’s canvas is where you can sprinkle the magic sauce that will make your interactive demo awesome. Let’s dive into this guide to see what the canvas is all about."
         acceptButtonProps={{
           children: 'Let’s go',
           onClick() {

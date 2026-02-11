@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ApiResp, Interval, Plan, ReqSubscriptionInfo, ReqUpdateSubInfo, RespOrg, RespSubscription, RespSubsValidation, RespUser, Status } from '@fable/common/dist/api-contract';
+import { ApiResp, Interval, Plan, ReqSubscriptionInfo, ReqUpdateSubInfo, RespOrg, RespSubscription, RespSubsValidation, RespUser, Status } from '@capturebliss/common/dist/api-contract';
 import { ArrowRightOutlined,
   CreditCardFilled,
   HeartFilled,
@@ -9,11 +9,11 @@ import { ArrowRightOutlined,
   WalletFilled
 } from '@ant-design/icons';
 import { Modal } from 'antd';
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { sleep } from '@anthropic-ai/sdk/core';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp } from '@fable/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import { TState } from '../../reducer';
 import * as GTags from '../../common-styled';
 import Header from '../../component/header';
@@ -132,7 +132,7 @@ class UserManagementAndSubscription extends React.PureComponent<IProps, IOwnStat
                 <ArrowRightOutlined /> Your invoice and transaction information will be emailed to you and will appear in this page soon.
               </p>
               <p>
-                <ArrowRightOutlined /> In case of any queries reach out to <a href="mailto:support@sharefable.com">support@sharefable.com</a> or use the in app chat.
+                <ArrowRightOutlined /> In case of any queries reach out to <a href="mailto:support@capturebliss.com">support@capturebliss.com</a> or use the in app chat.
               </p>
             </div>
           ),
@@ -226,8 +226,8 @@ class UserManagementAndSubscription extends React.PureComponent<IProps, IOwnStat
                   }}
                   >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
-                      <div className="typ-h1">You are on Fable's Lifetime plan</div>
-                      <div className="typ-reg">You can upgrade / downgrade Fable directly from AppSumo</div>
+                      <div className="typ-h1">You are on Capturebliss's Lifetime plan</div>
+                      <div className="typ-reg">You can upgrade / downgrade Capturebliss directly from AppSumo</div>
                       <Tags.ABtn href="https://appsumo.com/account/products/" className="typ-btn" target="_blank">
                         Manage AppSumo License
                       </Tags.ABtn>
@@ -496,7 +496,7 @@ class UserManagementAndSubscription extends React.PureComponent<IProps, IOwnStat
                 icon={this.state.opsInProgress ? <LoadingOutlined /> : undefined}
               >Downgrade my account
               </Button>
-              <p className="typ-reg">For any questions, ping us via our in-app chat or email us at support@sharefable.com</p>
+              <p className="typ-reg">For any questions, ping us via our in-app chat or email us at support@capturebliss.com</p>
             </GTags.BorderedModal>
           </GTags.MainCon>
         </GTags.RowCon>

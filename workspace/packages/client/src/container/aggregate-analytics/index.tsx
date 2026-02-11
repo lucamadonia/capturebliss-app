@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { BarChartOutlined, LoadingOutlined } from '@ant-design/icons';
-import { LoadingStatus } from '@fable/common/dist/types';
+import { LoadingStatus } from '@capturebliss/common/dist/types';
 import { Tooltip } from 'antd';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { TState } from '../../reducer';
@@ -18,7 +18,7 @@ import { fetchOrgWideAnalytics, getSubscriptionOrCheckoutNew } from '../../actio
 import Card from '../insight-dashboard/card';
 import Bubble from '../insight-dashboard/bubble';
 import { getFormattedDate, readableFormKey, readableTimeUnit } from '../insight-dashboard/leads-tab';
-import FableLogo from '../../assets/fable-rounded-icon.svg';
+import CaptureblissLogo from '../../assets/capturebliss-rounded-icon.svg';
 import { isFeatureAvailable } from '../../utils';
 import Upgrade from '../../component/upgrade';
 
@@ -225,7 +225,7 @@ class AggregateAnalytics extends React.PureComponent<IProps, IOwnStateProps> {
                             Sourced from:
                             {lead.aggOwners.map(owner => (
                               <span key={owner.rid} className="link-con">
-                                <img src={FableLogo} height={14} alt="Fable logo" />
+                                <img src={CaptureblissLogo} height={14} alt="Capturebliss logo" />
                                 <Tooltip
                                   title={
                                     <Tags.TooltipCon>

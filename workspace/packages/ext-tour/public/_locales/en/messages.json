@@ -1,0 +1,38 @@
+{
+  "appName": {
+    "message": "Capturebliss: Create step-by-step interactive demos and guides in 5 minutes.",
+    "description": "The name of the extension shown in the Chrome Web Store and extension management page."
+  },
+  "appDescription": {
+    "message": "Capture your product in minutes to build interactive guides and demos with Capturebliss.",
+    "description": "The description of the extension shown in the Chrome Web Store."
+  },
+  "saveScreenCommand": {
+    "message": "Save the current screen in selected project",
+    "description": "Description for the keyboard shortcut that saves the current screen."
+  },
+  "recording": {
+    "message": "Recording",
+    "description": "Label shown when actively recording a demo."
+  },
+  "stopRecording": {
+    "message": "Stop recording",
+    "description": "Button label to stop the current recording session."
+  },
+  "startRecording": {
+    "message": "Start recording",
+    "description": "Button label to start a new recording session."
+  },
+  "selectProject": {
+    "message": "Select a project",
+    "description": "Prompt to select which project to record into."
+  },
+  "noProjects": {
+    "message": "No projects found",
+    "description": "Message shown when there are no projects available."
+  },
+  "loginRequired": {
+    "message": "Please log in to Capturebliss first",
+    "description": "Message shown when the user is not authenticated."
+  }
+}

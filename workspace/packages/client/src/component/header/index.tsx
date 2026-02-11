@@ -15,15 +15,15 @@ import {
   WalletFilled,
   ShareAltOutlined,
 } from '@ant-design/icons';
-import { Plan, RespOrg, RespSubscription, RespUser } from '@fable/common/dist/api-contract';
-import { CmnEvtProp, ScreenDiagnostics } from '@fable/common/dist/types';
+import { Plan, RespOrg, RespSubscription, RespUser } from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp, ScreenDiagnostics } from '@capturebliss/common/dist/types';
 import { Tooltip, Button as AntButton, Drawer, Popover } from 'antd';
 import React, { Dispatch, ReactElement, SetStateAction, Suspense, lazy, useEffect, useState } from 'react';
 import { Link, useLocation, useParams, useNavigate } from 'react-router-dom';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
-import FableQuill from '../../assets/fable-quill.svg';
-import FableLogo from '../../assets/fableLogo.svg';
+import CaptureblissQuill from '../../assets/capturebliss-quill.svg';
+import CaptureblissLogo from '../../assets/captureblissLogo.svg';
 import * as GTags from '../../common-styled';
 import { P_RespSubscription, P_RespTour, P_RespVanityDomain } from '../../entity-processor';
 import Input from '../input';
@@ -183,16 +183,16 @@ function Header(props: IOwnProps): JSX.Element {
         <Tags.LMenuCon style={CMN_HEADER_GRP_STYLE}>
           <div style={{ ...CMN_HEADER_GRP_STYLE, gap: '0.5rem' }}>
             {props.shouldShowFullLogo ? (
-              <Tags.ConLogoImg src={FableLogo} alt="Fable logo" />
+              <Tags.ConLogoImg src={CaptureblissLogo} alt="Capturebliss logo" />
             ) : (
               <Link
                 onClick={() => props.onLogoClicked && props.onLogoClicked()}
                 to={props.navigateToWhenLogoIsClicked!}
               >
                 <Tags.ConLogoImg
-                  id="fable-logo-screen-editor"
-                  src={FableQuill}
-                  alt="Fable logo"
+                  id="capturebliss-logo-screen-editor"
+                  src={CaptureblissQuill}
+                  alt="Capturebliss logo"
                   style={{ height: '2rem', cursor: 'pointer' }}
                 />
               </Link>
@@ -322,7 +322,7 @@ function Header(props: IOwnProps): JSX.Element {
                         fontWeight: 500
                       }}
                       onClick={(e) => {
-                        import('@fable/common/dist/amplitude').then((amp) => {
+                        import('@capturebliss/common/dist/amplitude').then((amp) => {
                           amp.traceEvent(AMPLITUDE_EVENTS.TOUR_PREVIEW_CLICKED, {
                             preview_clicked_from: props.clickedFrom || 'header'
                           }, [CmnEvtProp.EMAIL, CmnEvtProp.TOUR_URL]);
@@ -493,7 +493,7 @@ function Header(props: IOwnProps): JSX.Element {
                     }}
                   >
                     <a
-                      href="https://www.sharefable.com/get-a-demo?ref=app_canvas"
+                      href="https://www.capturebliss.com/get-a-demo?ref=app_canvas"
                       target="_blank"
                       rel="noreferrer"
                       style={{ textDecoration: 'none', color: 'white' }}
@@ -513,7 +513,7 @@ function Header(props: IOwnProps): JSX.Element {
                 content={(
                   <div style={{ width: '25rem' }}>
                     <div className="typ-h2" style={{ marginBottom: '1rem' }}>
-                      Learn how to use Fable
+                      Learn how to use Capturebliss
                     </div>
                     {props.userGuidesToShow?.length && props.tour && (
                     <div onClick={() => {
@@ -526,7 +526,7 @@ function Header(props: IOwnProps): JSX.Element {
                     )}
                     <GTags.HelpCenterLink
                       className="typ-h2"
-                      href="https://help.sharefable.com"
+                      href="https://help.capturebliss.com"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -534,7 +534,7 @@ function Header(props: IOwnProps): JSX.Element {
                     </GTags.HelpCenterLink>
                     <GTags.HelpCenterLink
                       className="typ-h2"
-                      href="https://www.sharefable.com/contact-support"
+                      href="https://www.capturebliss.com/contact-support"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -732,7 +732,7 @@ function Header(props: IOwnProps): JSX.Element {
                     <ExclamationCircleFilled style={{ color: 'red' }} />
                     &nbsp; Entry point of the demo is not set.
                     <a
-                      href="https://help.sharefable.com/Editing-Demos/Setting-an-Entry-Point"
+                      href="https://help.capturebliss.com/Editing-Demos/Setting-an-Entry-Point"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -747,7 +747,7 @@ function Header(props: IOwnProps): JSX.Element {
                       <WarningFilled style={{ color: '#FF7450' }} />
                       &nbsp; Entry point of the demo is not valid. Please reset it.
                       <a
-                        href="https://help.sharefable.com/Editing-Demos/Setting-an-Entry-Point"
+                        href="https://help.capturebliss.com/Editing-Demos/Setting-an-Entry-Point"
                         target="_blank"
                         rel="noreferrer"
                       >
@@ -791,7 +791,7 @@ function Header(props: IOwnProps): JSX.Element {
                     <Tags.MainNotSetContent>
                       <WarningFilled style={{ color: '#FF7450' }} />
                       &nbsp; Book a Demo CTA is not configured on the last annotation.
-                      <a href="https://help.sharefable.com/Editing-Demos/Call-to-Actions" target="_blank" rel="noreferrer">
+                      <a href="https://help.capturebliss.com/Editing-Demos/Call-to-Actions" target="_blank" rel="noreferrer">
                         <LinkOutlined /> Check here how to configure a CTA with external URL
                       </a>
                     </Tags.MainNotSetContent>
@@ -802,7 +802,7 @@ function Header(props: IOwnProps): JSX.Element {
                     <Tags.MainNotSetContent>
                       <WarningFilled style={{ color: '#FF7450' }} />
                       &nbsp; Book a Demo CTA is not configured for modules.
-                      <a href="https://help.sharefable.com/Editing-Demos/Module" target="_blank" rel="noreferrer">
+                      <a href="https://help.capturebliss.com/Editing-Demos/Module" target="_blank" rel="noreferrer">
                         <LinkOutlined /> Check here how to configure a CTA with external URL for modules.
                       </a>
                     </Tags.MainNotSetContent>

@@ -1,4 +1,4 @@
-import { IAnnotationConfig, ITourDataOpts, JourneyData } from '@fable/common/dist/types';
+import { IAnnotationConfig, ITourDataOpts, JourneyData } from '@capturebliss/common/dist/types';
 import { AnnotationNode, Box, Point, MultiAnnotationNode, GroupedAnns, GroupEdge } from './types';
 import { AnnotationPerScreen, IAnnotationConfigWithScreen, Timeline } from '../../types';
 import { getAnnotationBtn, getAnnotationByRefId } from '../annotation/ops';

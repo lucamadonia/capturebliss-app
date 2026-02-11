@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp, IAnnotationConfig, Property, PropertyType } from '@fable/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp, IAnnotationConfig, Property, PropertyType } from '@capturebliss/common/dist/types';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Collapse, Drawer, Spin } from 'antd';
 import { timeFormat } from 'd3-time-format';
-import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@fable/common/dist/utils';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { GlobalPropsPath, createGlobalProperty, createLiteralProperty } from '@capturebliss/common/dist/utils';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { useDispatch } from 'react-redux';
@@ -751,7 +751,7 @@ export default function ShareTourModal(props: Props): JSX.Element {
             onClose={() => setShowHelpDrawer(false)}
           >
             <p className="typ-reg">
-              When you open a Fable's demo in a standalone browser's tab (contrary to, embedding a demo in a landing page),
+              When you open a Capturebliss's demo in a standalone browser's tab (contrary to, embedding a demo in a landing page),
               you can configure every aspect of the page that opens in the new tab.
             </p>
             <p className="typ-reg">
@@ -804,7 +804,7 @@ function DomainSelect(props: DomainSelectProps): JSX.Element {
       <div className="typ-reg" style={{ marginBottom: '0.25rem' }}>
         Select Domain:
       </div>
-      <GTags.FableSelect
+      <GTags.CaptureblissSelect
         defaultValue={props.selectedDomain}
         className="typ-ip"
         value={props.selectedDomain}

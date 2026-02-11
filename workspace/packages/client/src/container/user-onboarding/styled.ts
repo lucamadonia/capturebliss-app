@@ -18,7 +18,7 @@ export const Con = styled.div`
   }
 `;
 
-export const FableLogoImg = styled.img`
+export const CaptureblissLogoImg = styled.img`
   position: absolute;
   left: 2rem;
   top: 2rem;

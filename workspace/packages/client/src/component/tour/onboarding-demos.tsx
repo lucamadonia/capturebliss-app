@@ -1,8 +1,8 @@
-import { OnboardingTourForPrev } from '@fable/common/dist/api-contract';
+import { OnboardingTourForPrev } from '@capturebliss/common/dist/api-contract';
 import React from 'react';
 import styled from 'styled-components';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import FableLogo from '../../assets/fable-rounded-icon.svg';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import CaptureblissLogo from '../../assets/capturebliss-rounded-icon.svg';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
 import { createIframeSrc } from '../../utils';
 
@@ -15,7 +15,7 @@ const ICONS = ['marketing', 'sales', 'support'];
 export default function OnboardingDemos(props: Props) {
   return (
     <Con layout={props.layout}>
-      <h3>Demos we have created for you using Fable</h3>
+      <h3>Demos we have created for you using Capturebliss</h3>
       <div style={{
         display: 'flex',
         flexDirection: props.layout,
@@ -44,7 +44,7 @@ export default function OnboardingDemos(props: Props) {
                 <span style={{ fontSize: '12px' }}>
                   Created by
                 </span>
-                <img style={{ width: '18px' }} src={FableLogo} alt="fable-logo" />
+                <img style={{ width: '18px' }} src={CaptureblissLogo} alt="capturebliss-logo" />
               </div>
             </div>
           </PreviewCard>

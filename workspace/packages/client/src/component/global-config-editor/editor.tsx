@@ -12,10 +12,10 @@ import {
   IGlobalConfig,
   ITourDataOpts,
   LoadingStatus
-} from '@fable/common/dist/types';
-import { getSampleConfig } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { getSampleConfig } from '@capturebliss/common/dist/utils';
 import { LoadingOutlined } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import FileInput from '../file-input';
 import Input from '../input';
 import * as GTags from '../../common-styled';
@@ -308,7 +308,7 @@ export default function Editor(props: Props): JSX.Element {
             </Tags.OptionTitle>
 
             <Tags.CommonSecActionCon>
-              <GTags.FableSelect
+              <GTags.CaptureblissSelect
                 className="typ-ip"
                 bordered={false}
                 suffixIcon={<CaretOutlined dir="down" />}
@@ -364,7 +364,7 @@ export default function Editor(props: Props): JSX.Element {
               >
                 <div>
                   <div>Button size</div>
-                  <GTags.FableSelect
+                  <GTags.CaptureblissSelect
                     className="typ-ip"
                     size="small"
                     bordered={false}
@@ -600,7 +600,7 @@ export default function Editor(props: Props): JSX.Element {
                 Selection Shape
               </Tags.OptionTitle>
 
-              <GTags.FableSelect
+              <GTags.CaptureblissSelect
                 className="typ-ip"
                 size="small"
                 bordered={false}
@@ -623,7 +623,7 @@ export default function Editor(props: Props): JSX.Element {
                 Selection Effect
               </Tags.OptionTitle>
 
-              <GTags.FableSelect
+              <GTags.CaptureblissSelect
                 className="typ-ip"
                 size="small"
                 bordered={false}
@@ -802,7 +802,7 @@ export default function Editor(props: Props): JSX.Element {
                   <div
                     className="typ-sm"
                   >
-                    This button is provided by Fable to navigate to next step
+                    This button is provided by Capturebliss to navigate to next step
                   </div>
                 </div>
 
@@ -852,7 +852,7 @@ export default function Editor(props: Props): JSX.Element {
                       Button Type
                     </Tags.OptionTitle>
 
-                    <GTags.FableSelect
+                    <GTags.CaptureblissSelect
                       size="small"
                       bordered={false}
                       suffixIcon={<CaretOutlined dir="down" />}
@@ -884,7 +884,7 @@ export default function Editor(props: Props): JSX.Element {
                   <div
                     className="typ-sm"
                   >
-                    This button is provided by Fable to navigate to prev step
+                    This button is provided by Capturebliss to navigate to prev step
                   </div>
                 </div>
 
@@ -934,7 +934,7 @@ export default function Editor(props: Props): JSX.Element {
                       Button Type
                     </Tags.OptionTitle>
 
-                    <GTags.FableSelect
+                    <GTags.CaptureblissSelect
                       size="small"
                       bordered={false}
                       suffixIcon={<CaretOutlined dir="down" />}
@@ -1021,7 +1021,7 @@ export default function Editor(props: Props): JSX.Element {
                         Button Type
                       </Tags.OptionTitle>
 
-                      <GTags.FableSelect
+                      <GTags.CaptureblissSelect
                         size="small"
                         bordered={false}
                         suffixIcon={<CaretOutlined dir="down" />}

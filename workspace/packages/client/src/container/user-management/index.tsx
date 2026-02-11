@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { RespOrg, RespSubscription, RespUser } from '@fable/common/dist/api-contract';
-import { LoadingStatus } from '@fable/common/dist/types';
+import { RespOrg, RespSubscription, RespUser } from '@capturebliss/common/dist/api-contract';
+import { LoadingStatus } from '@capturebliss/common/dist/types';
 import { PlusOutlined, UserAddOutlined, UserDeleteOutlined } from '@ant-design/icons';
 import { Button as AntBtn, Tooltip } from 'antd';
-import { getRandomId, SHORT_MONTHS } from '@fable/common/dist/utils';
+import { getRandomId, SHORT_MONTHS } from '@capturebliss/common/dist/utils';
 import { TState } from '../../reducer';
 import * as GTags from '../../common-styled';
 import Header from '../../component/header';

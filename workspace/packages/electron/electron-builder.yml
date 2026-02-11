@@ -1,0 +1,52 @@
+appId: com.capturebliss.app
+productName: Capturebliss
+directories:
+  buildResources: assets
+  output: release
+
+files:
+  - dist/**/*
+  - assets/**/*
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  icon: assets/icons/icon.png
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  deleteAppDataOnUninstall: true
+
+mac:
+  target:
+    - target: dmg
+      arch:
+        - x64
+        - arm64
+  icon: assets/icons/icon.png
+  category: public.app-category.productivity
+
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications
+
+linux:
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  icon: assets/icons/icon.png
+  category: Utility
+
+publish:
+  provider: github
+  owner: capturebliss
+  repo: app

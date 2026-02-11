@@ -1,14 +1,14 @@
 /* eslint-disable no-tabs */
 import React from 'react';
 import { connect } from 'react-redux';
-import api from '@fable/common/dist/api';
-import { ApiResp, RespApiKey, RespVanityDomain, VanityDomainDeploymentStatus } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import api from '@capturebliss/common/dist/api';
+import { ApiResp, RespApiKey, RespVanityDomain, VanityDomainDeploymentStatus } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { CheckCircleFilled, CodeOutlined, CopyOutlined, FormatPainterOutlined, GlobalOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { timeFormat } from 'd3-time-format';
 import { Modal, Tabs, Tag } from 'antd';
-import { CmnEvtProp } from '@fable/common/dist/types';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import GlobalConfigEditor from '../global-config-editor';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { TState } from '../../reducer';
@@ -551,7 +551,7 @@ class Settings extends React.PureComponent<IProps, IOwnStateProps> {
                                       </ol>
                                       <p>
                                         <GTags.OurLink
-                                          href="https://sharefable.notion.site/To-do-when-custom-domain-creation-fails-7cd688bccf4740e8849f081932e371ed?pvs=4"
+                                          href="https://capturebliss.notion.site/To-do-when-custom-domain-creation-fails-7cd688bccf4740e8849f081932e371ed?pvs=4"
                                           target="_blank"
                                         >Read more about why this is required
                                         </GTags.OurLink>

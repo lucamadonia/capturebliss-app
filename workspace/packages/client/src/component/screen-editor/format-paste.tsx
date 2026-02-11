@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckOutlined, CloseOutlined, CopyOutlined } from '@ant-design/icons';
-import { AnnotationButtonLayoutType, AnnotationSelectionEffectType, AnnotationSelectionShapeType } from '@fable/common/dist/types';
+import { AnnotationButtonLayoutType, AnnotationSelectionEffectType, AnnotationSelectionShapeType } from '@capturebliss/common/dist/types';
 import { FPOCon } from './styled';
 import { StoredStyleForFormatPaste, StyleKeysToBeStored } from './types';
 

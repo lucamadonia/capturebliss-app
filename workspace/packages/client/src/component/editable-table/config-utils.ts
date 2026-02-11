@@ -1,4 +1,4 @@
-import { getCurrentUtcUnixTime, getRandomId } from '@fable/common/dist/utils';
+import { getCurrentUtcUnixTime, getRandomId } from '@capturebliss/common/dist/utils';
 import { DatasetConfig, Table, TableColumn, TableRow } from '../../types';
 import { DATASET_COL_ID_ID } from '../../utils';
 

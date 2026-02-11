@@ -10,15 +10,15 @@ import {
 } from '@ant-design/icons';
 import { Button, Popover, Tooltip } from 'antd';
 import React, { useState } from 'react';
-import { ReqTourPropUpdate } from '@fable/common/dist/api-contract';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp } from '@fable/common/dist/types';
+import { ReqTourPropUpdate } from '@capturebliss/common/dist/api-contract';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import * as GTags from '../../common-styled';
 import { CtxAction } from '../../container/tours';
 import { P_RespTour, P_RespVanityDomain } from '../../entity-processor';
 import ShareTourModal from '../publish-preview/share-modal';
 import * as Tags from './styled';
-import FableLogo from '../../assets/fable-rounded-icon.svg';
+import CaptureblissLogo from '../../assets/capturebliss-rounded-icon.svg';
 import { PREVIEW_BASE_URL } from '../../constants';
 import { SiteData } from '../../types';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
@@ -76,7 +76,7 @@ export default function TourCard({
               ? (
                 <Tags.TourMetaDataCon>
                   <Tags.TourCreated>Sample demo created by </Tags.TourCreated>
-                  <img style={{ width: '16px' }} src={FableLogo} alt="fable-logo" />
+                  <img style={{ width: '16px' }} src={CaptureblissLogo} alt="capturebliss-logo" />
                 </Tags.TourMetaDataCon>
               )
               : (

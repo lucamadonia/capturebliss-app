@@ -1,13 +1,13 @@
-import { JourneyData, ScreenData } from '@fable/common/dist/types';
+import { JourneyData, ScreenData } from '@capturebliss/common/dist/types';
 import React from 'react';
-import { ScreenType } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import { P_RespScreen } from '../../entity-processor';
 import { scrollIframeEls } from './scroll-util';
 import * as Tags from './preview-styled';
 import { deserFrame } from './utils/deser';
-import { createFableRtUmbrlDivWrapper, getFableRtUmbrlDivWrapper } from '../annotation/utils';
-import { ANN_ZOOMED, FABLE_IFRAME_GENERIC_CLASSNAME, SCREEN_SIZE_MSG } from '../../constants';
+import { createCaptureblissRtUmbrlDivWrapper, getCaptureblissRtUmbrlDivWrapper } from '../annotation/utils';
+import { ANN_ZOOMED, CAPTUREBLISS_IFRAME_GENERIC_CLASSNAME, SCREEN_SIZE_MSG } from '../../constants';
 import LogoWatermark from '../watermark/logo-watermark';
 import { IframePos, EditItem, ScreenSizeData, Quadrant, QuadrantType, InternalEvents, Payload_Navigation } from '../../types';
 import { applyEditsToSerDom } from './utils/edits';
@@ -266,9 +266,9 @@ export default class ScreenPreview extends React.PureComponent<IOwnProps, IOwnSt
           Promise.all(this.assetLoadingPromises).then(() => {
             // create a elative container that would contain all the falbe related els
             if (frameBody) {
-              let umbrellaDiv = getFableRtUmbrlDivWrapper(doc);
+              let umbrellaDiv = getCaptureblissRtUmbrlDivWrapper(doc);
               if (!umbrellaDiv) {
-                umbrellaDiv = createFableRtUmbrlDivWrapper(doc);
+                umbrellaDiv = createCaptureblissRtUmbrlDivWrapper(doc);
               }
               this.props.onBeforeFrameBodyDisplay({
                 nestedFrames: this.nestedFrames,
@@ -684,7 +684,7 @@ export default class ScreenPreview extends React.PureComponent<IOwnProps, IOwnSt
             src={this.props.screenData.isHTML4 ? '/aboutblankhtml4.html' : '/aboutblankhtml5.html'}
             title={this.props.screen.displayName}
             id={ROOT_EMBED_IFRAME_ID}
-            className={`fable-iframe-${this.props.screen.id} ${FABLE_IFRAME_GENERIC_CLASSNAME}`}
+            className={`capturebliss-iframe-${this.props.screen.id} ${CAPTUREBLISS_IFRAME_GENERIC_CLASSNAME}`}
             style={{
               visibility: this.props.hidden ? 'hidden' : 'visible',
               borderRadius: `${this.props.playMode ? 'none' : '20px'}`,

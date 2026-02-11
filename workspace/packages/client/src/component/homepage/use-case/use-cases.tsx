@@ -21,11 +21,11 @@ export default function UseCases(props : Props) : JSX.Element {
       >
         {!props.singleRow && (
           <div className="typ-h1">
-            See what you can do & analyze with Fable
+            See what you can do & analyze with Capturebliss
           </div>
         )}
         <div className="typ-reg" style={{ marginTop: '0.5rem' }}>
-          Fable helps you create interactive demos for marketing, sales, and customer success teams. Here are some insights you will get with Fable:
+          Capturebliss helps you create interactive demos for marketing, sales, and customer success teams. Here are some insights you will get with Capturebliss:
         </div>
         <OurCollapse
           expandIconPosition="start"
@@ -60,7 +60,7 @@ export default function UseCases(props : Props) : JSX.Element {
                   </div>
                   <div>
                     <p className="typ-reg">
-                      The number of people who chose to perform an action by clicking on the CTA you added in the Fable.
+                      The number of people who chose to perform an action by clicking on the CTA you added in the Capturebliss.
                     </p>
                     <p className="typ-reg">
                       These CTAs can be to start a free trial, book a demo, download your app, etc.
@@ -98,7 +98,7 @@ export default function UseCases(props : Props) : JSX.Element {
                   </div>
                   <div>
                     <p className="typ-reg">
-                      Your fables can have a lead form included.
+                      Your demos can have a lead form included.
                     </p>
                     <p className="typ-reg">
                       You can use this to capture the details of people viewing the demo. These can be the email, phone number, etc.
@@ -127,7 +127,7 @@ export default function UseCases(props : Props) : JSX.Element {
                         Completion
                       </div>
                       <div className="typ-sm">
-                        The number of people who viewed your fable from start to finish.
+                        The number of people who viewed your capturebliss demo from start to finish.
                       </div>
                     </div>
                     <div className="sbs-con">

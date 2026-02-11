@@ -1,6 +1,6 @@
 import React from 'react';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
-import { getRandomId } from '@fable/common/dist/utils';
+import { getRandomId } from '@capturebliss/common/dist/utils';
 import { Button, Popover } from 'antd';
 import { DatasetConfig } from '../../types';
 import * as GTags from '../../common-styled';

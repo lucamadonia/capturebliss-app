@@ -1,8 +1,8 @@
-import { ScreenType } from '@fable/common/dist/api-contract';
-import { InteractionCtx, RectWithFId, SerDoc } from '@fable/common/dist/types';
-import { create_guides_marketing } from '@fable/common/dist/llm-fn-schema/create_guides_marketing';
-import { create_guides_step_by_step } from '@fable/common/dist/llm-fn-schema/create_guides_step_by_step';
-import { post_process_demo } from '@fable/common/dist/llm-fn-schema/post_process_demo';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
+import { InteractionCtx, RectWithFId, SerDoc } from '@capturebliss/common/dist/types';
+import { create_guides_marketing } from '@capturebliss/common/dist/llm-fn-schema/create_guides_marketing';
+import { create_guides_step_by_step } from '@capturebliss/common/dist/llm-fn-schema/create_guides_step_by_step';
+import { post_process_demo } from '@capturebliss/common/dist/llm-fn-schema/post_process_demo';
 import { MessageParam } from '@anthropic-ai/sdk/resources';
 import { Vpd } from '../../types';
 

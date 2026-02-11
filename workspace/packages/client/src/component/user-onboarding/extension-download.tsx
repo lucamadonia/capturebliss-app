@@ -43,16 +43,16 @@ export default function ExtensionDownload(props: Props): JSX.Element {
         }}
       >
         <div className="type-reg">
-          Download Fable's chrome extension to
+          Download Capturebliss's chrome extension to
           create stunning interactive demo in 5 mins.
         </div>
         <a
-          href="https://chromewebstore.google.com/detail/fable-create-step-by-step/ekmabenadlgfkjplmpldkjkhiikobaoc"
+          href="https://chromewebstore.google.com/detail/capturebliss-create-step-by-step/ekmabenadlgfkjplmpldkjkhiikobaoc"
           target="_blank"
           rel="noreferrer"
           style={{ textDecoration: 'none' }}
         >
-          <Button><ChromeFilled /> Download Fable's extension</Button>
+          <Button><ChromeFilled /> Download Capturebliss's extension</Button>
         </a>
       </div>
       <AntdBtn

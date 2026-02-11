@@ -62,7 +62,7 @@ export default function UserGuideDetails(props: Props): JSX.Element {
       <div>
         <GTags.HelpCenterLink
           className="typ-reg"
-          href="https://help.sharefable.com"
+          href="https://help.capturebliss.com"
           target="_blank"
           rel="noreferrer"
         >
@@ -70,7 +70,7 @@ export default function UserGuideDetails(props: Props): JSX.Element {
         </GTags.HelpCenterLink>
         <GTags.HelpCenterLink
           className="typ-reg"
-          href="https://www.sharefable.com/contact-support"
+          href="https://www.capturebliss.com/contact-support"
           target="_blank"
           rel="noreferrer"
         >
@@ -78,16 +78,16 @@ export default function UserGuideDetails(props: Props): JSX.Element {
         </GTags.HelpCenterLink>
       </div>
       {/* TODO: add these later */}
-      {/* <IntroFableGuides /> */}
+      {/* <IntroCaptureblissGuides /> */}
 
     </Tags.UserGuideDetailsCon>
   ) : (<></>);
 }
 
-function IntroFableGuides(): JSX.Element {
+function IntroCaptureblissGuides(): JSX.Element {
   return (
 
-    <Tags.IntroFableGuidesCon>
+    <Tags.IntroCaptureblissGuidesCon>
       <Tags.FlexRow>
         <Tags.GridCard>
           card 1
@@ -109,6 +109,6 @@ function IntroFableGuides(): JSX.Element {
       <Tags.GridCard>
         card 5
       </Tags.GridCard>
-    </Tags.IntroFableGuidesCon>
+    </Tags.IntroCaptureblissGuidesCon>
   );
 }

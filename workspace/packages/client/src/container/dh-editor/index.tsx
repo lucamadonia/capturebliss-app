@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { CmnEvtProp, IGlobalConfig, LoadingStatus } from '@fable/common/dist/types';
-import { RespCommonConfig, RespOrg, RespUser } from '@fable/common/dist/api-contract';
+import { CmnEvtProp, IGlobalConfig, LoadingStatus } from '@capturebliss/common/dist/types';
+import { RespCommonConfig, RespOrg, RespUser } from '@capturebliss/common/dist/api-contract';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { TState } from '../../reducer';
 import Editor from '../../component/demo-hub-editor';

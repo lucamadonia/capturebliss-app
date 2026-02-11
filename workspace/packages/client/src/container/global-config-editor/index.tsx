@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { IGlobalConfig, LoadingStatus } from '@fable/common/dist/types';
+import { IGlobalConfig, LoadingStatus } from '@capturebliss/common/dist/types';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { TState } from '../../reducer';
 import { getGlobalConfig, updateGlobalConfig, publishTour, getAllTours } from '../../action/creator';

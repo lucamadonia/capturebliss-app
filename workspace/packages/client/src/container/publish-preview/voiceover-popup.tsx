@@ -1,6 +1,6 @@
 import React from 'react';
 import { CloseOutlined } from '@ant-design/icons';
-import { RespSubscription } from '@fable/common/dist/api-contract';
+import { RespSubscription } from '@capturebliss/common/dist/api-contract';
 import Button from '../../component/button';
 import * as Tags from './styled';
 import BuyMoreCredit from '../../component/create-tour/buy-more-credit';

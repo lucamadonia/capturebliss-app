@@ -1,4 +1,4 @@
-import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@fable/common/dist/utils';
+import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@capturebliss/common/dist/utils';
 import { Spin, Tooltip } from 'antd';
 import React from 'react';
 import { QuestionCircleOutlined, QuestionOutlined } from '@ant-design/icons';

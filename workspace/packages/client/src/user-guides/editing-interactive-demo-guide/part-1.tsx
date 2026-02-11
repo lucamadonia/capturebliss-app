@@ -23,7 +23,7 @@ export const guide: Guide = {
   steps: [
     {
       title: 'The auto-stitched flow of your interactive demo',
-      description: 'Fable auto-magically stitches together the entire flow of your interactive demo based on the actions carried out by you at the time of capture and presents it in the canvas as shown.',
+      description: 'Capturebliss auto-magically stitches together the entire flow of your interactive demo based on the actions carried out by you at the time of capture and presents it in the canvas as shown.',
       target: null,
       nextButtonProps: {
         children: <NextBtnPropChildren />,
@@ -80,7 +80,7 @@ function EditingInteractiveDemoGuidePart1(props: GuideProps): JSX.Element {
             In this guide, we’ll see how you can edit every single aspect of your interactive demo
           </>
         }
-        description="Fable has a plethora of editing options that you can make use of to perfect the flow of your interactive demo."
+        description="Capturebliss has a plethora of editing options that you can make use of to perfect the flow of your interactive demo."
         acceptButtonProps={{
           children: 'Let’s go',
           onClick() {

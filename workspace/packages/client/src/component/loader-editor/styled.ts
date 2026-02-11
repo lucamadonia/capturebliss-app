@@ -311,6 +311,6 @@ export const CloseIcon = styled.img`
   }
 `;
 
-export const FableLogo = styled.img`
+export const CaptureblissLogo = styled.img`
   width: 90px;
 `;

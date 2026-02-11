@@ -1,7 +1,7 @@
-import { ApiResp, PvtAssetType, RespUploadUrl } from '@fable/common/dist/api-contract';
-import api from '@fable/common/dist/api';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { DBData } from '@fable/common/dist/db-utils';
+import { ApiResp, PvtAssetType, RespUploadUrl } from '@capturebliss/common/dist/api-contract';
+import api from '@capturebliss/common/dist/api';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { DBData } from '@capturebliss/common/dist/db-utils';
 
 export function deleteDataFromDb(db: IDBDatabase, storeName: string, key: string) {
   return new Promise((resolve, reject) => {

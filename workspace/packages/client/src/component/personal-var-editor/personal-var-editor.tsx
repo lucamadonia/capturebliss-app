@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { DatabaseOutlined, FontSizeOutlined, LoadingOutlined, WarningOutlined } from '@ant-design/icons';
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 import * as Tags from './styled';
 import Button from '../button';
 import { DatasetConfig, EditItem, PerVarData, PerVarType, ScreenSizeData } from '../../types';

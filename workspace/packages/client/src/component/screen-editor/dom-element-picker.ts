@@ -1,5 +1,5 @@
-import { ScreenType } from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import HighlighterBase, { HighlighterBaseConfig } from '../base/hightligher-base';
 import { ROOT_EMBED_IFRAME_ID } from './preview';
 
@@ -213,7 +213,7 @@ export default class DomElementPicker extends HighlighterBase {
         svgEl = el;
       }
       i++;
-      if (el.getAttribute('fable-ignr-sel')) {
+      if (el.getAttribute('capturebliss-ignr-sel')) {
         break;
       }
     }

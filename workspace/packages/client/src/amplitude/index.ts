@@ -1,6 +1,6 @@
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { CmnEvtProp, ScrollAdjustmentType } from '@fable/common/dist/types';
-import { Responsiveness } from '@fable/common/dist/api-contract';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { CmnEvtProp, ScrollAdjustmentType } from '@capturebliss/common/dist/types';
+import { Responsiveness } from '@capturebliss/common/dist/api-contract';
 import { AMPLITUDE_EVENTS } from './events';
 import { ScreenMode, SiteData } from '../types';
 import {

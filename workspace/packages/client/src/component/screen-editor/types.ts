@@ -1,5 +1,5 @@
-import { RespScreen } from '@fable/common/dist/api-contract';
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { RespScreen } from '@capturebliss/common/dist/api-contract';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 import { AnnAdd } from '../../action/creator';
 
 export type AddScreenFn = (screen: RespScreen, annAdd: AnnAdd) => void;

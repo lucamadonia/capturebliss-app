@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@fable/common/dist/utils';
-import { Property } from '@fable/common/dist/types';
+import { compileValue, createGlobalProperty, createLiteralProperty, GlobalPropsPath } from '@capturebliss/common/dist/utils';
+import { Property } from '@capturebliss/common/dist/types';
 import { DemoHubConfigCtaType, DemoHubConfigCtaTypeType, IDemoHubConfigCta, SimpleStyle } from '../../../../types';
 import Input from '../../../input';
 import * as GTags from '../../../../common-styled';
@@ -120,7 +120,7 @@ export default function CtaEditor(props: Props): JSX.Element {
               alignItems: 'center'
             }}
           >
-            <GTags.FableSelect
+            <GTags.CaptureblissSelect
               className="typ-ip"
               value={props.cta.type._val}
               placeholder="Select CTA type"

@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startTransaction, captureException } from '@sentry/react';
-import { sentryTxReport } from '@fable/common/dist/sentry';
+import { sentryTxReport } from '@capturebliss/common/dist/sentry';
 import { Progress } from 'antd';
-import { openDb, putDataInDb, DB_NAME, OBJECT_STORE, OBJECT_KEY, OBJECT_KEY_VALUE, DBData } from '@fable/common/dist/db-utils';
+import { openDb, putDataInDb, DB_NAME, OBJECT_STORE, OBJECT_KEY, OBJECT_KEY_VALUE, DBData } from '@capturebliss/common/dist/db-utils';
 import { getDataFromDb } from './db-utils';
 import { withRouter, WithRouterProps } from '../../router-hoc';
 import { TState } from '../../reducer';
 import * as Tags from './styled';
-import FableLogo from '../../assets/fable-logo-2.svg';
+import CaptureblissLogo from '../../assets/capturebliss-logo-2.svg';
 
 interface IDispatchProps {
 }
@@ -148,7 +148,7 @@ class PrepTour extends React.PureComponent<IProps, IOwnStateProps> {
     if (this.state.loading) {
       return (
         <Tags.HeartLoaderCon>
-          <img src={FableLogo} alt="fable loader" style={{ height: '50px', width: '50px', margin: 'auto' }} />
+          <img src={CaptureblissLogo} alt="capturebliss loader" style={{ height: '50px', width: '50px', margin: 'auto' }} />
           <Progress strokeColor="#7567ff" status="active" percent={this.state.progressPercent} />
         </Tags.HeartLoaderCon>
       );

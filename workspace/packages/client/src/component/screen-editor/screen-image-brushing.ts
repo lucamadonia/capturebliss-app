@@ -1,5 +1,5 @@
-import { Coords, ITourDataOpts } from '@fable/common/dist/types';
-import { ScreenType } from '@fable/common/dist/api-contract';
+import { Coords, ITourDataOpts } from '@capturebliss/common/dist/types';
+import { ScreenType } from '@capturebliss/common/dist/api-contract';
 import { HighlighterBaseConfig } from '../base/hightligher-base';
 import DomElementPicker, { HighlightMode } from './dom-element-picker';
 

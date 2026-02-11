@@ -47,7 +47,7 @@ export const Title = styled.h2`
   margin: 0;
 `;
 
-export const FableLogo = styled.img`
+export const CaptureblissLogo = styled.img`
   aspect-ratio: 1/1;
   width: 2.75rem;
 `;

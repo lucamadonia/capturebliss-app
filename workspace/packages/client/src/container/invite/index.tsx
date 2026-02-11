@@ -24,7 +24,7 @@ interface IOwnStateProps {
 
 class Invite extends React.PureComponent<IProps, IOwnStateProps> {
   componentDidMount(): void {
-    localStorage.setItem('fable/invite-id', this.props.match.params.id);
+    localStorage.setItem('capturebliss/invite-id', this.props.match.params.id);
 
     setTimeout(() => {
       this.props.navigate('/login');

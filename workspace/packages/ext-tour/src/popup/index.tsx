@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { createRoot } from "react-dom/client";
-import { init as sentryInit } from "@fable/common/dist/sentry";
+import { init as sentryInit } from "@capturebliss/common/dist/sentry";
 import { Msg, MsgPayload } from "../msg";
 import "./index.less";
 import { IExtStoredState, RecordingStatus } from "../types";
@@ -209,7 +209,7 @@ class Root extends Component<Props, State> {
                   alt="illustration"
                   style={{ margin: "0.5rem 0" }}
                   width={100}
-                  src="./fableLogo.svg"
+                  src="./captureblissLogo.svg"
                 />
               </button>
             </div>

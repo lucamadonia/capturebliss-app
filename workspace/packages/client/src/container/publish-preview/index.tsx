@@ -10,10 +10,10 @@ import {
   SoundFilled,
   UndoOutlined
 } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { ReqTourPropUpdate } from '@fable/common/dist/api-contract';
-import { CmnEvtProp, IAnnotationConfig, LoadingStatus, TourData, TourDataWoScheme, TourScreenEntity } from '@fable/common/dist/types';
-import { deepcopy } from '@fable/common/dist/utils';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { ReqTourPropUpdate } from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp, IAnnotationConfig, LoadingStatus, TourData, TourDataWoScheme, TourScreenEntity } from '@capturebliss/common/dist/types';
+import { deepcopy } from '@capturebliss/common/dist/utils';
 import { Button as AntButton, Dropdown, MenuProps, Popover, Progress, Tooltip } from 'antd';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -84,37 +84,37 @@ const progressStepOrder: QuillyInPreviewProgress[] = Object.keys(progressMap) as
 
 export const VoiceOptions = [
   { label: 'Amber',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Amber.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Amber.mp3',
     name: 'alloy',
     description: 'Rich & balanced tone that feels like a warm conversation with a trusted friend'
   },
   {
     label: 'Azure',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Azure.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Azure.mp3',
     name: 'echo',
     description: 'Bright and dynamic voice, perfect for grabbing attention and keeping listeners engaged'
   },
   {
     label: 'Cerise',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Cerise.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Cerise.mp3',
     name: 'fable',
     description: 'Brings stories to life with a smooth, captivating charm that makes every word memorable'
   },
   {
     label: 'Cobalt',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Cobalt.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Cobalt.mp3',
     name: 'onyx',
     description: 'Deep, authoritative presence, ideal for serious and impactful messaging'
   },
   {
     label: 'Crimson',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Crimson.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Crimson.mp3',
     name: 'nova',
     description: 'Fresh and energizing, adding a burst of enthusiasm to every message'
   },
   {
     label: 'Pearl',
-    audioUrl: 'https://scdna.sharefable.com/audio_samples/Pearl.mp3',
+    audioUrl: 'https://scdna.capturebliss.com/audio_samples/Pearl.mp3',
     name: 'shimmer',
     description: 'Gentle and melodic tone creates a soothing listening experience, making it ideal for calm and comforting content'
   }
@@ -278,7 +278,7 @@ class PublishPreview extends React.PureComponent<IProps, IOwnStateProps> {
     if (e.data.type === 'lastAnnotation') {
       this.setState({ showReplayOverlay: true });
       initLLMSurvey();
-    } else if (e.data.sender === 'sharefable.com' && e.data.type === ExtMsg.OnNavigation) {
+    } else if (e.data.sender === 'capturebliss.com' && e.data.type === ExtMsg.OnNavigation) {
       const annRefId = e.data.payload.currentAnnotationRefId;
       this.setState({ currentAnnRefId: annRefId });
     } else if (e.data.type === SCREEN_SIZE_MSG) {

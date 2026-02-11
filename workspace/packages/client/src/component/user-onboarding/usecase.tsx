@@ -112,7 +112,7 @@ export default function Usecase(props: Props): JSX.Element {
         style={{
           fontWeight: 600
         }}
-      >How & where would you like to use Fable?
+      >How & where would you like to use Capturebliss?
       </div>
 
       <form

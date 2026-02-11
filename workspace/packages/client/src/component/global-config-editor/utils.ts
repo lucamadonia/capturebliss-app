@@ -1,5 +1,5 @@
-import { IAnnotationConfig, IChronoUpdatable, IGlobalConfig, ITourDataOpts } from '@fable/common/dist/types';
-import { createLiteralProperty, getCurrentUtcUnixTime } from '@fable/common/dist/utils';
+import { IAnnotationConfig, IChronoUpdatable, IGlobalConfig, ITourDataOpts } from '@capturebliss/common/dist/types';
+import { createLiteralProperty, getCurrentUtcUnixTime } from '@capturebliss/common/dist/utils';
 
 function newGlobalConfigFrom<T extends IChronoUpdatable>(c: T): T {
   const newConfig = { ...c };
@@ -58,7 +58,7 @@ export const updateTourOptsForPreview = (
   updatedOpts.annotationFontFamily = createLiteralProperty(globalStyleConfig.fontFamily);
   updatedOpts.annotationFontColor = createLiteralProperty(globalStyleConfig.fontColor);
   updatedOpts.borderRadius = createLiteralProperty(globalStyleConfig.annBorderRadius);
-  updatedOpts.showFableWatermark = createLiteralProperty(globalStyleConfig.showWatermark);
+  updatedOpts.showCaptureblissWatermark = createLiteralProperty(globalStyleConfig.showWatermark);
   updatedOpts.annotationPadding = createLiteralProperty(globalStyleConfig.annConPad);
   updatedOpts.showStepNum = createLiteralProperty(globalStyleConfig.showStepNo);
 

@@ -1,4 +1,4 @@
-import { AiDxDy, InteractionCtx, RectWithFId } from '@fable/common/dist/types';
+import { AiDxDy, InteractionCtx, RectWithFId } from '@capturebliss/common/dist/types';
 import { LLM_IMAGE_TYPE, LLM_MARK_COLORS } from './types';
 
 // TODO
@@ -152,10 +152,10 @@ export async function uploadScreenshotWithMark(
 
 // eslint-disable-next-line no-restricted-globals
 self.onmessage = async function (event) {
-  if (event.data && event.data.sender === 'fable') {
+  if (event.data && event.data.sender === 'capturebliss') {
     const res = await uploadScreenshotWithMark(event.data.frameRect, event.data.img, event.data.ctx, event.data.dxdy);
     // eslint-disable-next-line no-restricted-globals
-    self.postMessage({ markImg: res, id: event.data.index, from: 'fable-worker', ctx: event.data.ctx });
+    self.postMessage({ markImg: res, id: event.data.index, from: 'capturebliss-worker', ctx: event.data.ctx });
   }
 };
 

@@ -1,0 +1,12 @@
+{
+  "title": "Demo-Editor | Capturebliss",
+  "creatingDemo": "Demo wird erstellt | Capturebliss",
+  "preview": "Vorschau | Capturebliss",
+  "publish": "Veröffentlichen",
+  "unpublish": "Veröffentlichung aufheben",
+  "autoSaving": "Automatisch speichern...",
+  "saved": "Gespeichert",
+  "resetZoom": "Zoom zurücksetzen",
+  "showAnnotationText": "Annotationstext anzeigen",
+  "downloadTourData": "Tour-Daten herunterladen"
+}

@@ -1,13 +1,13 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { LogoutType } from '@fable/common/dist/constants';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { UnauthorizedReason } from '@fable/common/dist/api-contract';
+import { LogoutType } from '@capturebliss/common/dist/constants';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { UnauthorizedReason } from '@capturebliss/common/dist/api-contract';
 import Loader from '../loader';
 import InfoCon, { InfoBtn } from '../info-con';
 import FullPageTopLoader from '../loader/full-page-top-loader';
-import { FABLE_LOCAL_STORAGE_ORG_ID_KEY } from '../../constants';
+import { CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY } from '../../constants';
 import { OurLink } from '../../common-styled';
 
 interface Props {
@@ -33,7 +33,7 @@ export default function Logout(props: Props): JSX.Element {
 
     if (logoutTypeRaw) logoutType = +logoutTypeRaw;
     // For force logout always clear org so that switch is easier
-    else localStorage.removeItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY);
+    else localStorage.removeItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY);
 
     switch (logoutType) {
       case LogoutType.AccessTokenInvalidated:
@@ -67,7 +67,7 @@ export default function Logout(props: Props): JSX.Element {
                 EmailId exists but a different login method has been used previously. Please logout and use correct login method.
               </p>
               <p>
-                <OurLink target="_self" href="https://www.sharefable.com/contact-support" style={{ display: 'inline' }}>Contact support</OurLink> if you think you are using the correct login method.
+                <OurLink target="_self" href="https://www.capturebliss.com/contact-support" style={{ display: 'inline' }}>Contact support</OurLink> if you think you are using the correct login method.
               </p>
             </>
           ) : (
@@ -95,7 +95,7 @@ export default function Logout(props: Props): JSX.Element {
             linkTo: '/select-org'
           });
         } else {
-          localStorage.removeItem(FABLE_LOCAL_STORAGE_ORG_ID_KEY);
+          localStorage.removeItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY);
         }
         setBtns(actionBtns);
 

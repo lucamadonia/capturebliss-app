@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { createLiteralProperty } from '@fable/common/dist/utils';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { createLiteralProperty } from '@capturebliss/common/dist/utils';
 import { ThunderboltFilled } from '@ant-design/icons';
 import { IDemoHubConfig } from '../../types';
 import * as Tags from './styled';
@@ -14,7 +14,7 @@ import { getAllDemoRidForSection, getorCreateDemoHubScriptEl, getOrCreateDemoHub
 import EmbeddedDemoIframe from './embed-demo';
 import Cta from '../demo-hub-editor/cta';
 
-const LEAD_FORM_DATA = 'fable/demo-hub-lead-form';
+const LEAD_FORM_DATA = 'capturebliss/demo-hub-lead-form';
 
 interface Props {
   config: IDemoHubConfig;
@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle<{fontSize: number}>`
   }
 `;
 
-const FABLE_FONT_ID = 'fable-font';
+const CAPTUREBLISS_FONT_ID = 'capturebliss-font';
 
 const scrollToSection = (): void => {
   if (window.location.hash) {
@@ -43,16 +43,16 @@ const scrollToSection = (): void => {
 
 export const addFontToHeader = (doc: Document, fontFamily: string):void => {
   const linkHref = `https://fonts.googleapis.com/css?family=${fontFamily.replace(/\s+/g, '+')}`;
-  const fableFontEl = doc.getElementById(FABLE_FONT_ID);
-  if (!fableFontEl) {
+  const captureblissFontEl = doc.getElementById(CAPTUREBLISS_FONT_ID);
+  if (!captureblissFontEl) {
     const link = doc.createElement('link');
     link.href = linkHref;
     link.rel = 'stylesheet';
-    link.id = 'fable-font';
+    link.id = 'capturebliss-font';
     link.type = 'text/css';
     doc.head.append(link);
-  } else if ((fableFontEl as HTMLLinkElement).href !== linkHref) {
-    (fableFontEl as HTMLLinkElement).href = linkHref;
+  } else if ((captureblissFontEl as HTMLLinkElement).href !== linkHref) {
+    (captureblissFontEl as HTMLLinkElement).href = linkHref;
   }
 };
 

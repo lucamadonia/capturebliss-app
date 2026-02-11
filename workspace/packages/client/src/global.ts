@@ -36,7 +36,7 @@ export interface GlobalSettings {
   shouldLogEvent?: boolean;
 }
 
-export interface FableLeadContactProps extends Record<string, string | number | undefined | null | Record<string, any>> {
+export interface CaptureblissLeadContactProps extends Record<string, string | number | undefined | null | Record<string, any>> {
   pk_key: string;
   pk_val: string
   email?: string;
@@ -62,7 +62,7 @@ export interface GlobalAppData {
   globalClock?: Clock;
   localClocks?: Record<string, Clock>;
   settings?: GlobalSettings;
-  lead?: FableLeadContactProps;
+  lead?: CaptureblissLeadContactProps;
   evtDataOnNav?: EventDataOnNav;
   annotationSerialIdMap?: AnnotationSerialIdMap;
   completionPercentage?: number;
@@ -74,7 +74,7 @@ export interface JourneyNameIndexData {
   journeyIndex?: number
 }
 
-export type GlobalWin = Window & { __fable_global_app_data__?: GlobalAppData }
+export type GlobalWin = Window & { __capturebliss_global_app_data__?: GlobalAppData }
 
 export interface UserFromQueryParams extends Record<string, string | number | undefined | null> {
   email?: string;
@@ -85,14 +85,14 @@ export interface UserFromQueryParams extends Record<string, string | number | un
 }
 
 export function addToGlobalAppData<T>(key: keyof GlobalAppData, val: GlobalAppData[keyof GlobalAppData]) : void {
-  (window as GlobalWin).__fable_global_app_data__ = {
-    ...((window as GlobalWin).__fable_global_app_data__ || {}),
+  (window as GlobalWin).__capturebliss_global_app_data__ = {
+    ...((window as GlobalWin).__capturebliss_global_app_data__ || {}),
     [key]: val
   };
 }
 
 export function getGlobalData(key: keyof GlobalAppData): GlobalAppData[keyof GlobalAppData] {
-  const commonMessageData = (window as GlobalWin).__fable_global_app_data__ || {};
+  const commonMessageData = (window as GlobalWin).__capturebliss_global_app_data__ || {};
   return commonMessageData[key];
 }
 

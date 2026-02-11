@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
-import FableLogo from '../../assets/onboarding/fable-logo.svg';
+import CaptureblissLogo from '../../assets/onboarding/capturebliss-logo.svg';
 import Browser from '../../assets/onboarding/pin-ext-browser.png';
 import * as Tags from './styled';
 
@@ -65,8 +65,8 @@ export default function RootLayout(props: Props): JSX.Element {
             position: 'absolute',
             top: '4.375rem'
           }}
-          src={FableLogo}
-          alt="fable logo"
+          src={CaptureblissLogo}
+          alt="capturebliss logo"
         />
       </Link>
       {!props.dontShowIllustration && (

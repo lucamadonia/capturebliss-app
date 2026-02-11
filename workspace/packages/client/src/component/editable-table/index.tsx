@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import { ColumnsType } from 'antd/es/table';
-import { getRandomId } from '@fable/common/dist/utils';
+import { getRandomId } from '@capturebliss/common/dist/utils';
 import { DatasetConfig, TableComponents, TableRow } from '../../types';
 import {
   DATASET_COL_ID_ID,

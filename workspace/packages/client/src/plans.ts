@@ -1,4 +1,4 @@
-import { Plan } from '@fable/common/dist/api-contract';
+import { Plan } from '@capturebliss/common/dist/api-contract';
 
 export enum Test {
   TEXTARR = 'text',

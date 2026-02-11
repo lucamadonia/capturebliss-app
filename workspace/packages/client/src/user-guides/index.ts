@@ -3,7 +3,7 @@ import ShareEmbedDemoGuide from './share-embed-demo-guide';
 import ExploringCanvasGuide from './exploring-canvas-guide';
 import EditingInteractiveDemoGuidePart1 from './editing-interactive-demo-guide/part-1';
 import EditingInteractiveDemoGuidePart2 from './editing-interactive-demo-guide/part-2';
-import { insertFableUserGuide, removeDeprecatedTours, upsertFableUserGuide } from './utils';
+import { insertCaptureblissUserGuide, removeDeprecatedTours, upsertCaptureblissUserGuide } from './utils';
 
 const allUserGuides = [
   TourCardGuide,
@@ -15,8 +15,8 @@ const allUserGuides = [
 
 export const removeOldGuides = (): void => removeDeprecatedTours(allUserGuides);
 
-export const insertAllUserGuides = (): void => insertFableUserGuide(allUserGuides);
+export const insertAllUserGuides = (): void => insertCaptureblissUserGuide(allUserGuides);
 
 export const upsertAllUserGuides = (): void => {
-  allUserGuides.forEach(guide => upsertFableUserGuide(guide.guideInfo));
+  allUserGuides.forEach(guide => upsertCaptureblissUserGuide(guide.guideInfo));
 };

@@ -1,10 +1,10 @@
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import {
   RespUser
-} from '@fable/common/dist/api-contract';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { CmnEvtProp } from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/api-contract';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
@@ -73,7 +73,7 @@ export default function NameCard(props: Props): JSX.Element {
           fontWeight: 600
         }}
       >
-        Create stunning demos with Fable's AI copilot!
+        Create stunning demos with Capturebliss's AI copilot!
       </div>
       <div
         className="type-reg"

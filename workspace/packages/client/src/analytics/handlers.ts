@@ -1,5 +1,5 @@
-import api from '@fable/common/dist/api';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
+import api from '@capturebliss/common/dist/api';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
 import { GlobalSettings, getGlobalData } from '../global';
 
 export interface CBEventBase{

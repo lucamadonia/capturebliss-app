@@ -1,11 +1,11 @@
-import { IAnnotationButtonType } from '@fable/common/dist/types';
-// import { CmnLeadProps, FableLeadContactProps } from '../global';
+import { IAnnotationButtonType } from '@capturebliss/common/dist/types';
+// import { CmnLeadProps, CaptureblissLeadContactProps } from '../global';
 // TODO[now] check what all props are needed here
 
-export enum FableAnalyticsLocalStoreKeys {
-  AnonymousUserId = 'fable/aid',
-  SessionId = 'fable/sid',
-  SessionIdExpireAt = 'fable/side'
+export enum CaptureblissAnalyticsLocalStoreKeys {
+  AnonymousUserId = 'capturebliss/aid',
+  SessionId = 'capturebliss/sid',
+  SessionIdExpireAt = 'capturebliss/side'
 }
 
 export interface CommonEventProps {

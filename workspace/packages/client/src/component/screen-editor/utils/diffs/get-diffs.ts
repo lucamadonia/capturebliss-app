@@ -1,6 +1,6 @@
-import { ScreenData, SerDoc, SerNode } from '@fable/common/dist/types';
+import { ScreenData, SerDoc, SerNode } from '@capturebliss/common/dist/types';
 import { DiffsSerNode, Update } from './types';
-import { FABLE_CUSTOM_NODE } from '../deser';
+import { CAPTUREBLISS_CUSTOM_NODE } from '../deser';
 import { DeSerProps } from '../../preview';
 import { getFidOfSerNode, isDeepEqual, removeDuplicatesOfStrArr } from '../../../../utils';
 
@@ -69,7 +69,7 @@ export const getDiffsOfImmediateChildren = (node1: DiffQueueNode, node2: DiffQue
       if (serNodeInTree2.type !== Node.COMMENT_NODE && serNodeInTree2.type !== Node.ELEMENT_NODE) {
         if (
           serNodeInTree2.type !== Node.TEXT_NODE
-          && serNodeInTree2.type !== FABLE_CUSTOM_NODE
+          && serNodeInTree2.type !== CAPTUREBLISS_CUSTOM_NODE
           && serNodeInTree2.type !== Node.DOCUMENT_TYPE_NODE
           && serNodeInTree2.type !== Node.DOCUMENT_FRAGMENT_NODE
         ) {

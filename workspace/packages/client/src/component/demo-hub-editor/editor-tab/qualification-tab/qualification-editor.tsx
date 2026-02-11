@@ -191,7 +191,7 @@ function QualificationEndCta(ctaProps: QualificationEndCtaProps): JSX.Element {
             maxWidth: '200px'
           }}
           >
-            <GTags.FableSelect
+            <GTags.CaptureblissSelect
               style={{ width: '200px' }}
               className="typ-ip"
               placeholder="Select a CTA"

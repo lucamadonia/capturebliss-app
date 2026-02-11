@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { AppstoreFilled, CaretDownFilled, CompassFilled, ContainerFilled, ReloadOutlined } from '@ant-design/icons';
-import { FrameSettings } from '@fable/common/dist/api-contract';
+import { FrameSettings } from '@capturebliss/common/dist/api-contract';
 import { Tooltip } from 'antd';
-import { JourneyData } from '@fable/common/dist/types';
+import { JourneyData } from '@capturebliss/common/dist/types';
 import { ScreenSizeData } from '../../types';
 import { P_RespTour } from '../../entity-processor';
 import * as Tags from './styled';

@@ -1,4 +1,4 @@
-import { SerNode } from '@fable/common/dist/types';
+import { SerNode } from '@capturebliss/common/dist/types';
 import { DeSerProps } from '../../preview';
 
 export type AddDiff = {

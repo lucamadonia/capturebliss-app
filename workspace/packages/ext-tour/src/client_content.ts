@@ -1,6 +1,6 @@
 import { startTransaction } from "@sentry/browser";
-import { init as sentryInit, sentryTxReport } from "@fable/common/dist/sentry";
-import { openDb, putDataInDb, DB_NAME, OBJECT_STORE, OBJECT_KEY, OBJECT_KEY_VALUE } from "@fable/common/dist/db-utils";
+import { init as sentryInit, sentryTxReport } from "@capturebliss/common/dist/sentry";
+import { openDb, putDataInDb, DB_NAME, OBJECT_STORE, OBJECT_KEY, OBJECT_KEY_VALUE } from "@capturebliss/common/dist/db-utils";
 import { Msg } from "./msg";
 import { FrameDataToBeProcessed } from "./types";
 import { BATCH_SIZE } from "./utils";

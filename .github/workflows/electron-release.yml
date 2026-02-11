@@ -1,0 +1,63 @@
+name: Electron Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+env:
+  NODE_VERSION: "18"
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+          cache-dependency-path: workspace/yarn.lock
+
+      - name: Install dependencies
+        working-directory: workspace
+        run: yarn install --frozen-lockfile
+
+      - name: Build common
+        working-directory: workspace/packages/common
+        run: yarn build
+
+      - name: Build client
+        working-directory: workspace/packages/client
+        run: yarn build
+
+      - name: Build electron
+        working-directory: workspace/packages/electron
+        env:
+          CSC_LINK: ${{ secrets.CSC_LINK }}
+          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          WIN_CSC_LINK: ${{ secrets.WIN_CSC_LINK }}
+          WIN_CSC_KEY_PASSWORD: ${{ secrets.WIN_CSC_KEY_PASSWORD }}
+        run: |
+          yarn build
+          yarn electron-builder --publish never
+
+      - name: Upload release artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            workspace/packages/electron/dist/*.exe
+            workspace/packages/electron/dist/*.dmg
+            workspace/packages/electron/dist/*.AppImage
+            workspace/packages/electron/dist/*.deb
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

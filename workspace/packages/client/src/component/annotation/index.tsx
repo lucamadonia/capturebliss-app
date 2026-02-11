@@ -7,14 +7,14 @@ import {
   IAnnotationConfig,
   ITourDataOpts,
   VideoAnnotationPositions
-} from '@fable/common/dist/types';
-import { sleep } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { sleep } from '@capturebliss/common/dist/utils';
 import React, { Suspense, lazy } from 'react';
 import {
   CtaClickedInternal,
   CtaFrom
 } from '../../analytics/types';
-import { EventDataOnNav, FableLeadContactProps } from '../../global';
+import { EventDataOnNav, CaptureblissLeadContactProps } from '../../global';
 import { emitEvent } from '../../internal-events';
 import { AnimEntryDir, InternalEvents, Msg, NavFn, Payload_Navigation, Payload_AnnotationPos } from '../../types';
 import {
@@ -162,8 +162,8 @@ export class AnnotationContent extends React.PureComponent<{
           borderRadius: this.props.opts.borderRadius._val,
           position: this.props.isThemeAnnotation ? 'unset' : 'absolute',
         }}
-        id={this.props.isProbing ? '' : 'fable-ann-card-rendered'}
-        className={`fable-ann-card f-a-c-${this.props.config.refId} dir-${this.props.dir}`}
+        id={this.props.isProbing ? '' : 'capturebliss-ann-card-rendered'}
+        className={`capturebliss-ann-card f-a-c-${this.props.config.refId} dir-${this.props.dir}`}
       >
         <Tags.AnInnerContainer className="f-inner-con">
           {/* TODO: use some other mechanism to populate the following
@@ -265,12 +265,12 @@ export class AnnotationContent extends React.PureComponent<{
 
                         const pk_val = leadForm[this.props.opts.lf_pkf] || '';
                         if (shouldNavigate) {
-                          const evt: FableLeadContactProps = {
+                          const evt: CaptureblissLeadContactProps = {
                             ...leadForm,
                             pk_key: this.props.opts.lf_pkf,
                             pk_val,
                           };
-                          emitEvent<Partial<FableLeadContactProps>>(InternalEvents.LeadAssign, evt);
+                          emitEvent<Partial<CaptureblissLeadContactProps>>(InternalEvents.LeadAssign, evt);
                           Promise.resolve().then(() => this.props.navigateToAdjacentAnn(btnConf.type, btnConf.id));
                         }
                         return;
@@ -298,7 +298,7 @@ export class AnnotationContent extends React.PureComponent<{
         </Tags.AnInnerContainer>
 
         {/* Watermark */}
-        {this.props.opts.showFableWatermark._val
+        {this.props.opts.showCaptureblissWatermark._val
         && !this.props.isMediaAnn
         && (
           <WatermarkCon
@@ -307,7 +307,7 @@ export class AnnotationContent extends React.PureComponent<{
             }}
             target="_blank"
             rel="noopener noreferrer"
-            href="https://sharefable.com"
+            href="https://capturebliss.com"
           >
             <WatermarkText />
           </WatermarkCon>
@@ -403,7 +403,7 @@ export class AnnotationCard extends React.PureComponent<IProps> {
    * The way keyboard event works is a little complex although it seems like it could have been done easily.
    *
    * Preface knowledge:
-   * Fable records multiple screen with annotation during the recording phase. While the demo is played, we try to apply
+   * Capturebliss records multiple screen with annotation during the recording phase. While the demo is played, we try to apply
    * diff on top of the same screen; provided if both the screens are from same domain. Which means, same document
    * object is shared among multiple steps (annotations). In this mix, there might be a screen of completely different
    * domain (or an image scren) might be present that might have a different document object.
@@ -427,7 +427,7 @@ export class AnnotationCard extends React.PureComponent<IProps> {
     // If lead form is present then we don't enable keyboard navigation as it'll create issue with leadform input and
     // verification process
     if (this.props.annotationDisplayConfig.config.isLeadFormPresent) return;
-    // Ref: https://sharefable.slack.com/archives/C0491PEEPPZ/p1725969199365899?thread_ts=1725955461.355159&cid=C0491PEEPPZ
+    // Ref: https://capturebliss.slack.com/archives/C0491PEEPPZ/p1725969199365899?thread_ts=1725955461.355159&cid=C0491PEEPPZ
     if (!this.props.annotationDisplayConfig.isMaximized) return;
     if (e.data.type === 'f-go-next-ann') {
       const nextBtn = this.props.annotationDisplayConfig.config.buttons.filter(btn => btn.type === 'next');
@@ -573,7 +573,7 @@ export class AnnotationCard extends React.PureComponent<IProps> {
       t = winH - h - 20;
       l = winW - w - 20;
 
-      if (displayConfig.opts.showFableWatermark._val) {
+      if (displayConfig.opts.showCaptureblissWatermark._val) {
         l -= 72;
       }
       return { l, t, dir, isUltrawideBox };
@@ -1059,7 +1059,7 @@ export class AnnotationCard extends React.PureComponent<IProps> {
                   borderRadius={getBorderRadiusForAnnotation(
                     this.props.annotationDisplayConfig.config.positioning,
                     isCoverAnnotation,
-                    this.props.annotationDisplayConfig.opts.showFableWatermark._val,
+                    this.props.annotationDisplayConfig.opts.showCaptureblissWatermark._val,
                     dir,
                     this.props.annotationDisplayConfig.opts.borderRadius._val
                   )}
@@ -1101,7 +1101,7 @@ export class AnnotationCard extends React.PureComponent<IProps> {
             )
           }
 
-            {this.props.annotationDisplayConfig.opts.showFableWatermark._val
+            {this.props.annotationDisplayConfig.opts.showCaptureblissWatermark._val
             && isMediaAnnotation
             && !(config.voiceover && this.props.playMode)
             && (
@@ -1477,7 +1477,7 @@ export class AnnotationHotspot extends React.PureComponent<HotspotProps> {
             scrollX={p.scrollX}
             scrollY={p.scrollY}
             shouldAnimate={p.isGranularHotspot}
-            className="fable-hotspot"
+            className="capturebliss-hotspot"
             onClick={() => {
               this.props.navigateToAdjacentAnn('next', btnConf.id);
             }}
@@ -1519,7 +1519,7 @@ export class AnnotationBubble extends React.PureComponent<AnnBubbleProps> {
             top: `${top}px`,
             left: `${left}px`,
           }}
-          className="fable-multi-ann-marker"
+          className="capturebliss-multi-ann-marker"
           onClick={() => {
             this.props.navigateToAnnByRefId(this.props.conf.refId);
           }}

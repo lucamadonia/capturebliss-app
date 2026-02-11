@@ -250,7 +250,7 @@ export const MultiNodeModal = styled.div`
   height: 100%;
   margin: auto;
   border-radius: 20px;
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   scrollbar-width: thin;
   overflow-y: auto;
   overflow-x: hidden;
@@ -258,7 +258,7 @@ export const MultiNodeModal = styled.div`
 
   &::-webkit-scrollbar-track {
     padding: 2px 0;
-    background-color: var(--fable-scrollbar-track);
+    background-color: var(--capturebliss-scrollbar-track);
     border-radius: 10px;
     border: 1px solid #F3F4F6;
   }
@@ -271,7 +271,7 @@ export const MultiNodeModal = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
   }
 `;
 

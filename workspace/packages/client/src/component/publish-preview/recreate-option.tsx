@@ -1,4 +1,4 @@
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 import { Modal } from 'antd';
 import React, { useState } from 'react';
 import QuillyLoader from '../loader/quilly-loader';

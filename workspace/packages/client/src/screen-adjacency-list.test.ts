@@ -1,4 +1,4 @@
-import { IAnnotationConfig } from '@fable/common/dist/types';
+import { IAnnotationConfig } from '@capturebliss/common/dist/types';
 import { P_RespScreen } from './entity-processor';
 import create from './screen-adjacency-list';
 

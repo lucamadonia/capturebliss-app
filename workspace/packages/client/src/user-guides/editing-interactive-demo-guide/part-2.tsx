@@ -23,7 +23,7 @@ export const guide: Guide = {
   steps: [
     {
       title: 'Editing the message of the annotation',
-      description: 'This text box is where you can set the message that is shown in the annotation box. You can include images and gifs as a part of the annotation along with text. You can even replace the text annotation box with a video annotation which you can either record within Fable or upload a recorded video file.',
+      description: 'This text box is where you can set the message that is shown in the annotation box. You can include images and gifs as a part of the annotation along with text. You can even replace the text annotation box with a video annotation which you can either record within Capturebliss or upload a recorded video file.',
       target: () => getDOMElement(guide, () => document.getElementsByClassName('annotation-rte').item(0) as HTMLElement)!,
       nextButtonProps: {
         children: <NextBtnPropChildren />,

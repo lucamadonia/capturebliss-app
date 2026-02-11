@@ -1,5 +1,5 @@
-import { RespDemoEntity } from '@fable/common/dist/api-contract';
-import { AnnotationPositions, CoverAnnotationPositions, CustomAnnotationPosition, EditFile, IAnnotationAudio, IAnnotationConfig, ITourDataOpts, JourneyData, JourneyFlow, Property, TourData, VideoAnnotationPositions } from '@fable/common/dist/types';
+import { RespDemoEntity } from '@capturebliss/common/dist/api-contract';
+import { AnnotationPositions, CoverAnnotationPositions, CustomAnnotationPosition, EditFile, IAnnotationAudio, IAnnotationConfig, ITourDataOpts, JourneyData, JourneyFlow, Property, TourData, VideoAnnotationPositions } from '@capturebliss/common/dist/types';
 import { IAnnotationConfigWithScreenId } from './component/annotation/annotation-config-utils';
 import { RenameDemoHubResult } from './action/creator';
 import { Tx } from './container/tour-editor/chunk-sync-manager';
@@ -269,7 +269,7 @@ export type ScreenPickerData = {
   showCloseButton: boolean
 }
 
-export const STORAGE_PREFIX_KEY_QUERY_PARAMS = 'fable/qp';
+export const STORAGE_PREFIX_KEY_QUERY_PARAMS = 'capturebliss/qp';
 
 export interface FlowProgress {
   main: string;
@@ -277,7 +277,7 @@ export interface FlowProgress {
   completedSteps: number;
 }
 
-export const JOURNEY_PROGRESS_LOCAL_STORE_KEY = 'fable/journey';
+export const JOURNEY_PROGRESS_LOCAL_STORE_KEY = 'capturebliss/journey';
 
 export enum InternalEvents {
   DemoLoadingStarted = 'demo_loading_started',
@@ -303,7 +303,7 @@ export enum ExtMsg {
 }
 
 interface MsgBase {
-  sender: 'sharefable.com',
+  sender: 'capturebliss.com',
   type: ExtMsg,
 }
 
@@ -374,7 +374,7 @@ export type TourApplyAllChangeFn = (
   tx?: Tx,
 ) => void;
 
-export const SCREEN_EDITOR_ID = 'fable-ann-editorial-modal';
+export const SCREEN_EDITOR_ID = 'capturebliss-ann-editorial-modal';
 
 export interface LeadActivityData {
   aid: string;
@@ -510,7 +510,7 @@ export interface IDemoHubConfigCta {
   iconPlacement?: 'left' | 'right';
   __linkType: 'open_ext_url' | 'open_demo_modal',
   link: Property<string>;
-  // by default fable adds two cta 1. See all demos & 2. Book a demo
+  // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
   // Those are 'system' defined
   __definedBy: 'system' | 'user';
   type: Property<DemoHubConfigCtaTypeType>;
@@ -565,7 +565,7 @@ export interface IDemoHubConfig {
 
   companyName: Property<string>;
 
-  // In fable we take this value from a dropdown.
+  // In capturebliss we take this value from a dropdown.
   // Here if it's string, it can be any valid google font name
   // TODO what value to enter
   fontFamily: Property<string>;
@@ -576,7 +576,7 @@ export interface IDemoHubConfig {
 
   // this contains list of all ctas.
   // These ctas are used in other different components.
-  // By default fable adds some defualt cta to some default component.
+  // By default capturebliss adds some defualt cta to some default component.
   // STANDARD_CLASS_NAME: `cta cta-{{id}}`
   cta: IDemoHubConfigCta[];
 
@@ -693,7 +693,7 @@ export interface EntryBase {
     icon?: Icon;
     iconPlacement?: 'left' | 'right';
     __linkType: 'continue_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system';
     type: DemoHubConfigCtaTypeType;
@@ -711,7 +711,7 @@ export interface EntryBase {
     icon?: Icon;
     iconPlacement?: 'left' | 'right';
     __linkType: 'skip_qualifcation_criteria',
-    // by default fable adds two cta 1. See all demos & 2. Book a demo
+    // by default capturebliss adds two cta 1. See all demos & 2. Book a demo
     // Those are 'system' defined
     __definedBy: 'system';
     type: DemoHubConfigCtaTypeType;

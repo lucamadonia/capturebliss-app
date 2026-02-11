@@ -10,11 +10,12 @@ import {
   SettingOutlined,
   UsergroupAddOutlined
 } from '@ant-design/icons';
-import { Status } from '@fable/common/dist/api-contract';
-import { CmnEvtProp } from '@fable/common/dist/types';
+import { Status } from '@capturebliss/common/dist/api-contract';
+import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import { Popover, Tooltip } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { AMPLITUDE_EVENTS } from '../../amplitude/events';
 import { P_RespSubscription, getNumberOfDaysFromNow } from '../../entity-processor';
 import { isActiveBusinessPlan } from '../../utils';
@@ -31,7 +32,7 @@ interface Props {
 
 function sendEvntToAmplitude(tab: 'interactive_demos' | 'user_management' | 'billing' | 'user_guides'
   | 'demo_hub' | 'leads' | 'integrations' | 'datasets' | 'free_demo_consultation' | 'settings'): void {
-  import('@fable/common/dist/amplitude').then((amp) => {
+  import('@capturebliss/common/dist/amplitude').then((amp) => {
     amp.traceEvent(AMPLITUDE_EVENTS.SIDE_PANEL_TAB_CLICKED, { tab }, [CmnEvtProp.EMAIL, CmnEvtProp.TOUR_URL]);
   }).catch((err) => {
     console.log('error in amplitude event', err);
@@ -39,11 +40,13 @@ function sendEvntToAmplitude(tab: 'interactive_demos' | 'user_management' | 'bil
 }
 
 export default function SidePanel(props: Props): JSX.Element {
+  const { t } = useTranslation();
+
   if (props.compact) {
     return (
       <Tags.Con>
         <Tags.ConNav>
-          <Tooltip placement="right" title="Interactive demos">
+          <Tooltip placement="right" title={t('nav.interactiveDemos')}>
             <Tags.ConNavBtn
               className={props.selected === 'tours' ? 'selected' : ''}
               to="/demos?c=1"
@@ -52,7 +55,7 @@ export default function SidePanel(props: Props): JSX.Element {
               <NodeIndexOutlined />
             </Tags.ConNavBtn>
           </Tooltip>
-          <Tooltip placement="right" title="User management">
+          <Tooltip placement="right" title={t('nav.userManagement')}>
             <Tags.ConNavBtn
               className={props.selected === 'user-management' ? 'selected' : ''}
               to="/users?c=1"
@@ -61,7 +64,7 @@ export default function SidePanel(props: Props): JSX.Element {
               <UsergroupAddOutlined />
             </Tags.ConNavBtn>
           </Tooltip>
-          <Tooltip placement="right" title="Billing">
+          <Tooltip placement="right" title={t('nav.billing')}>
             <Tags.ConNavBtn
               className={props.selected === 'billing' ? 'selected' : ''}
               to="/billing?c=1"
@@ -70,9 +73,9 @@ export default function SidePanel(props: Props): JSX.Element {
               <CreditCardOutlined />
             </Tags.ConNavBtn>
           </Tooltip>
-          <Tooltip placement="right" title="Free demo consultation">
+          <Tooltip placement="right" title={t('nav.freeDemoConsultation')}>
             <Tags.ConNavBtn
-              to="https://www.sharefable.com/get-a-demo?ref=app_dashboard"
+              to="https://www.capturebliss.com/get-a-demo?ref=app_dashboard"
               target="_blank"
               onClick={() => sendEvntToAmplitude('free_demo_consultation')}
             >
@@ -88,7 +91,7 @@ export default function SidePanel(props: Props): JSX.Element {
                   onClick={() => sendEvntToAmplitude('demo_hub')}
                 >
                   <HeatMapOutlined />
-                  <p>Demo hub</p>
+                  <p>{t('nav.demoHub')}</p>
                 </Tags.ConNavBtn>
                 <Tags.ConNavBtn
                   className={props.selected === 'leads' ? 'selected' : ''}
@@ -96,7 +99,7 @@ export default function SidePanel(props: Props): JSX.Element {
                   onClick={() => sendEvntToAmplitude('leads')}
                 >
                   <RiseOutlined />
-                  <p>Leads</p>
+                  <p>{t('nav.leads')}</p>
                 </Tags.ConNavBtn>
                 <Tags.ConNavBtn
                   className={props.selected === 'integrations' ? 'selected' : ''}
@@ -104,7 +107,7 @@ export default function SidePanel(props: Props): JSX.Element {
                   onClick={() => sendEvntToAmplitude('integrations')}
                 >
                   <ApiOutlined />
-                  <p>Integrations</p>
+                  <p>{t('nav.integrations')}</p>
                 </Tags.ConNavBtn>
                 <Tags.ConNavBtn
                   className={props.selected === 'settings' ? 'selected' : ''}
@@ -112,7 +115,7 @@ export default function SidePanel(props: Props): JSX.Element {
                   onClick={() => sendEvntToAmplitude('settings')}
                 >
                   <SettingOutlined />
-                  <p>Settings</p>
+                  <p>{t('nav.settings')}</p>
                 </Tags.ConNavBtn>
                 <Tags.ConNavBtn
                   className={props.selected === 'datasets' ? 'selected' : ''}
@@ -120,7 +123,7 @@ export default function SidePanel(props: Props): JSX.Element {
                   onClick={() => sendEvntToAmplitude('datasets')}
                 >
                   <DatabaseOutlined />
-                  <p>Datasets</p>
+                  <p>{t('nav.datasets')}</p>
                 </Tags.ConNavBtn>
               </Tags.ConNav>
             }
@@ -146,7 +149,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('interactive_demos')}
         >
           <NodeIndexOutlined />
-          <p>Interactive demos</p>
+          <p>{t('nav.interactiveDemos')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'demo-hub' ? 'selected' : ''}
@@ -154,7 +157,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('demo_hub')}
         >
           <HeatMapOutlined />
-          <p>Demo hub</p>
+          <p>{t('nav.demoHub')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'leads' ? 'selected' : ''}
@@ -162,7 +165,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('leads')}
         >
           <RiseOutlined />
-          <p>Leads</p>
+          <p>{t('nav.leads')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'integrations' ? 'selected' : ''}
@@ -170,7 +173,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('integrations')}
         >
           <ApiOutlined />
-          <p>Integrations</p>
+          <p>{t('nav.integrations')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'user-management' ? 'selected' : ''}
@@ -178,7 +181,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('user_management')}
         >
           <UsergroupAddOutlined />
-          <p>User management</p>
+          <p>{t('nav.userManagement')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'billing' ? 'selected' : ''}
@@ -186,7 +189,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('billing')}
         >
           <CreditCardOutlined />
-          <p>Billing</p>
+          <p>{t('nav.billing')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'settings' ? 'selected' : ''}
@@ -194,7 +197,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('settings')}
         >
           <SettingOutlined />
-          <p>Settings</p>
+          <p>{t('nav.settings')}</p>
         </Tags.ConNavBtn>
         <Tags.ConNavBtn
           className={props.selected === 'datasets' ? 'selected' : ''}
@@ -202,12 +205,12 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('datasets')}
         >
           <DatabaseOutlined />
-          <p>Datasets</p>
+          <p>{t('nav.datasets')}</p>
         </Tags.ConNavBtn>
       </Tags.ConNav>
       <div style={{ margin: '0 auto 16px' }}>
         <Tags.ConNavBtn
-          to="https://www.sharefable.com/get-a-demo?ref=app_dashboard"
+          to="https://www.capturebliss.com/get-a-demo?ref=app_dashboard"
           target="_blank"
           style={{
             outline: '1px solid #16023e'
@@ -215,7 +218,7 @@ export default function SidePanel(props: Props): JSX.Element {
           onClick={() => sendEvntToAmplitude('free_demo_consultation')}
         >
           <CalendarOutlined />
-          <p>Free demo consultation</p>
+          <p>{t('nav.freeDemoConsultation')}</p>
         </Tags.ConNavBtn>
       </div>
     </Tags.Con>

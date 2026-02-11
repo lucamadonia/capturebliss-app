@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import { RespOrg, RespSubscription, RespUser } from '@fable/common/dist/api-contract';
+import { RespOrg, RespSubscription, RespUser } from '@capturebliss/common/dist/api-contract';
 import { Link } from 'react-router-dom';
 import { Button as AntButton, } from 'antd';
 import { EditOutlined } from '@ant-design/icons';

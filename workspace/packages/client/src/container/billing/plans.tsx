@@ -84,7 +84,7 @@ export const PriceDetailsData: Array<IPriceDetails> = [
       { id: 3.11, feat: 'Custom integrations', isHightlighted: false },
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   },
 ];
 
@@ -116,7 +116,7 @@ export const LifetimePriceDetailsData: Array<IPriceDetails> = [
       { id: 1.17, feat: 'No watermark', isHightlighted: false }
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   },
   {
     id: 2,
@@ -148,7 +148,7 @@ export const LifetimePriceDetailsData: Array<IPriceDetails> = [
       { id: 2.2, feat: 'No watermark', isHightlighted: false }
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   },
   {
     id: 3,
@@ -183,7 +183,7 @@ export const LifetimePriceDetailsData: Array<IPriceDetails> = [
       { id: 3.23, feat: 'No watermark', isHightlighted: false }
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   },
   {
     id: 4,
@@ -218,7 +218,7 @@ export const LifetimePriceDetailsData: Array<IPriceDetails> = [
       { id: 3.23, feat: 'No watermark', isHightlighted: false }
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   },
   {
     id: 5,
@@ -253,6 +253,6 @@ export const LifetimePriceDetailsData: Array<IPriceDetails> = [
       { id: 3.23, feat: 'No watermark', isHightlighted: false }
     ],
     buttonText: 'Contact Sales',
-    buttonLink: 'mailto:vikas@sharefable.com?subject=Enterprise%20plan%20of%20Fable'
+    buttonLink: 'mailto:vikas@capturebliss.com?subject=Enterprise%20plan%20of%20Capturebliss'
   }
 ];

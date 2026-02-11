@@ -134,7 +134,7 @@ export const getDefaultTourOpts = (globalOpts: IGlobalConfig): ITourDataOpts => 
     compileValue(globalOpts, GlobalPropsPath.annConPad),
     GlobalPropsPath.annConPad,
   ),
-  showFableWatermark: createGlobalProperty(
+  showCaptureblissWatermark: createGlobalProperty(
     compileValue(globalOpts, GlobalPropsPath.showWatermark),
     GlobalPropsPath.showWatermark,
   ),
@@ -279,8 +279,8 @@ export const getSampleConfig = (
 };
 
 export const getSampleGlobalConfig = (): IGlobalConfig => ({
-  logo: 'https://s3.amazonaws.com/app.sharefable.com/favicon.png',
-  companyUrl: 'https://sharefable.com',
+  logo: 'https://s3.amazonaws.com/app.capturebliss.com/favicon.png',
+  companyUrl: 'https://capturebliss.com',
   demoLoadingText: 'Setting up the interactive demo for you',
   fontFamily: '',
   primaryColor: '#7567ff',
@@ -301,7 +301,7 @@ export const getSampleGlobalConfig = (): IGlobalConfig => ({
   prevBtnStyle: AnnotationButtonStyle.Primary,
   customBtn1Text: 'Book a demo',
   customBtn1Style: AnnotationButtonStyle.Primary,
-  customBtn1URL: 'https://www.sharefable.com/get-a-demo',
+  customBtn1URL: 'https://www.capturebliss.com/get-a-demo',
 
   monoIncKey: 1,
   createdAt: getCurrentUtcUnixTime(),
@@ -325,8 +325,8 @@ export const getImgScreenData = () => ({
     name: 'html',
     attrs: {
       lang: 'en',
-      'fable-stf': '0',
-      'fable-slf': '0',
+      'capturebliss-stf': '0',
+      'capturebliss-slf': '0',
       style: 'width: 100%; height: 100%;'
     },
     props: {},
@@ -335,8 +335,8 @@ export const getImgScreenData = () => ({
         type: 1,
         name: 'head',
         attrs: {
-          'fable-stf': '0',
-          'fable-slf': '0'
+          'capturebliss-stf': '0',
+          'capturebliss-slf': '0'
         },
         props: {},
         chldrn: [
@@ -352,8 +352,8 @@ export const getImgScreenData = () => ({
             name: 'meta',
             attrs: {
               charset: 'UTF-8',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -371,8 +371,8 @@ export const getImgScreenData = () => ({
             attrs: {
               'http-equiv': 'X-UA-Compatible',
               content: 'IE=edge',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -390,8 +390,8 @@ export const getImgScreenData = () => ({
             attrs: {
               name: 'viewport',
               content: 'width=device-width, initial-scale=1.0',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -407,8 +407,8 @@ export const getImgScreenData = () => ({
             type: 1,
             name: 'title',
             attrs: {
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: [
@@ -434,8 +434,8 @@ export const getImgScreenData = () => ({
             type: 1,
             name: 'style',
             attrs: {
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {
               cssRules: 'body { margin: 0px; padding: 0px; } #img { width: 100%; height: auto; } '
@@ -462,8 +462,8 @@ export const getImgScreenData = () => ({
         type: 1,
         name: 'body',
         attrs: {
-          'fable-stf': '0',
-          'fable-slf': '0',
+          'capturebliss-stf': '0',
+          'capturebliss-slf': '0',
           style: 'visibility: visible;width: 100%; min-height: 100vh;display: flex;align-items: center;justify-content: center;'
         },
         props: {},
@@ -483,8 +483,8 @@ export const getImgScreenData = () => ({
               src: '',
               style: 'box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);',
               alt: 'Image',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {
             },
@@ -515,9 +515,9 @@ export const getImgScreenData = () => ({
             type: 1,
             name: 'div',
             attrs: {
-              id: 'fable-0-cm-presence',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              id: 'capturebliss-0-cm-presence',
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -526,9 +526,9 @@ export const getImgScreenData = () => ({
             type: 1,
             name: 'div',
             attrs: {
-              id: 'fable-0-de-presence',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              id: 'capturebliss-0-de-presence',
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -538,9 +538,9 @@ export const getImgScreenData = () => ({
             name: 'div',
             attrs: {
               style: '\n    \n    display: flex !important;\n    background-color: #7567FF !important;\n    top:-10000px; \n    left:-10000px;\n    position: fixed !important;\n    border-radius: 28px !important;\n    justify-content: center !important;\n    align-items: center !important;\n    padding: 8px 24px !important;\n    gap: 8px !important;\n    z-index: 9999999 !important;\n  \n    top: 670px !important;\n    left: 1297px !important;\n  ',
-              class: 'fable-dont-ser',
-              'fable-stf': '0',
-              'fable-slf': '0'
+              class: 'capturebliss-dont-ser',
+              'capturebliss-stf': '0',
+              'capturebliss-slf': '0'
             },
             props: {},
             chldrn: []
@@ -619,7 +619,7 @@ export const getDefaultLiteralTourOpts = (): ITourDataOpts => ({
   annotationFontFamily: createLiteralProperty(null),
   borderRadius: createLiteralProperty(4),
   annotationPadding: createLiteralProperty('14 14'),
-  showFableWatermark: createLiteralProperty(true),
+  showCaptureblissWatermark: createLiteralProperty(true),
   showStepNum: createLiteralProperty(true),
   reduceMotionForMobile: false,
 });
@@ -634,7 +634,7 @@ export const AnnConfigKeysWithProperty: Array<keyof IAnnotationConfig_WithProper
 
 export const TourOptsKeysWithProperty: Array<keyof TourDataOpts_WithProperty> = [
   'primaryColor', 'annotationBodyBackgroundColor', 'annotationBodyBorderColor',
-  'annotationFontFamily', 'annotationFontColor', 'borderRadius', 'showFableWatermark',
+  'annotationFontFamily', 'annotationFontColor', 'borderRadius', 'showCaptureblissWatermark',
   'annotationPadding', 'showStepNum',
 ];
 

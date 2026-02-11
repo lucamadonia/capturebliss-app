@@ -19,8 +19,8 @@ import {
   Property,
   IGlobalConfig,
   ITourEntityHotspot,
-} from '@fable/common/dist/types';
-import { GlobalPropsPath, createGlobalProperty, createLiteralProperty, getCurrentUtcUnixTime, getRandomId } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { GlobalPropsPath, createGlobalProperty, createLiteralProperty, getCurrentUtcUnixTime, getRandomId } from '@capturebliss/common/dist/utils';
 import { ElPathKey } from '../../types';
 import { isMediaAnnotation } from '../../utils';
 import { isLeadFormPresentInHTMLStr } from '../annotation-rich-text-editor/utils/lead-form-node-utils';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate, useRouteError } from 'react-router-dom';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
 import InfoCon from '../info-con';
 
 function ErrorBoundary(): JSX.Element {
@@ -24,7 +24,7 @@ function ErrorBoundary(): JSX.Element {
           heading=""
           body={
             <> Something wrong with automatic redirection. <br />
-              Please click the button below to go to Fable.
+              Please click the button below to go to Capturebliss.
             </>
         }
           btns={[{

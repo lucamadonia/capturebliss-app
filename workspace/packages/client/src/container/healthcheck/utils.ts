@@ -4,7 +4,7 @@ import {
   ITourEntityHotspot,
   TourData,
   TourScreenEntity
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 
 export async function getData(url: string): Promise<TourData> {
   const res = await fetch(url);

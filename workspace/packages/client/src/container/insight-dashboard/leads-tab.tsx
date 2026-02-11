@@ -1,11 +1,11 @@
 /* eslint-disable no-mixed-operators */
-import { DeviceAndGeoInfo, RespHouseLead, Activity } from '@fable/common/dist/api-contract';
+import { DeviceAndGeoInfo, RespHouseLead, Activity } from '@capturebliss/common/dist/api-contract';
 import React, { useEffect, useState } from 'react';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { LoadingOutlined } from '@ant-design/icons';
 import { Timeline, Tooltip } from 'antd';
-import { IAnnotationOriginConfig } from '@fable/common/dist/types';
-import { SHORT_MONTHS } from '@fable/common/dist/utils';
+import { IAnnotationOriginConfig } from '@capturebliss/common/dist/types';
+import { SHORT_MONTHS } from '@capturebliss/common/dist/utils';
 import Card from './card';
 import * as Tags from './styled';
 import { P_RespHouseLead } from '../../action/creator';

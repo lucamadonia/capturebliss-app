@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as Tags from './top-loader-style';
-import FableLogo from '../../assets/fable-logo-2.svg';
+import CaptureblissLogo from '../../assets/capturebliss-logo-2.svg';
 import * as GTags from '../../common-styled';
 
 interface IProps {
@@ -35,7 +35,7 @@ function TopLoader({ duration, showLogo, text, showOverlay }: IProps): JSX.Eleme
       {showLogo
       && (
       <Tags.LoaderLogo>
-        <img src={FableLogo} alt="fable loader" />
+        <img src={CaptureblissLogo} alt="capturebliss loader" />
         {text ? <p>{text}...</p> : <p>Loading...</p>}
       </Tags.LoaderLogo>
       )}

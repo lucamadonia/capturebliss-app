@@ -34,11 +34,11 @@ export const EditorCon = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: var(--fable-scrollbar-track);
+    background-color: var(--capturebliss-scrollbar-track);
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
     border-radius: 4px;
   }
 
@@ -113,7 +113,7 @@ export const CloseIcon = styled.img`
   }
 `;
 
-export const FableLogo = styled.img`
+export const CaptureblissLogo = styled.img`
   width: 90px;
 `;
 

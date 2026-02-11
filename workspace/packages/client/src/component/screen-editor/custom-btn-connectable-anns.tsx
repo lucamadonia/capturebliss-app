@@ -5,8 +5,8 @@ import {
   ITourDataOpts,
   ITourEntityHotspot,
   JourneyData
-} from '@fable/common/dist/types';
-import { createLiteralProperty } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { createLiteralProperty } from '@capturebliss/common/dist/utils';
 import * as Tags from './styled';
 import { IAnnotationConfigWithScreen, Timeline } from '../../types';
 import { updateButtonProp } from '../annotation/annotation-config-utils';

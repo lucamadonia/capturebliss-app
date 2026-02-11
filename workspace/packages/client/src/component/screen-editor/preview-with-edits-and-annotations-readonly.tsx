@@ -6,13 +6,13 @@ import {
   SerNode,
   JourneyFlow,
   JourneyData
-} from '@fable/common/dist/types';
+} from '@capturebliss/common/dist/types';
 import React from 'react';
-import { FrameSettings, ScreenType } from '@fable/common/dist/api-contract';
+import { FrameSettings, ScreenType } from '@capturebliss/common/dist/api-contract';
 import { captureException, startTransaction } from '@sentry/react';
-import { DEFAULT_BLUE_BORDER_COLOR } from '@fable/common/dist/constants';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { sleep } from '@fable/common/dist/utils';
+import { DEFAULT_BLUE_BORDER_COLOR } from '@capturebliss/common/dist/constants';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { sleep } from '@capturebliss/common/dist/utils';
 import { P_RespScreen, P_RespTour } from '../../entity-processor';
 import {
   AnnotationPerScreen,
@@ -29,7 +29,7 @@ import { scrollIframeEls } from './scroll-util';
 import { getAnnotationByRefId } from '../annotation/ops';
 import { deser, deserIframeEl } from './utils/deser';
 import { applyEditsToSerDom } from './utils/edits';
-import { FABLE_RT_UMBRL_WRAPPER, getAnnsOfSameMultiAnnGrp, getFableRtUmbrlDivWrapper } from '../annotation/utils';
+import { CAPTUREBLISS_RT_UMBRL_WRAPPER, getAnnsOfSameMultiAnnGrp, getCaptureblissRtUmbrlDivWrapper } from '../annotation/utils';
 import { SCREEN_DIFFS_SUPPORTED_VERSION } from '../../constants';
 import { getDiffsOfImmediateChildren, getSerNodesAttrUpdates, isSerNodeDifferent } from './utils/diffs/get-diffs';
 import { DiffsSerNode, QueueNode } from './utils/diffs/types';
@@ -105,9 +105,9 @@ export default class ScreenPreviewWithEditsAndAnnotationsReadonly
   extends React.PureComponent<IOwnProps, IOwnStateProps> {
   static readonly ATTR_ORIG_VAL_SAVE_ATTR_NAME = 'fab-orig-val-t';
 
-  private static readonly GF_FONT_FAMILY_LINK_ATTR = 'fable-data-gfi';
+  private static readonly GF_FONT_FAMILY_LINK_ATTR = 'capturebliss-data-gfi';
 
-  private static readonly FONT_FAMILY_STYLE_EL_ID = 'fable-data-cfm';
+  private static readonly FONT_FAMILY_STYLE_EL_ID = 'capturebliss-data-cfm';
 
   private annotationLCM: AnnotationLifecycleManager | null = null;
 
@@ -144,7 +144,7 @@ export default class ScreenPreviewWithEditsAndAnnotationsReadonly
           const style = doc.createElement('style');
           style.setAttribute('id', ScreenPreviewWithEditsAndAnnotationsReadonly.FONT_FAMILY_STYLE_EL_ID);
           style.innerHTML = "body { font-family: 'IBM Plex Sans'; }";
-          getFableRtUmbrlDivWrapper(doc)!.prepend(style);
+          getCaptureblissRtUmbrlDivWrapper(doc)!.prepend(style);
         }
       }
 
@@ -174,7 +174,7 @@ export default class ScreenPreviewWithEditsAndAnnotationsReadonly
     link.type = 'text/css';
     link.setAttribute(ScreenPreviewWithEditsAndAnnotationsReadonly.GF_FONT_FAMILY_LINK_ATTR, '');
 
-    getFableRtUmbrlDivWrapper(doc)!.prepend(link);
+    getCaptureblissRtUmbrlDivWrapper(doc)!.prepend(link);
   };
 
   onBeforeFrameBodyDisplay = (params: { nestedFrames: HTMLIFrameElement[] }): void => {
@@ -524,7 +524,7 @@ export default class ScreenPreviewWithEditsAndAnnotationsReadonly
       if (!nextEl && parentNode.nodeName.toLowerCase() === 'body') {
         const lastEl = node.childNodes[parentNode.childNodes.length - 1];
         const fid = getFidOfNode(lastEl);
-        const umbrellaDiv = (node as HTMLElement).querySelector(`.${FABLE_RT_UMBRL_WRAPPER}`);
+        const umbrellaDiv = (node as HTMLElement).querySelector(`.${CAPTUREBLISS_RT_UMBRL_WRAPPER}`);
         if (!fid && umbrellaDiv) {
           nextEl = umbrellaDiv;
         }
@@ -832,7 +832,7 @@ export default class ScreenPreviewWithEditsAndAnnotationsReadonly
     return <Preview
       resizeSignal={this.state.resizeSignal}
       journey={this.props.journey!}
-      showWatermark={this.props.tourDataOpts.showFableWatermark._val}
+      showWatermark={this.props.tourDataOpts.showCaptureblissWatermark._val}
       allEdits={this.props.allEdits}
       key={this.props.screen.rid}
       hidden={this.props.hidden}

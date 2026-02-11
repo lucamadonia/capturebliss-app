@@ -1,11 +1,11 @@
 import { TourStepProps } from 'antd';
 
-export const USER_GUIDE_LOCAL_STORE_KEY = 'fable/user_guide';
+export const USER_GUIDE_LOCAL_STORE_KEY = 'capturebliss/user_guide';
 
 export enum UserGuideMsg {
-  OPEN_ANNOTATION = 'fable-guide-open-annotation',
-  RESET_ZOOM = 'fable-guide-reset-zoom',
-  RESET_KEY = 'fable-guide-reset-key'
+  OPEN_ANNOTATION = 'capturebliss-guide-open-annotation',
+  RESET_ZOOM = 'capturebliss-guide-reset-zoom',
+  RESET_KEY = 'capturebliss-guide-reset-key'
 }
 
 export type UserGuideCustomPosition = 'bottom-left';

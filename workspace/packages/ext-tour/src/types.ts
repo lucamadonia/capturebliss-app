@@ -1,4 +1,4 @@
-import { ThemeStats, SerDoc, InteractionCtx } from "@fable/common/dist/types";
+import { ThemeStats, SerDoc, InteractionCtx } from "@capturebliss/common/dist/types";
 
 export interface IUser {
   id: number;

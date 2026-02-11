@@ -1,7 +1,7 @@
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { RefForMMV } from '@fable/common/dist/llm-contract';
-import { TourData, IGlobalConfig, IAnnotationConfig, IAnnotationOriginConfig, TourScreenEntity } from '@fable/common/dist/types';
-import { getSampleConfig, deepcopy, getSampleJourneyData, createLiteralProperty } from '@fable/common/dist/utils';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { RefForMMV } from '@capturebliss/common/dist/llm-contract';
+import { TourData, IGlobalConfig, IAnnotationConfig, IAnnotationOriginConfig, TourScreenEntity } from '@capturebliss/common/dist/types';
+import { getSampleConfig, deepcopy, getSampleJourneyData, createLiteralProperty } from '@capturebliss/common/dist/utils';
 import { nanoid } from 'nanoid';
 import { SAMPLE_AI_ANN_CONFIG_TEXT } from '../constants';
 import { createDemoUsingAI, getDemoMetaData, getAllDemoAnnotationText, postProcessAIText } from '../container/create-tour/utils';

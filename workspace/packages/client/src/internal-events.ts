@@ -14,7 +14,7 @@ import { createIframeSrc, mergeL1JsonIgnoreUndefined, postMessageForEvent } from
 import { P_RespTour } from './entity-processor';
 import { logEvent as logEvent2 } from './analytics/events';
 import { CBCtaClickEvent, CBDemoOpened, CBEventBase, CBEvents, CBLeadFormFilledEvent, logEventToCblt } from './analytics/handlers';
-import { Clock, EventDataOnNav, FableLeadContactProps, JourneyNameIndexData, addToGlobalAppData, getGlobalData } from './global';
+import { Clock, EventDataOnNav, CaptureblissLeadContactProps, JourneyNameIndexData, addToGlobalAppData, getGlobalData } from './global';
 import { AnnotationSerialIdMap } from './component/annotation/ops';
 import { getUUID } from './analytics/utils';
 
@@ -31,7 +31,7 @@ type Payload_IE_All = Payload_IE_AnnotationNav
   | Payload_IE_DemoLoadingFinished
   | Payload_IE_Navigation
   | Payload_IE_CtaClicked
-  | FableLeadContactProps;
+  | CaptureblissLeadContactProps;
 
 export function emitEvent<T>(
   ev: InternalEvents,
@@ -82,13 +82,13 @@ export function isConversionUrl(url: string) {
 
   try {
     const u = new URL(url);
-    return u.host !== 'app.sharefable.com';
+    return u.host !== 'app.capturebliss.com';
   } catch (e) {
     return true;
   }
 }
 
-const fireCBLeadFormFilled = (lead: FableLeadContactProps | null, demoData: P_RespTour) => {
+const fireCBLeadFormFilled = (lead: CaptureblissLeadContactProps | null, demoData: P_RespTour) => {
   if (!lead) return;
   logEventToCblt<CBLeadFormFilledEvent & CBEventBase>({
     event: CBEvents.LEAD_FORM_FILLED,
@@ -119,13 +119,13 @@ export function initInternalEvents() : Array<[InternalEvents, (ev: Event) => voi
 
     const clocks = flushLocalClockIfAny((navEvtData) => {
       if (navEvtData.annotationType === 'leadform') {
-        let lead = getGlobalData('lead') as FableLeadContactProps | null;
+        let lead = getGlobalData('lead') as CaptureblissLeadContactProps | null;
         const demoData = getGlobalData('demo') as P_RespTour;
         if (lead) fireCBLeadFormFilled(lead, demoData);
         else {
         // It might happen that this event gets fired before the lead gets pushed to global config.
           setTimeout(() => {
-            lead = getGlobalData('lead') as FableLeadContactProps | null;
+            lead = getGlobalData('lead') as CaptureblissLeadContactProps | null;
             fireCBLeadFormFilled(lead, demoData);
           }, 1500);
         }
@@ -174,8 +174,8 @@ export function initInternalEvents() : Array<[InternalEvents, (ev: Event) => voi
   });
 
   registerListenerForInternalEvent(InternalEvents.LeadAssign, (payload: Payload_IE_All) => {
-    const savedLead = getGlobalData('lead') as FableLeadContactProps | undefined;
-    const lead = payload as FableLeadContactProps;
+    const savedLead = getGlobalData('lead') as CaptureblissLeadContactProps | undefined;
+    const lead = payload as CaptureblissLeadContactProps;
     const updatedLead = mergeL1JsonIgnoreUndefined(savedLead || {}, payload);
     addToGlobalAppData('lead', updatedLead);
     const demo = getGlobalData('demo') as P_RespTour;
@@ -190,7 +190,7 @@ export function initInternalEvents() : Array<[InternalEvents, (ev: Event) => voi
       email: trimStr(updatedLead.email),
     };
     // TODO review contract
-    logEventToCblt<FableLeadContactProps & CBEventBase>({
+    logEventToCblt<CaptureblissLeadContactProps & CBEventBase>({
       event: CBEvents.CREATE_CONTACT,
       payload: {
         ...mergedLeadData,
@@ -205,7 +205,7 @@ export function initInternalEvents() : Array<[InternalEvents, (ev: Event) => voi
 
   registerListenerForInternalEvent(InternalEvents.OnCtaClicked, (payload: Payload_IE_All) => {
     const tPayload = payload as CtaClickedInternal;
-    const lead = getGlobalData('lead') as FableLeadContactProps | null;
+    const lead = getGlobalData('lead') as CaptureblissLeadContactProps | null;
     const demoData = getGlobalData('demo') as P_RespTour;
     // When a cta is clicked for the current annotation we stop calculating time as
     // this will be marked as conversion
@@ -256,7 +256,7 @@ export function initInternalEvents() : Array<[InternalEvents, (ev: Event) => voi
 
   registerListenerForInternalEvent(InternalEvents.DemoLoadingFinished, () => {
     // TODO only raise this across sessions
-    const lead = getGlobalData('lead') as FableLeadContactProps | null;
+    const lead = getGlobalData('lead') as CaptureblissLeadContactProps | null;
     const demoData = getGlobalData('demo') as P_RespTour;
     logEvent2('demo_opened');
 

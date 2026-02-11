@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { ITourLoaderData } from '@fable/common/dist/types';
+import { ITourLoaderData } from '@capturebliss/common/dist/types';
 import * as Tags from './styled';
 
 const LottiePlayer = lazy(() => import('@lottiefiles/react-lottie-player').then(({ Player }) => ({

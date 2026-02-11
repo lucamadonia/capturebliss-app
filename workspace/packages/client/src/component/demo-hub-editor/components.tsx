@@ -2,8 +2,8 @@ import { DeleteOutlined, HolderOutlined, ReloadOutlined } from '@ant-design/icon
 import { Button, Tooltip } from 'antd';
 import React from 'react';
 import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import FableLogo from '../../assets/fable-rounded-icon.svg';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import CaptureblissLogo from '../../assets/capturebliss-rounded-icon.svg';
 import * as GTags from '../../common-styled';
 import { buttonSecStyle } from '../screen-editor/annotation-creator-panel';
 import { showDeleteConfirm } from './delete-confirm';
@@ -55,7 +55,7 @@ export default function DraggableDemosSelector(props: Props): JSX.Element {
             gap: '0.5rem'
           }}
         >
-          <GTags.FableSelect
+          <GTags.CaptureblissSelect
             showSearch
             suffixIcon={<CaretOutlined dir="down" />}
             bordered={false}
@@ -166,7 +166,7 @@ export default function DraggableDemosSelector(props: Props): JSX.Element {
                                   alignItems: 'center'
                                 }}
                               >
-                                <img src={FableLogo} height={16} alt="Fable logo" />
+                                <img src={CaptureblissLogo} height={16} alt="Capturebliss logo" />
                                 <GTags.OurLink
                                   href={`/preview/demo/${demo.rid}`}
                                   target="_blank"

@@ -57,7 +57,7 @@ export default function PinExt(props: Props): JSX.Element {
 
             </CTags.Header>
             <CTags.Subtitle>
-              Pinning your Fable extension will keep it handy when you want to create your interactive demos.😄
+              Pinning your Capturebliss extension will keep it handy when you want to create your interactive demos.😄
             </CTags.Subtitle>
           </CTags.FlexColContainer>
           <Link to="/" style={{ textDecoration: 'none' }}>

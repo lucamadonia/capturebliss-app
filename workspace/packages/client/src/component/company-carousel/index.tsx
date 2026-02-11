@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeartFilled } from '@ant-design/icons';
-import { companiesUsingFable } from './data';
+import { companiesUsingCapturebliss } from './data';
 import * as Tags from './styled';
 
 function CompanyCarousel(): JSX.Element {
@@ -18,11 +18,11 @@ function CompanyCarousel(): JSX.Element {
       </div>
       <div
         style={{
-          animationDuration: `${companiesUsingFable.length * 4}s`,
+          animationDuration: `${companiesUsingCapturebliss.length * 4}s`,
         }}
         className="companiesImg"
       >
-        {companiesUsingFable.map(
+        {companiesUsingCapturebliss.map(
           ({ source, companyName }, idx) => (
             <img
               src={source}
@@ -33,7 +33,7 @@ function CompanyCarousel(): JSX.Element {
             />
           ),
         )}
-        {companiesUsingFable.map(
+        {companiesUsingCapturebliss.map(
           ({ source, companyName }, idx) => (
             <img
               src={source}
@@ -47,11 +47,11 @@ function CompanyCarousel(): JSX.Element {
       </div>
       <div
         style={{
-          animationDuration: `${companiesUsingFable.length * 4}s`,
+          animationDuration: `${companiesUsingCapturebliss.length * 4}s`,
         }}
         className="companiesImg"
       >
-        {companiesUsingFable.map(
+        {companiesUsingCapturebliss.map(
           ({ source, companyName }, idx) => (
             <img
               src={source}
@@ -62,7 +62,7 @@ function CompanyCarousel(): JSX.Element {
             />
           ),
         )}
-        {companiesUsingFable.map(
+        {companiesUsingCapturebliss.map(
           ({ source, companyName }, idx) => (
             <img
               src={source}

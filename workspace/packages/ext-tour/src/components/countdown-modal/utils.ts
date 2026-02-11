@@ -94,7 +94,7 @@ p {
     </button>
   </div>
   <p class="cd-line first" id="${COUNTDOWN_FIRST_LINE_ID}">
-    Fable's continuous capture will record full HTML of your screen.
+    Capturebliss's continuous capture will record full HTML of your screen.
   </p>
   <p class="cd-line second hide" id="${COUNTDOWN_SECOND_LINE_ID}">
     You can now click through your product to create your demo.

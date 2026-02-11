@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Tabs, Button as AntButton } from 'antd';
-import { ReqDemoHubPropUpdate, RespOrg, RespUser } from '@fable/common/dist/api-contract';
+import { ReqDemoHubPropUpdate, RespOrg, RespUser } from '@capturebliss/common/dist/api-contract';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { IGlobalConfig } from '@fable/common/dist/types';
-import { getCurrentUtcUnixTime } from '@fable/common/dist/utils';
+import { IGlobalConfig } from '@capturebliss/common/dist/types';
+import { getCurrentUtcUnixTime } from '@capturebliss/common/dist/utils';
 import * as Tags from './styled';
 import EditorTab from './editor-tab';
 import {

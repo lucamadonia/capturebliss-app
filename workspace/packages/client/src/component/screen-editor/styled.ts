@@ -563,7 +563,7 @@ export const ConnectableAnnsCon = styled.div`
 export const NavigateToCon = styled.div`
   max-height: 45vh;
   overflow-y: scroll;
-  scrollbar-color: var(--fable-scrollbar-color);
+  scrollbar-color: var(--capturebliss-scrollbar-color);
   scrollbar-width: unset !important;
   opacity: 0;
   animation-name: fadeIn;
@@ -593,7 +593,7 @@ export const NavigateToCon = styled.div`
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: var(--fable-scrollbar-thumb);
+    background-color: var(--capturebliss-scrollbar-thumb);
   }
 `;
 

@@ -14,11 +14,11 @@ import {
   PictureOutlined,
   RetweetOutlined
 } from '@ant-design/icons';
-import { traceEvent } from '@fable/common/dist/amplitude';
-import { FrameSettings, ReqTourPropUpdate, Responsiveness, ScreenType } from '@fable/common/dist/api-contract';
-import { DEFAULT_BLUE_BORDER_COLOR } from '@fable/common/dist/constants';
-import raiseDeferredError from '@fable/common/dist/deferred-error';
-import { sentryCaptureException } from '@fable/common/dist/sentry';
+import { traceEvent } from '@capturebliss/common/dist/amplitude';
+import { FrameSettings, ReqTourPropUpdate, Responsiveness, ScreenType } from '@capturebliss/common/dist/api-contract';
+import { DEFAULT_BLUE_BORDER_COLOR } from '@capturebliss/common/dist/constants';
+import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
+import { sentryCaptureException } from '@capturebliss/common/dist/sentry';
 import {
   CmnEvtProp,
   IAnnotationButtonType,
@@ -27,8 +27,8 @@ import {
   ITourDataOpts,
   JourneyData,
   ScreenData
-} from '@fable/common/dist/types';
-import { getCurrentUtcUnixTime, getDefaultTourOpts, getRandomId, getSampleConfig } from '@fable/common/dist/utils';
+} from '@capturebliss/common/dist/types';
+import { getCurrentUtcUnixTime, getDefaultTourOpts, getRandomId, getSampleConfig } from '@capturebliss/common/dist/utils';
 import { Button, Dropdown, MenuProps, Modal, Popover, Switch, Tooltip } from 'antd';
 import { nanoid } from 'nanoid';
 import React from 'react';
@@ -48,7 +48,7 @@ import NewAnnotation from '../../assets/creator-panel/new-annotation.svg';
 import NewCoverAnnotation from '../../assets/creator-panel/new-cover-annotation.svg';
 import NewMultiAnnotation from '../../assets/creator-panel/new_multi_annotation.svg';
 import * as GTags from '../../common-styled';
-import { FABLE_AUDIO_MEDIA_CONTROLS, SCREEN_DIFFS_SUPPORTED_VERSION } from '../../constants';
+import { CAPTUREBLISS_AUDIO_MEDIA_CONTROLS, SCREEN_DIFFS_SUPPORTED_VERSION } from '../../constants';
 import { Tx } from '../../container/tour-editor/chunk-sync-manager';
 import { convertTupleToGlobalElEdit, P_RespScreen, P_RespSubscription, P_RespTour } from '../../entity-processor';
 import { FeatureForPlan } from '../../plans';
@@ -157,7 +157,7 @@ const enum EditTargetType {
   InputValue = 'inpval'
 }
 
-const PASTE_STYLE_STORAGE_KEY = 'fable/psh';
+const PASTE_STYLE_STORAGE_KEY = 'capturebliss/psh';
 
 function getStoredStyleForFormatPasting(): StoredStyleForFormatPaste | null {
   try {
@@ -480,7 +480,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
       return ScreenEditor.setDimensionAttributes(selectedImageEl);
     }
     return ['', ''];
-    // TODO https://github.com/sharefable/app/issues/48 #2
+    // TODO https://github.com/capturebliss/app/issues/48 #2
   };
 
   // TODO Use this utility to extract imgSrc from different kinds of
@@ -1014,7 +1014,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
   callback = (e: MouseEvent): void => this.handleClickOutside(e, this.props.screen.id);
 
   handleClickOutside(e: Event, screenId: number) : void {
-    const elem = document.querySelector(`.fable-iframe-${screenId}`);
+    const elem = document.querySelector(`.capturebliss-iframe-${screenId}`);
     if (elem && !elem.contains(e.target as Node)) {
       this.setState({ stashAnnIfAny: false, selectionMode: 'annotation' });
       this.iframeElManager!.clearMask(HighlightMode.Pinned);
@@ -2209,7 +2209,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
                             label: (
                               <>
                                 <Tags.AnotCrtPanelSecLabel
-                                  className="fable-label"
+                                  className="capturebliss-label"
                                   style={{
                                     display: 'flex',
                                     alignItems: 'center',
@@ -2671,7 +2671,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
             onElDeSelect: this.onElDeSelect,
           }, this.props.screen.type, highlighterBaseConfig, this.props.screenData.isHTML4);
           this.iframeElManager!.addEventListener('click', (docu: Document) => (e: MouseEvent) => {
-            const audioMediaCtrls = Array.from(docu.querySelectorAll(`.${FABLE_AUDIO_MEDIA_CONTROLS}`));
+            const audioMediaCtrls = Array.from(docu.querySelectorAll(`.${CAPTUREBLISS_AUDIO_MEDIA_CONTROLS}`));
             const clickedEl = e.target as HTMLElement;
 
             for (const ctrl of audioMediaCtrls) {

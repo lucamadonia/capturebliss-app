@@ -441,7 +441,7 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
                 onEnded={() => this.onMediaEnded()}
                 preload="metadata"
                 onLoadedData={() => this.setState({ mediaLoaded: true })}
-                onTimeUpdate={(e) => this.updateMediaProgress(e)}
+                onTimeUpdate={(e: any) => this.updateMediaProgress(e)}
               >
                 {!isHlsSupported && this.state.blobUrls?.type === 'video' && (
                 <>
@@ -637,7 +637,7 @@ export default class AnnotationMedia extends React.PureComponent<IProps, IOwnSta
                 fontFamily={this.props.opts.annotationFontFamily._val}
                 btnLayout="default"
                 borderRadius={this.props.opts.borderRadius._val}
-                onClick={(e) => {
+                onClick={(e: any) => {
                   e.stopPropagation();
                   this.setState({ showBtnOverlay: false });
                   this.props.nav(btnConf.type, btnConf.id);

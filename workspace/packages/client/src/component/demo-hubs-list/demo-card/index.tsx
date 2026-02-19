@@ -64,7 +64,7 @@ function DemoCard(props : Props) : JSX.Element {
             <Tooltip title="Copy Embed Link" overlayStyle={{ fontSize: '0.75rem' }}>
               <Tags.EmbedBtn
                 type="submit"
-                onClick={(e) => {
+                onClick={(e: any) => {
                   e.preventDefault();
                   e.stopPropagation();
                   setIsShareModalVisible(true);

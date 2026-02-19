@@ -62,7 +62,7 @@ export default function AdvanceElementPicker(props: IProps): JSX.Element {
                   props.domElPicker.setSelectionMode();
                   props.onOverElPicker && props.onOverElPicker(props.selectedEl);
                 }}
-                onMouseMove={e => {
+                onMouseMove={(e: any) => {
                   if (props.disabled) return;
 
                   const i = getDataIdxFromEvtTarget(e);
@@ -80,7 +80,7 @@ export default function AdvanceElementPicker(props: IProps): JSX.Element {
                   lastIndexHovered.current = -1;
                   props.onElSelect(props.selectedEl, props.selectedEl);
                 }}
-                onClick={e => {
+                onClick={(e: any) => {
                   if (props.disabled) return;
                   if (lastEls.length === 0) {
                     setLastEls(elsInPath.map(el => el[0]));

@@ -43,7 +43,7 @@ export default function DatasetCard(props: Props): JSX.Element {
             }}
             >
               <GTags.PopoverMenuItem
-                onMouseDown={e => {
+                onMouseDown={(e: any) => {
                   props.publish(props.dataset.name);
                 }}
               >
@@ -51,7 +51,7 @@ export default function DatasetCard(props: Props): JSX.Element {
               </GTags.PopoverMenuItem>
               <GTags.PopoverMenuItemDivider color="#ff735050" />
               <GTags.PopoverMenuItem
-                onMouseDown={e => {
+                onMouseDown={(e: any) => {
                   props.delete(props.dataset.name);
                 }}
                 style={{

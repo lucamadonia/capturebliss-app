@@ -18,7 +18,7 @@ function DemoOptionsMenu(props : Props) : JSX.Element {
         }}
         >
           <GTags.PopoverMenuItem
-            onMouseDown={e => {
+            onMouseDown={(e: any) => {
               props.changeModalState({ type: 'rename', show: true });
             }}
           >
@@ -26,7 +26,7 @@ function DemoOptionsMenu(props : Props) : JSX.Element {
           </GTags.PopoverMenuItem>
           <GTags.PopoverMenuItemDivider color="#ff735050" />
           <GTags.PopoverMenuItem
-            onMouseDown={e => {
+            onMouseDown={(e: any) => {
               props.changeModalState({ type: 'delete', show: true });
             }}
             style={{

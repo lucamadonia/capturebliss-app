@@ -693,7 +693,7 @@ export default class ScreenPreview extends React.PureComponent<IOwnProps, IOwnSt
               position: 'absolute',
               transition: 'none',
             }}
-            ref={ref => {
+            ref={(ref: any) => {
               this.embedFrameRef.current = ref;
               if (this.props.innerRefs) {
                 this.props.innerRefs.forEach(r => r.current = ref);

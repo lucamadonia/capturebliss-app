@@ -113,7 +113,7 @@ export default function TourCard({
               <Tooltip title="Copy Embed Link" overlayStyle={{ fontSize: '0.75rem' }}>
                 <Tags.EmbedBtn
                   type="submit"
-                  onClick={(e) => {
+                  onClick={(e: any) => {
                     e.preventDefault();
                     e.stopPropagation();
                     setIsShareModalVisible(true);
@@ -170,7 +170,7 @@ export default function TourCard({
                   }}
                   >
                     <GTags.PopoverMenuItem
-                      onMouseDown={e => {
+                      onMouseDown={(e: any) => {
                         window.open(`/demo/${tour.rid}`, '_top');
                         traceEvent(
                           AMPLITUDE_EVENTS.EDIT_DEMO,
@@ -184,17 +184,17 @@ export default function TourCard({
                       <EditOutlined />&nbsp;&nbsp;&nbsp;Edit Demo
                     </GTags.PopoverMenuItem>
                     <GTags.PopoverMenuItem
-                      onMouseDown={e => handleShowModal(tour, CtxAction.Rename)}
+                      onMouseDown={(e: any) => handleShowModal(tour, CtxAction.Rename)}
                     >
                       <AlignCenterOutlined />&nbsp;&nbsp;&nbsp;Rename Demo
                     </GTags.PopoverMenuItem>
                     <GTags.PopoverMenuItem
-                      onMouseDown={e => handleShowModal(tour, CtxAction.Duplicate)}
+                      onMouseDown={(e: any) => handleShowModal(tour, CtxAction.Duplicate)}
                     >
                       <CopyOutlined />&nbsp;&nbsp;&nbsp;Duplicate Demo
                     </GTags.PopoverMenuItem>
                     <GTags.PopoverMenuItem
-                      onMouseDown={e => {
+                      onMouseDown={(e: any) => {
                         // if demo is not published show modal
                         // else export
                         // handleExportDemo(tour);
@@ -205,7 +205,7 @@ export default function TourCard({
                     </GTags.PopoverMenuItem>
                     <GTags.PopoverMenuItemDivider color="#ff735050" />
                     <GTags.PopoverMenuItem
-                      onMouseDown={e => handleDelete(tour)}
+                      onMouseDown={(e: any) => handleDelete(tour)}
                       style={{
                         color: '#ff7350'
                       }}

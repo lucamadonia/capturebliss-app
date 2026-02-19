@@ -7,7 +7,7 @@
  * provides the shared types and platform-agnostic helpers.
  */
 
-export {
+export type {
   SerDoc,
   SerNode,
   SerNodeWithPath,
@@ -19,4 +19,4 @@ export {
 
 export { isSameOrigin } from '../utils';
 
-export { CaptureFrameInfo, CaptureResult, CaptureConfig } from './types';
+export type { CaptureFrameInfo, CaptureResult, CaptureConfig } from './types';

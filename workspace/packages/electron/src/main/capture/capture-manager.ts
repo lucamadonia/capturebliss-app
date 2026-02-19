@@ -2,6 +2,7 @@ import { BrowserView, BrowserWindow } from 'electron';
 import { SerDoc } from '@capturebliss/common/dist/types';
 import { createCaptureWindow } from '../window-manager';
 import { IpcChannels } from '../ipc/ipc-channels';
+import { buildSerializerInjectionScript, buildSerializerCallScript } from './serializer';
 
 /**
  * CaptureManager orchestrates DOM capture using BrowserView and webContents API.
@@ -14,6 +15,7 @@ import { IpcChannels } from '../ipc/ipc-channels';
 export class CaptureManager {
   private captureView: BrowserView | null = null;
   private parentWindow: BrowserWindow;
+  private serializerInjected = false;
 
   constructor(parentWindow: BrowserWindow) {
     this.parentWindow = parentWindow;
@@ -27,6 +29,7 @@ export class CaptureManager {
       this.stopCapture();
     }
 
+    this.serializerInjected = false;
     this.captureView = createCaptureWindow(url, this.parentWindow);
 
     // Wait for page to finish loading
@@ -38,10 +41,24 @@ export class CaptureManager {
       });
     });
 
+    // Inject the serializer into the page context after load
+    await this.injectSerializer();
+
     this.parentWindow.webContents.send(IpcChannels.CAPTURE_PROGRESS, {
       status: 'loaded',
       url,
     });
+  }
+
+  /**
+   * Inject the DOM serializer function into the capture BrowserView's page context.
+   * This defines window.__capturebliss_serialize which can then be called to serialize the DOM.
+   */
+  private async injectSerializer(): Promise<void> {
+    if (!this.captureView || this.serializerInjected) return;
+
+    await this.captureView.webContents.executeJavaScript(buildSerializerInjectionScript());
+    this.serializerInjected = true;
   }
 
   /**
@@ -66,9 +83,11 @@ export class CaptureManager {
       throw new Error('No active capture session');
     }
 
-    // Execute the serializer function in the capture BrowserView's renderer
+    // Ensure serializer is injected (handles page navigations within the view)
+    await this.injectSerializer();
+
     const serializedDom = await this.captureView.webContents.executeJavaScript(
-      `window.__capturebliss_serialize(${JSON.stringify({ frameId })})`
+      buildSerializerCallScript(frameId)
     );
 
     return serializedDom as SerDoc;
@@ -93,6 +112,7 @@ export class CaptureManager {
       this.parentWindow.removeBrowserView(this.captureView);
       (this.captureView.webContents as any).destroy?.();
       this.captureView = null;
+      this.serializerInjected = false;
     }
   }
 

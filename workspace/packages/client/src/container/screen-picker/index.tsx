@@ -147,7 +147,7 @@ function ScreenCard({ screen, handleAddScreen, duplicateScreenToTour }: ScreenCo
         </Tags.ScreenTitleIconCon>
         {
           screen.type === ScreenType.SerDom && (
-            <Tags.ScreenLink onClick={(e) => {
+            <Tags.ScreenLink onClick={(e: any) => {
               e.preventDefault();
               e.stopPropagation();
               window.open(screen.url, '_blank');
@@ -167,13 +167,13 @@ function ScreenCard({ screen, handleAddScreen, duplicateScreenToTour }: ScreenCo
               <Popover
                 content={
                   <Tags.ScreenOptionPopoverCon
-                    onClick={(e) => {
+                    onClick={(e: any) => {
                       e.stopPropagation();
                       e.preventDefault();
                     }}
                   >
                     <GTags.PopoverMenuItem
-                      onMouseDown={(e) => handleAddScreen(screen)}
+                      onMouseDown={(e: any) => handleAddScreen(screen)}
                     >
                       <div className="title">Add existing screen</div>
                       <div className="typ-sm">
@@ -182,7 +182,7 @@ function ScreenCard({ screen, handleAddScreen, duplicateScreenToTour }: ScreenCo
                       </div>
                     </GTags.PopoverMenuItem>
                     <GTags.PopoverMenuItem
-                      onMouseDown={(e) => duplicateScreenToTour(screen)}
+                      onMouseDown={(e: any) => duplicateScreenToTour(screen)}
                     >
                       <div className="title">Copy and add screen</div>
                       <div className="typ-sm">

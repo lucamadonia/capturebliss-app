@@ -2244,7 +2244,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
                                   {
                                   showAnnCreatorPanel ? (
                                     <>
-                                      <Tags.CreatorPanelTopMenuCon onClick={(e) => {
+                                      <Tags.CreatorPanelTopMenuCon onClick={(e: any) => {
                                         e.stopPropagation();
                                         e.preventDefault();
                                       }}
@@ -2278,7 +2278,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
                                             <Tags.OneAndMultiBtn
                                               more={!this.isFormatPasteSourceEmptyOrSource(configOfParamsAnnId)}
                                               onClick={
-                                                (e) => {
+                                                (e: any) => {
                                                   if (this.isFormatPasteSourceEmptyOrSource(configOfParamsAnnId)) {
                                                     // no format pasting style selected
                                                     const formatPasteStyle = this.storeFormatPasteStyle(configOfParamsAnnId);
@@ -2448,7 +2448,7 @@ export default class ScreenEditor extends React.PureComponent<IOwnProps, IOwnSta
                         .map((editEncoding) => (
                           <Tags.EditLIPCon
                             key={editEncoding[IdxEditItem.KEY]}
-                            onClick={((edit) => (evt): void => {
+                            onClick={((edit) => (evt: any): void => {
                               this.setState({
                                 editItemSelected: editEncoding[IdxEditItem.KEY],
                                 isInElSelectionMode: true,

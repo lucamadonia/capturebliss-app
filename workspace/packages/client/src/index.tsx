@@ -2,12 +2,12 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
-import { ConfigProvider as AntDesignThemeConfigProvider } from 'antd';
 import { init as sentryInit } from '@capturebliss/common/dist/sentry';
 import { Navigate, Outlet, createBrowserRouter } from 'react-router-dom';
 import './i18n';
 import AntdLocaleProvider from './i18n/AntdLocaleProvider';
+import TenantBrandingProvider from './context/TenantBrandingContext';
+import DynamicThemeProvider from './context/DynamicThemeProvider';
 import App from './container/app';
 import reportWebVitals from './reportWebVitals';
 import config from './store-config';
@@ -70,7 +70,8 @@ if (document.location.pathname !== '/aboutblank') {
   }
 }
 
-const theme = {
+// Default theme kept as fallback for styled-components type declaration
+const defaultTheme = {
   colors: {
     component: {
       primary: '#7567ff',
@@ -99,6 +100,19 @@ const theme = {
       heading: '1.25rem',
       heading3: '1.1rem',
     },
+  },
+  branding: {
+    appName: 'Capturebliss',
+    logoUrl: null as string | null,
+    faviconUrl: null as string | null,
+    primaryColor: '#7567ff',
+    secondaryColor: '#160245',
+    accentColor: '#7567ff',
+    fontFamily: 'inherit',
+    hidePoweredBy: false,
+    customCss: null as string | null,
+    supportEmail: null as string | null,
+    supportUrl: null as string | null,
   },
 };
 
@@ -491,28 +505,18 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <Suspense fallback={<div />}>
     <Provider store={config}>
-      <ThemeProvider theme={theme}>
-        <AntDesignThemeConfigProvider theme={{
-          token: {
-            colorPrimary: theme.colors.component.primary,
-            colorBorder: theme.colors.component.primary,
-            colorLink: theme.colors.component.primary,
-            colorLinkHover: theme.colors.dark.idle.background,
-            fontSize: 14,
-            borderRadius: 2
-          }
-        }}
-        >
+      <TenantBrandingProvider>
+        <DynamicThemeProvider>
           <AntdLocaleProvider>
             <App router={router} />
           </AntdLocaleProvider>
-        </AntDesignThemeConfigProvider>
-      </ThemeProvider>
+        </DynamicThemeProvider>
+      </TenantBrandingProvider>
     </Provider>
   </Suspense>
 );
 
-type CaptureblissTheme = typeof theme;
+type CaptureblissTheme = typeof defaultTheme;
 
 declare module 'styled-components' {
   export interface DefaultTheme extends CaptureblissTheme { }

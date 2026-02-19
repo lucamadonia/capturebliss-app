@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import api from '@capturebliss/common/dist/api';
 import { ApiResp, RespApiKey, RespVanityDomain, VanityDomainDeploymentStatus } from '@capturebliss/common/dist/api-contract';
 import raiseDeferredError from '@capturebliss/common/dist/deferred-error';
-import { CheckCircleFilled, CodeOutlined, CopyOutlined, FormatPainterOutlined, GlobalOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { BgColorsOutlined, CheckCircleFilled, CodeOutlined, CopyOutlined, FormatPainterOutlined, GlobalOutlined, LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import { timeFormat } from 'd3-time-format';
 import { Modal, Tabs, Tag } from 'antd';
 import { CmnEvtProp } from '@capturebliss/common/dist/types';
 import { traceEvent } from '@capturebliss/common/dist/amplitude';
 import GlobalConfigEditor from '../global-config-editor';
+import WhiteLabelSettings from '../../component/white-label-settings';
 import { WithRouterProps, withRouter } from '../../router-hoc';
 import { TState } from '../../reducer';
 import * as GTags from '../../common-styled';
@@ -792,6 +793,16 @@ class Settings extends React.PureComponent<IProps, IOwnStateProps> {
                         </p>
                       )}
                     </div>
+                  )
+                }, {
+                  key: 'white-label',
+                  label: (
+                    <>
+                      <BgColorsOutlined /> White Label
+                    </>
+                  ),
+                  children: (
+                    <WhiteLabelSettings />
                   )
                 }]}
               />

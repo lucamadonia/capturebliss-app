@@ -196,10 +196,27 @@ export interface OnboardingTourForPrev {
     description: string;
 }
 
+export interface WhiteLabelConfig {
+    appName?: string;
+    logoUrl?: string;
+    faviconUrl?: string;
+    primaryColor?: string;
+    secondaryColor?: string;
+    accentColor?: string;
+    fontFamily?: string;
+    customDomain?: string;
+    hidePoweredBy?: boolean;
+    customCss?: string;
+    loginBackground?: string;
+    supportEmail?: string;
+    supportUrl?: string;
+}
+
 export interface OrgInfo {
     useCases?: string[];
     othersText?: string;
     bet?: any;
+    whiteLabel?: WhiteLabelConfig;
 }
 
 export interface PaymentTerms {

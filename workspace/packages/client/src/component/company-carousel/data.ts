@@ -1,4 +1,5 @@
-export const companiesUsingCapturebliss = [
+export const companiesUsingCapturebliss: Array<{ source: string; companyName: string }> = [
+  /* Company logos disabled - external CDN not available
   {
     source: 'https://www.capturebliss.com/companies/hubilo-logo.svg',
     companyName: 'Hubilo',
@@ -148,4 +149,5 @@ export const companiesUsingCapturebliss = [
     source: 'https://www.capturebliss.com/companies/burzt-logo.svg',
     companyName: 'Burzt',
   },
+  */
 ];

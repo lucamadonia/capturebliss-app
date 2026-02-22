@@ -93,16 +93,17 @@ export function getNumberOfDaysFromNow(d: Date): [string, number] {
 export interface P_RespSubscription extends RespSubscription {
   dTrialEndsOn: Date;
   dTrialStartedOn: Date;
-  displayableTrialEndsOn: String;
+  displayableTrialEndsOn: string;
 }
 
-export function processRawSubscriptionData(sub: RespSubscription): P_RespSubscription {
-  const d = new Date(sub.trialEndsOn);
+export function processRawSubscriptionData(sub: RespSubscription): P_RespSubscription | null {
+  if (!sub) return null;
+  const d = sub.trialEndsOn ? new Date(sub.trialEndsOn) : new Date();
   const [readableDays, days] = getNumberOfDaysFromNow(d);
   return {
     ...sub,
     dTrialEndsOn: d,
-    dTrialStartedOn: new Date(sub.trialStartedOn),
+    dTrialStartedOn: sub.trialStartedOn ? new Date(sub.trialStartedOn) : new Date(),
     displayableTrialEndsOn: readableDays ? `Expiring ${readableDays}` : 'Expired'
   };
 }

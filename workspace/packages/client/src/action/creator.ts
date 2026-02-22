@@ -487,7 +487,7 @@ export function updateUseCasesForOrg(useCases: string[], othersText: string) {
 
 export interface TSubs {
   type: ActionType.SUBS;
-  subs: P_RespSubscription;
+  subs: P_RespSubscription | null;
 }
 
 export function checkout(
@@ -536,17 +536,19 @@ export function getSubscriptionOrCheckoutNew(shouldCreateNewSubsIfNotPresent = f
       } else if (appsumoLicense) {
         subs = (await dispatch(checkout('lifetime', 'lifetime', appsumoLicense))) as unknown as RespSubscription;
       } else {
-        const chosenPlan = localStorage.getItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpp`) || '';
-        const chosenInterval = localStorage.getItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpd`) || '';
+        const chosenPlan = localStorage.getItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpp`) || 'solo';
+        const chosenInterval = localStorage.getItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpd`) || 'annual';
         subs = (await dispatch(checkout(chosenPlan as any, chosenInterval as any))) as unknown as RespSubscription;
       }
       localStorage.removeItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpp`);
       localStorage.removeItem(`${STORAGE_PREFIX_KEY_QUERY_PARAMS}/wpd`);
     } else {
-      await dispatch({
-        type: ActionType.SUBS,
-        subs: processRawSubscriptionData(subs),
-      });
+      if (subs) {
+        await dispatch({
+          type: ActionType.SUBS,
+          subs: processRawSubscriptionData(subs),
+        });
+      }
     }
 
     if (!subs) throw new Error("Can't fetch subscription for account");

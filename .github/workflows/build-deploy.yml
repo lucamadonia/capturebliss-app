@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: client-build
-          path: workspace/packages/client/dist
+          path: workspace/packages/client/build
 
   deploy:
     needs: build

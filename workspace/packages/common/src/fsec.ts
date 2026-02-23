@@ -1,7 +1,9 @@
 export const fsec: {
-  getAccessToken: () => Promise<string>
+  getAccessToken: () => Promise<string>;
+  getIdToken: () => Promise<string>;
 } = {
-  getAccessToken: () => Promise.resolve('')
+  getAccessToken: () => Promise.resolve(''),
+  getIdToken: () => Promise.resolve(''),
 };
 
 type Keys = keyof typeof fsec;

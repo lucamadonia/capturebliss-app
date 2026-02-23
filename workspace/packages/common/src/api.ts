@@ -39,9 +39,13 @@ export default async function api<T, M>(
     // TODO error handling in case the user is not logged in or there is a token invalidation exception
     try {
       const token = await fsec.getAccessToken();
+      const idToken = await fsec.getIdToken();
       const orgId = localStorage.getItem('capturebliss/oid');
       const prefix = orgId ? `${orgId}:` : '';
       (headers as any).Authorization = `Bearer ${prefix}${token}`;
+      if (idToken) {
+        (headers as any)['X-Id-Token'] = idToken;
+      }
     } catch (e) {
       // TODO
       console.log('>> login again. msg', (e as Error).message);

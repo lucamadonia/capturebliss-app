@@ -76,7 +76,7 @@ interface IOwnStateProps {}
 class WithPrincipalCheck extends React.PureComponent<IProps, IOwnStateProps> {
   constructor(props: IProps) {
     super(props);
-    const { getAccessTokenSilently } = this.props.auth0;
+    const { getAccessTokenSilently, getIdTokenClaims } = this.props.auth0;
     setSec('getAccessToken', async () => {
       const accessToken = await getAccessTokenSilently({
         authorizationParams: {
@@ -85,6 +85,10 @@ class WithPrincipalCheck extends React.PureComponent<IProps, IOwnStateProps> {
         }
       });
       return accessToken;
+    });
+    setSec('getIdToken', async () => {
+      const claims = await getIdTokenClaims();
+      return claims?.__raw || '';
     });
 
     this.state = {};

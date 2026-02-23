@@ -49,7 +49,8 @@
     "matches": [
       "http://localhost:3000/*",
       "https://*.capturebliss.com/*",
-      "https://*.staging.capturebliss.com/*"
+      "https://*.staging.capturebliss.com/*",
+      "https://*.fambliss.eu/*"
     ]
   }
 }

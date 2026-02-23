@@ -351,7 +351,7 @@ export function assignOrgToUser(orgId: number, isJoinViaInvite = false) {
       await passAdditionalSignupParams();
     }
     localStorage.setItem(CAPTUREBLISS_LOCAL_STORAGE_ORG_ID_KEY, orgId.toString());
-    await dispatch(getSubscriptionOrCheckoutNew());
+    await dispatch(getSubscriptionOrCheckoutNew(true));
 
     dispatch({
       type: ActionType.ORG,
